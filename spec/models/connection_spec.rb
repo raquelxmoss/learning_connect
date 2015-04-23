@@ -9,16 +9,4 @@ RSpec.describe Connection, type: :model do
 
 
 
-  describe 'Agreement reached' do 
-  
-    xit {should have_many :messages}
-
-  end
-
-  describe 'Agreement not reached' do 
-  
-  end
-
-
-
 end
