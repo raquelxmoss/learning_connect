@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20150423060232) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "agreements", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "connection_id"
+    t.integer  "course_id"
+    t.integer  "price"
+    t.string   "location"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "connections", force: :cascade do |t|
     t.integer  "tutor_id"
