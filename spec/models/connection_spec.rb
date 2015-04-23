@@ -1,20 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe Connection, type: :model do
-  
 
-  it 'belongs to a tutor'
-  it 'belongs to a learner'
-  it 'has many messages'
+
+  it {should belong_to :tutor}
+  it {should belong_to :learner}
+  it {should have_many :messages}
+
 
 
   describe 'Agreement reached' do 
-    it 'has an agreement'
+  
+    xit {should have_many :messages}
 
   end
 
   describe 'Agreement not reached' do 
-
+  
   end
 
 
