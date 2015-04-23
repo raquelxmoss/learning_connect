@@ -1,5 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe Connection, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+
+  it 'belongs to a tutor'
+  it 'belongs to a learner'
+  it 'has many messages'
+
+
+  describe 'Agreement reached' do 
+    it 'has an agreement'
+
+  end
+
+  describe 'Agreement not reached' do 
+
+  end
+
+
+
 end
