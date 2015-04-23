@@ -11,7 +11,7 @@ RSpec.describe Connection, type: :model do
 
   describe 'Agreement reached' do 
   
-    xit {should have_many :messages}
+    it {should have_one :agreement}
 
   end
 
