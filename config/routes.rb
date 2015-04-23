@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  
+
   devise_for :users
-root to: "pages#welcome"
+  root 'static_pages#index'
 
 end
