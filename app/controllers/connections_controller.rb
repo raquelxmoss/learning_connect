@@ -7,13 +7,16 @@ class ConnectionsController < ApplicationController
     @receiver = User.find(params[:receiver_id]) #this is the user whose profile page they are looking at
     @connection = Connection.new(receiver_id: @receiver.id, initializer_id: @initializer)
     if @connection.save
-      redirect_to connections_path
+      redirect_to :back
     else
-      render users_path(@receiver)
+      redirect_to :back
     end
   end
 
   def show
+    @connection = Connection.find(params[:connection_id])
+    @users = [@connection.initializer, @connection.receiver]
+    @courses = Course.where(connection_id: @connection.id)
   end
 
   def new

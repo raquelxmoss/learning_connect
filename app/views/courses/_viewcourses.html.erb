@@ -1,0 +1,12 @@
+
+<% @courses.each do |course| %>
+  <div class="course">
+    <h3><%= course.title %></h3>
+    <p><%= course.id %></p>
+    <p>Tutor: <%= course.tutor.name %></p>
+    <p>Learner: <%= course.learner.name %></p>
+    <p>Price: $<%= course.price %></p>
+    <p>Status: <%= course.status.capitalize %></p>
+    <%= link_to 'Update Lesson', edit_course_path(course.id) %>
+  </div>
+<% end %>
