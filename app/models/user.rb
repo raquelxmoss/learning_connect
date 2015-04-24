@@ -11,5 +11,7 @@ class User < ActiveRecord::Base
   has_many :receiver_connections, class_name: 'Connection', foreign_key: 'initializer_id'
   has_many :receivers, class_name: 'User', through: :receiver_connections
 
+  has_many :courses, through: :connections
+
 
 end
