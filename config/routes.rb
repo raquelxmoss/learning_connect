@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :learning_objectives
   resources :courses
   devise_for :users
+  resources :connections
   get '/users/:id', to: 'users#show'
   get '/users', to: 'users#index'
 
