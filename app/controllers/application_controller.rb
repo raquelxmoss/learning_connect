@@ -6,9 +6,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
-
+ # This allows us to have custom fields in the forms.
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit({ roles: [] }, :email, :password, :password_confirmation, :name, :about, :availability) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit({ roles: [] }, :email, :password, :current_password, :name, :about, :availability) }
   end
 
 end
