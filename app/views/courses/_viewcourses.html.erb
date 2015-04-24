@@ -1,0 +1,10 @@
+
+<% @courses.each do |course| %>
+  <div class="course">
+    <h3><%= course.title %></h3>
+    <p><%= course.id %></p>
+    <p>Tutor: <%= course.tutor.name %></p>
+    <p>Learner: <%= course.learner.name %></p>
+    <p>Price: $<%= course.price %></p>
+  </div>
+<% end %>
