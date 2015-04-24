@@ -12,7 +12,15 @@ class CoursesController < ApplicationController
     end
   end
 
-  def new
+  def edit
+    @course = Course.find(params[:id])
+    @connection = @course.connection
+    @users = [@connection.initializer, @connection.receiver]
+  end
+
+  def update
+    @course = Course.find(params[:id])
+    # @course.update(params)
   end
 
 end

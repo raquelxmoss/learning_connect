@@ -14,7 +14,7 @@ class ConnectionsController < ApplicationController
   end
 
   def show
-    @connection = Connection.find(params[:id])
+    @connection = Connection.find(params[:connection_id])
     @users = [@connection.initializer, @connection.receiver]
     @courses = Course.where(connection_id: @connection.id)
   end
