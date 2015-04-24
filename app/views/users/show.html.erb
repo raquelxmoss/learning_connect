@@ -1,7 +1,6 @@
 
 
     <div>
-
       <% if user_signed_in? %>
       <h1>Welcome, <%= @user.name %></h1>
       <% end %>
@@ -19,7 +18,12 @@
 
     <div id="teach">
       <h2>I can teach:</h2>
-      // Teaching skills go here
+        <ul>
+          <% @user.skills.where(skill_type: 'teach').each do |skill| %>
+            <li><%= simple_format(skill.description)%></li>
+          <<% end %>
+        </ul>
+        //Add things to teach
       <% if user_signed_in? %>
         <%= link_to 'Find a Learner', users_path, :class => "btn btn-lg btn-primary" %>
       <%  else %>
@@ -29,9 +33,15 @@
 
     <div id="learn">
       <h2>I'm keen to learn:</h2>
-      // Want to learn goes here
+        <ul>
+          <% @user.skills.where(skill_type: 'learn').each do |skill| %>
+            <li><%= simple_format(skill.description)%></li>
+          <<% end %>
+        </ul>
+        //Add things to learn
+
       <% if user_signed_in? %>
-      <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
+        <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
       <% else %>
         // Connect with User button goes here
       <% end %>
@@ -39,14 +49,14 @@
     </div>
 
     <% if user_signed_in? %>
-    <li>
-      <%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-lg btn-primary" %>
-    </li>
-    <li>
-      <%= link_to 'Edit Profile', edit_user_registration_path, :class => "btn btn-lg btn-primary" %>
-    </li>
-  <% else %>
-    <li>
-    <%= link_to 'Login', new_user_session_path, :class => "btn btn-lg btn-primary" %>
-    </li>
+      <li>
+        <%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-lg btn-primary" %>
+      </li>
+      <li>
+        <%= link_to 'Edit Profile', edit_user_registration_path, :class => "btn btn-lg btn-primary" %>
+      </li>
+    <% else %>
+      <li>
+      <%= link_to 'Login', new_user_session_path, :class => "btn btn-lg btn-primary" %>
+      </li>
     <% end %>
