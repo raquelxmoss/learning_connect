@@ -1,0 +1,2 @@
+Message.delete_all
+
