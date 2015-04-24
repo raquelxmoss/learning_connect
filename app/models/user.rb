@@ -4,16 +4,25 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :connections, foreign_key: 'receiver_id'
+  has_many :connections, foreign_key: 'initializer_id'
+  has_many :acquaintances, class_name: 'User', through: :connections
 
-  has_many :learner_connections, class_name: 'Connection', foreign_key: 'tutor_id'
-  has_many :learners, class_name: 'User', through: :learner_connections
+  has_many :classes, class_name: 'Course', through: :connections, foreign_key: 'tutor_id'
+  has_many :lessons, class_name: 'Course', through: :connections, foreign_key: 'learner_id'
 
-  has_many :tutor_connections, class_name: 'Connection', foreign_key: 'learner_id'
-  has_many :tutors, class_name: 'User', through: :tutor_connections
+  has_many :tutors, class_name: 'User', through: :courses, foreign_key: 'learner_id'
+  has_many :learners, class_name: 'User', through: :courses, foreign_key: 'tutor_id'
+
+  has_many :messages
 
   has_many :courses, through: :connections
 
   has_many :skills
+
+  # def can_edit_profile?
+  #   if user_signed_in? && current_user.id == @user.id
+  # end
 
 
 end

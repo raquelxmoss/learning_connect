@@ -1,0 +1,5 @@
+<h1>New Connection</h1>
+<%= form_for @connnection do |f| %>
+  <%= hidden_field(:initializer, :current_user) %>
+  <%= f.submit "Create" %>
+<% end %>
