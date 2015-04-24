@@ -22,7 +22,7 @@
       <% if user_signed_in? %>
         <%= link_to 'Find a Learner', users_path, :class => "btn btn-lg btn-primary" %>
       <%  else %>
-        // Connect with User button goes here
+        <%= link_to 'Connect', new_connection_path, :class => "btn btn-lg btn-primary" %>
       <% end %>
     </div>
 
