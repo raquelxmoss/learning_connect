@@ -1,0 +1,15 @@
+<h2>Create a Lesson</h2>
+
+<%= form_tag courses_path, method: "post" do %>
+  <%= hidden_field_tag(:connection_id, @connection.id) %>
+  <p>Learner:<%= select_tag 'Learner', options_for_select(@users) %></p>
+  <p>Tutor: <%= select_tag 'Learner', options_for_select(@users) %></p>
+  <p><%= label_tag :title %>:</p>
+  <p><%= text_field_tag :title %></p>
+  <p><%= label_tag :price %>:</p>
+  <p><%= number_field_tag :price %></p>
+  <p>Learning Objectives go here</p>
+  <%= submit_tag "Create", :class => "btn btn-lg btn-primary" %>
+<% end %>
+
+

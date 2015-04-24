@@ -15,6 +15,7 @@ class ConnectionsController < ApplicationController
 
   def show
     @connection = Connection.find(params[:id])
+    @users = [@connection.initializer.name, @connection.receiver.name]
   end
 
   def new
