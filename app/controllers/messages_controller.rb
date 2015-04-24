@@ -9,7 +9,8 @@ class MessagesController < ApplicationController
   end
 
   def show
-    #render as json
+    @message = Message.find(params[:id])
+    render json: @message
   end
 
 
