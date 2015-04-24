@@ -2,6 +2,7 @@ class Connection < ActiveRecord::Base
 
   belongs_to :initializer, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
+  
   has_many :messages
   has_many :courses
   
