@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index'
 
   resources :users do
-  	resources :skills
+  	resources :skills, only: [:index, :show]
   end
+  delete 'users/:user_id/skills/:id' => 'skills#destroy', :as => 'delete_skill'
 
   root 'static_pages#index'
 
