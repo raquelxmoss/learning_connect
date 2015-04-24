@@ -1,10 +1,7 @@
-
-
-
     <div class="home">
       <% if user_signed_in? %>
       <h1>Welcome, <%= @user.name %></h1>
-
+      <% end %>
     <div>
       <% if can_edit_profile?(@user) %>
         <h1>Welcome, <%= current_user.name %></h1>
@@ -52,7 +49,7 @@
         //Add things to learn
 
       <% if can_edit_profile?(@user) %>
-      <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
+        <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
       <% else %>
         <%= render partial: "connectbutton"%>
       <% end %>
@@ -65,7 +62,10 @@
 
     <% if can_edit_profile?(@user) %>
       <% @connections.each do |connection| %>
-        <li><p>Connection between <%= connection.initializer.name %> and <%= connection.receiver.name %></p><%= link_to "View Connection", connection %></li>
+        <li>
+          <p>Connection between <%= connection.initializer.name %> and <%= connection.receiver.name %></p>
+          <%= link_to "View Connection", connection %>
+        </li>
       <% end %>
     <% end %>
 
