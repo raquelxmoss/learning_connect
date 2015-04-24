@@ -1,1 +1,6 @@
 <h1>Connection</h1>
+<% @connection.messages.each do |message| %>
+  <li><% if message.user%>
+    <%= message.user.name %>:
+    <%end %><%= simple_format(message.content) %></li>
+<% end %>
