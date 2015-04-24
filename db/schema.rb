@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423224848) do
+ActiveRecord::Schema.define(version: 20150424013637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,15 +21,17 @@ ActiveRecord::Schema.define(version: 20150423224848) do
     t.integer  "learner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "course_id"
   end
 
   create_table "courses", force: :cascade do |t|
     t.integer  "learner_id"
     t.integer  "tutor_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "title"
-    t.string   "status",     default: "pending"
+    t.string   "status",        default: "pending"
+    t.integer  "connection_id"
   end
 
   create_table "learning_objectives", force: :cascade do |t|
@@ -54,6 +56,16 @@ ActiveRecord::Schema.define(version: 20150423224848) do
     t.integer  "rating"
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string   "description"
+    t.string   "skill_type"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "skills", ["user_id"], name: "index_skills_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email",                  default: "", null: false
@@ -76,4 +88,5 @@ ActiveRecord::Schema.define(version: 20150423224848) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "skills", "users"
 end
