@@ -56,7 +56,7 @@
     <% end %>
 
     <% if can_edit_profile?(@user) %>
-      <% @user.connections.each do |connection| %>
+      <% @connections.each do |connection| %>
         <li><p>Connection between <%= connection.initializer.name %> and <%= connection.receiver.name %></p><%= link_to "View Connection", connection %></li>
       <% end %>
     <% end %>
