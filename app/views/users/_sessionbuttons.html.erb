@@ -1,0 +1,12 @@
+<% if can_edit_profile?(@user) %>
+<li>
+  <%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-lg btn-primary" %>
+</li>
+<li>
+  <%= link_to 'Edit Profile', edit_user_registration_path, :class => "btn btn-lg btn-primary" %>
+</li>
+<% else %>
+<li>
+  <%= link_to 'Login', new_user_session_path, :class => "btn btn-lg btn-primary" %>
+</li>
+<% end %>
