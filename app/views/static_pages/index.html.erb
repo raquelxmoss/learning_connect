@@ -4,14 +4,15 @@
 <div>
   <% if user_signed_in? %>
     <div>
-      You are signed in as :
+      You are signed in as : <%=current_user.email%>
     </div>
 
     <li>
       <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
     </li>
     <li>
-      <%= link_to('Profile', edit_user_registration_path) %>
+      <%= link_to('Profile', user_path(current_user)) %>
+      <!-- user_registration_path -->
     </li>
   <% else %>
     <li>

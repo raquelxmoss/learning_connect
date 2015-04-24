@@ -22,4 +22,9 @@ class User < ActiveRecord::Base
 
   has_many :skills
 
+
+  # def can_edit_profile?
+  #   if user_signed_in? && current_user.id == @user.id
+  # end
+
 end
