@@ -5,7 +5,7 @@
 
 <% if @connection %>
   <%= form_tag connection_path, method: "get" do %>
-    <%= hidden_field_tag(:id, @connection.id) %>
+    <%= hidden_field_tag(:connection_id, @connection.id) %>
     <%= submit_tag "View Connection", :class => "btn btn-lg btn-primary" %>
   <% end %>
 <% end %>
