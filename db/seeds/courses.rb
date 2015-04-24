@@ -4,14 +4,14 @@ def create_courses(connections)
 
   connections.each do |connection|
     users = [connection.initializer, connection.receiver].shuffle
-    
+
     rand(2).times do 
 
       options ={
-        title: Faker::Lorem.sentence
-        status: Faker::Lorem.paragraph
-        tutor:users[0]
-        learner: users[1]
+        title: Faker::Lorem.sentence,
+        status: Faker::Lorem.paragraph,
+        tutor:users[0],
+        learner: users[1],
         connection: connection
       }
 
