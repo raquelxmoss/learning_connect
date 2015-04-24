@@ -1,13 +1,20 @@
-User.delete_all
+def create_users
 
-User.create(emai:'barretalexandre@hotmail.com', passsword:'cookie')
-User.create(emai:'john.kan@virtuosity.co.nz', passsword:'cookie')
-User.create(emai:'raquelxmoss@gmail.com', passsword:'cookie')
-User.create(emai:'dhara.dhara.009@gmail.com', passsword:'cookie')
+  User.delete_all
 
-10.times do 
+  User.create(name: 'alex', email:'barretalexandre@hotmail.com', password:'password')
+  User.create(name: 'john', email:'john.kan@virtuosity.co.nz', password:'password')
+  User.create(name: 'raquel', email:'raquelxmoss@gmail.com', password:'password')
+  User.create(name: 'dhara', email:'dhara.dhara.009@gmail.com', password:'password')
 
-  User.create(email: Faker::Name.name, password:'cookie' )
+  10.times do 
+
+    User.create(name: Faker::Name.name, email: Faker::Internet.email, password:'password' )
+
+  end
+
+  puts "#{User.count} users created !"
+
+  return User.all
 
 end
-
