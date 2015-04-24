@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @connection = Connection.find_by( initializer_id:current_user.id, receiver_id: @user.id) || @connection = Connection.find_by( initializer_id:@user.id, receiver_id: current_user.id)
+    @connection = Connection.find_by(initializer_id:current_user.id, receiver_id: @user.id) || @connection = Connection.find_by(initializer_id:@user.id, receiver_id: current_user.id)
   end
 
   def edit
