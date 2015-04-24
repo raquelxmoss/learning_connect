@@ -1,19 +1,50 @@
 
-<div id='col_1'>
-  <% if user_signed_in? %>
+
     <div>
-      You are signed in as : <%= @user.email %>
+      <% if user_signed_in? %>
+      <h1>Welcome, <%= @user.name %></h1>
+      <% end %>
+      // Profile image goes here
+    </div>
+    <div  id="about">
+      <h2>About <%= @user.name %></h2>
+       <%= simple_format(@user.about) %>
     </div>
 
+    <div id = "availability">
+      <h2>I'm available at these times:</h2>
+      <%= simple_format(@user.availability) %>
+    </div>
+
+    <div id="teach">
+      <h2>I can teach:</h2>
+      // Teaching skills go here
+      <% if user_signed_in? %>
+        <%= link_to 'Find a Learner', users_path, :class => "btn btn-lg btn-primary" %>
+      <%  else %>
+        // Connect with User button goes here
+      <% end %>
+    </div>
+
+    <div id="learn">
+      <h2>I'm keen to learn:</h2>
+      // Want to learn goes here
+      <% if user_signed_in? %>
+      <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
+      <% else %>
+        // Connect with User button goes here
+      <% end %>
+    </div>
+
+    <% if user_signed_in? %>
     <li>
-      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+      <%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-lg btn-primary" %>
     </li>
     <li>
-      <%= link_to('Profile', edit_user_registration_path) %>
+      <%= link_to 'Edit Profile', edit_user_registration_path, :class => "btn btn-lg btn-primary" %>
     </li>
   <% else %>
     <li>
-    <%= link_to('Login', new_user_session_path)  %>
+    <%= link_to 'Login', new_user_session_path, :class => "btn btn-lg btn-primary" %>
     </li>
-  <% end %>
-</div>
+    <% end %>

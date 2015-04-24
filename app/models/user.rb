@@ -16,5 +16,9 @@ class User < ActiveRecord::Base
 
   has_many :messages
 
+  has_many :courses, through: :connections
+
+  has_many :skills
+
 
 end

@@ -5,4 +5,5 @@ class Course < ActiveRecord::Base
   belongs_to :connection
   belongs_to :tutor, class_name: 'User'
   belongs_to :learner,class_name: 'User'
+
 end

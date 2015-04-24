@@ -15,3 +15,18 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+body{
+  padding-top:70px;
+  background-image: image-url("school.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color:rgb(102, 255, 255);
+
+}
+.navbar-brand{
+
+}
+#existingAccount{
+  text-align: center;
+  float: left;
+}
