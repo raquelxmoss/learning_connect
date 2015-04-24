@@ -6,8 +6,7 @@ require_relative "seeds/courses"
 
 
 users = create_users
-connections = create_connections users
+connections = create_connections(users)
 messages = create_messages(connections)
-courses = create_courses(connections)
-
-
+courses = create_courses(connections) 
+lo = create_lo(courses)
