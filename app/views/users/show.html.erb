@@ -4,6 +4,7 @@
       <% end %>
       // Profile image goes here
     </div>
+
     <div  id="about">
       <h2>About <%= @user.name %></h2>
        <%= simple_format(@user.about) %>
@@ -42,8 +43,6 @@
         </ul>
         //Add things to learn
 
-
-      // Want to learn goes here
       <% if can_edit_profile?(@user) %>
       <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
       <% else %>
@@ -56,4 +55,12 @@
     <% if can_edit_profile?(@user) %>
       <%= render partial: "sessionbuttons"%>
     <% end %>
+
+    <% if can_edit_profile?(@user) %>
+      <% @user.connections.each do |connection| %>
+        <li><p>Connection between <%= connection.initializer.name %> and <%= connection.receiver.name %></p><%= link_to "View Connection", connection %></li>
+      <% end %>
+    <% end %>
+
+
 
