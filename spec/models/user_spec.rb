@@ -9,5 +9,6 @@ RSpec.describe User, type: :model do
   it {should have_many :tutors}
   it {should have_many :learners}
   it {should have_many :messages}
+  it {should have_many :skills}
 
 end
