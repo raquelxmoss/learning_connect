@@ -4,12 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
-  has_many :initializer_connections, class_name: 'Connection', foreign_key: 'receiver_id'
-  has_many :initializers, class_name: 'User', through: :initializer_connections
-
-  has_many :receiver_connections, class_name: 'Connection', foreign_key: 'initializer_id'
-  has_many :receivers, class_name: 'User', through: :receiver_connections
+  has_many :connections, foreign_key: 'receiver_id'
+  has_many :connections, foreign_key: 'initializer_id'
+  has_many :acquaintances, class_name: 'User', through: :connections
 
   has_many :courses, through: :connections
 
