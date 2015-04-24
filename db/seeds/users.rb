@@ -1,6 +1,6 @@
 def create_users
 
-  # User.delete_all
+  User.delete_all
 
   User.create(name: 'alex', email:'barretalexandre@hotmail.com', password:'password')
   User.create(name: 'john', email:'john.kan@virtuosity.co.nz', password:'password')
