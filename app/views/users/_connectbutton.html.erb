@@ -4,7 +4,7 @@
 <% end %>
 
 <% if @connection and (@connection.receiver_id == current_user.id || @connection.initializer_id == current_user.id) %>
-  <%= form_tag connection_path, method: "get" do %>
+  <%= form_tag "/connections/16", method: "get" do %>
     <%= hidden_field_tag(:connection_id, @connection.id) %>
     <%= submit_tag "View Connection", :class => "btn btn-lg btn-primary" %>
   <% end %>
