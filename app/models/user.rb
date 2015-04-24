@@ -11,5 +11,9 @@ class User < ActiveRecord::Base
   has_many :tutor_connections, class_name: 'Connection', foreign_key: 'learner_id'
   has_many :tutors, class_name: 'User', through: :tutor_connections
 
+  has_many :courses, through: :connections
+
+  has_many :skills
+
 
 end
