@@ -29,6 +29,12 @@
           <% end %>
         </ul>
         //Add things to teach
+        <%= form_for(:skill, url: create_skill_path(@user.id)) do |f| %>
+          <%= f.text_field :description %>
+          <%= f.hidden_field :skill_type, :value=>'teach' %>
+          <%= f.hidden_field :user_id, :value=>"#{current_user.id}"%>
+          <%= f.submit value='new skill' %>
+        <% end %>
 
       // Teaching skills go here
       <% if can_edit_profile?(@user) %>
@@ -49,6 +55,13 @@
           <% end %>
         </ul>
         //Add things to learn
+        <%= form_for(:skill, url: create_skill_path(@user.id)) do |f| %>
+          <%= f.text_field :description %>
+          <%= f.hidden_field :skill_type, :value=>'learn' %>
+          <%= f.hidden_field :user_id, :value=>"#{current_user.id}"%>
+          <%= f.submit value='new skill' %>
+        <% end %>
+        
 
       <% if can_edit_profile?(@user) %>
         <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
