@@ -1,12 +1,7 @@
 <h1>Connection between <%= @users[0].name %> and <%= @users[1].name %></h1>
 
 <div id="message-panel" class="col-md-6">
-  <% @connection.messages.each do |message| %>
-    <li class="message"><% if message.user %>
-      <%= message.user.name.capitalize %>:
-      <%end %><%= simple_format(message.content) %></li>
-  <% end %>
-
+  <%= render partial: "messages/show"%>
   <%= render partial: "newmessageform"%>
 </div>
 
