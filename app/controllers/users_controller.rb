@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :edit]
 
   def index
-    @users = User.all.pluck(:id, :name)
+    @users = User.all
   end
 
   def show
