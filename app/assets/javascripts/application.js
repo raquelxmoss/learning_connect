@@ -14,3 +14,15 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+
+  $('#create-lesson').click(function(){
+    $('#new-lesson-form').toggle();
+  });
+
+  $('#view-all-lessons').click(function(){
+    $('#all-lessons').toggle();
+  });
+});
+
