@@ -8,11 +8,14 @@
 </head>
 <body>
   <nav class="navbar navbar-fixed-top navbar-default">
-    <ul class="nav navbar-nav">
-   <li> <a href="#" class="navbar-brand">Learning Connect</a></li>
-
+  <ul class="nav navbar-nav">
+    <li><%= link_to 'Learning Connect', root_path, class: 'navbar-brand' %></li>
   </ul>
-  <div class="pull-right"><a href="#" >Log Into Existing Account</a></div>
+  <ul class="nav navbar-nav navbar-right">
+    <li><%= link_to 'Log in', new_user_session_path %></li>
+    <li><%= link_to 'Log out', destroy_user_session_path %></li>
+    <li><%= link_to 'Sign Up', new_user_session_path %></li>
+  </ul>
   </nav>
   <div class="container">
     <p class="notice"><%= notice %></p>

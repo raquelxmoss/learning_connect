@@ -1,25 +1,22 @@
     <div class="home">
-      <% if user_signed_in? %>
+      <% if can_edit_profile?(@user) %>
       <h1>Welcome, <%= @user.name %></h1>
       <% end %>
     <div>
-      <% if can_edit_profile?(@user) %>
-        <h1>Welcome, <%= current_user.name %></h1>
-
-      <% end %>
       // Profile image goes here
     </div>
+    <div class ="col-md-6">
+      <div  id="about">
+        <h2>About <%= @user.name %></h2>
+         <%= simple_format(@user.about) %>
+      </div>
 
-    <div  id="about">
-      <h2>About <%= @user.name %></h2>
-       <%= simple_format(@user.about) %>
-    </div>
-
-    <div id = "availability">
-      <h2>I'm available at these times:</h2>
-      <%= simple_format(@user.availability) %>
-    </div>
-
+      <div id = "availability">
+        <h2>I'm available at these times:</h2>
+        <%= simple_format(@user.availability) %>
+      </div>
+   </div>
+   <div class ="col-md-6">
     <div id="teach">
       <h2>I can teach:</h2>
         <ul>
@@ -28,9 +25,10 @@
             <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id),method: :delete%></a>
           <% end %>
         </ul>
-        //Add things to teach
+        <p>Add things to teach
 
-      // Teaching skills go here
+           Teaching skills go here
+        </p>
       <% if can_edit_profile?(@user) %>
 
         <%= link_to 'Find a Learner', users_path, :class => "btn btn-lg btn-primary" %>
@@ -48,7 +46,7 @@
             <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id),method: :delete%></a>
           <% end %>
         </ul>
-        //Add things to learn
+        <p>Add things to learn</p>
 
       <% if can_edit_profile?(@user) %>
         <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
@@ -57,7 +55,7 @@
       <% end %>
 
     </div>
-
+    </div>
     <% if can_edit_profile?(@user) %>
       <%= render partial: "sessionbuttons"%>
     <% end %>
