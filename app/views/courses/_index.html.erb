@@ -6,6 +6,7 @@
     <p>Tutor: <%= course.tutor.name %></p>
     <p>Learner: <%= course.learner.name %></p>
     <p>Price: $<%= course.price %></p>
+    <p>Length: <%= course.length %> hours</p>
     <p>Status: <%= course.status.capitalize %></p>
     <%= link_to 'Update Lesson', edit_connection_course_path(@connection,course) %>
   </div>
