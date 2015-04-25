@@ -1,5 +1,25 @@
 class SkillsController < ApplicationController
 	
+	def index
+		puts "INDEX"
+		@skills = Skill.all
+		if params[:search]
+			@skills = Skill.search(params[:search])
+		else
+			@skills = Skill.all
+		end	
+	end
+
+	def list
+		puts "LIST"
+		@skills = Skill.all
+		if params[:search]
+			@skills = Skill.search(params[:search])
+		else
+			@skills = Skill.all
+		end	
+	end
+
 	def create
 		@skill = Skill.new(skill_params)
 		if @skill.save(skill_params)

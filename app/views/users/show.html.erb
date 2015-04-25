@@ -25,7 +25,6 @@
             <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id),method: :delete%></a>
           <% end %>
         </ul>
-        //Add things to teach
 
         <p>Add things to teach
           <%= form_for(:skill, url: create_skill_path(@user.id)) do |f| %>
@@ -34,8 +33,6 @@
             <%= f.hidden_field :user_id, :value=>"#{current_user.id}"%>
             <%= f.submit value='new skill' %>
           <% end %>
-
-           Teaching skills go here
         </p>
       <% if can_edit_profile?(@user) %>
 
@@ -47,26 +44,34 @@
 
     <div id="learn">
       <h2>I'm keen to learn:</h2>
-
         <ul>
           <% @user.skills.where(skill_type: 'learn').each do |skill| %>
             <li><%= simple_format(skill.description)%></li>
             <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id),method: :delete%></a>
           <% end %>
         </ul>
-        <p>//Add things to learn</p>
-        <%= form_for(:skill, url: create_skill_path(@user.id)) do |f| %>
-          <%= f.text_field :description %>
-          <%= f.hidden_field :skill_type, :value=>'learn' %>
-          <%= f.hidden_field :user_id, :value=>"#{current_user.id}"%>
-          <%= f.submit value='new skill' %>
-        <% end %>
-
+        <p>Add things to learn
+          <%= form_for(:skill, url: create_skill_path(@user.id)) do |f| %>
+            <%= f.text_field :description %>
+            <%= f.hidden_field :skill_type, :value=>'learn' %>
+            <%= f.hidden_field :user_id, :value=>"#{current_user.id}"%>
+            <%= f.submit value='new skill' %>
+          <% end %>
+        </p>
       <% if can_edit_profile?(@user) %>
         <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
       <% else %>
         <%= render partial: "connectbutton"%>
       <% end %>
+      
+      <div id='search'>
+        <p>
+          <%= form_tag(skills_list_path, :method => 'post', id: "search_form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: 'search skills' %>
+            <%= submit_tag "search" %>
+          <% end %>
+        </p>
+      </div>
 
     </div>
     </div>

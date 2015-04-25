@@ -1,0 +1,9 @@
+<% if @skills.present? %>
+	<ul>
+	<% @skills.each do |skill| %>
+		<li><%= "#{skill.description}, #{skill.user_id}" %> </li>
+	<% end %>
+</ul>
+<% else %>
+	<p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+<% end %>

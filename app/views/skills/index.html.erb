@@ -1,0 +1,6 @@
+
+<% if @skills.present? %>
+	<%= render partial: 'skills' %>
+<% else %>
+	<p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+<% end %>
