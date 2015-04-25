@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
   before_filter :get_connection
 
   def show
+    # @course = 
   end
 
   def create
@@ -35,7 +36,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:all).permit(:learner_id, :tutor_id, :title, :price, :length)
+    params.require(:courses).permit(:learner_id, :tutor_id, :title, :price, :length)
   end
 
 end

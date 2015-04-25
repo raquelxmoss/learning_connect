@@ -3,8 +3,8 @@ Rails.application.routes.draw do
  
 
   devise_for :users
-  
-  resources :connections do 
+
+  resources :connections, only: [:create, :show, :new, :destroy] do 
     resources :courses do 
       resources :learning_objectives, only: [:show, :index, :destroy, :create]
       resources :ratings, only: [:show, :index, :destroy, :create]
