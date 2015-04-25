@@ -57,16 +57,17 @@
             <%= f.hidden_field :user_id, :value=>"#{current_user.id}"%>
             <%= f.submit value='new skill' %>
           <% end %>
+
         </p>
       <% if can_edit_profile?(@user) %>
         <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
       <% else %>
         <%= render partial: "connectbutton"%>
       <% end %>
-      
+
       <div id='search'>
         <p>
-          <%= form_tag(skills_list_path, :method => 'post', id: "search_form") do %>
+          <%= form_tag(skills_list_path, remote: true,:method => 'post', id: "search_form") do %>
             <%= text_field_tag :search, params[:search], placeholder: 'search skills' %>
             <%= submit_tag "search" %>
           <% end %>
