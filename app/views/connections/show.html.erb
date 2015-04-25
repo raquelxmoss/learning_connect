@@ -1,7 +1,9 @@
 <h1>Connection between <%= @users[0].name %> and <%= @users[1].name %></h1>
 
-<div id="message-panel" class="col-md-6">
-  <%= render partial: "messages/show"%>
+<div id="message-panel" class="col-md-6" data-connection=<%= @connection.id %>>
+  <div id="messages">
+    <%= render partial: "messages/show"%>
+  </div>
   <%= render partial: "newmessageform"%>
 </div>
 

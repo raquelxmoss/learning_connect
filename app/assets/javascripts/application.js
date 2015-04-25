@@ -24,5 +24,31 @@ $(document).ready(function(){
   $('#view-all-lessons').click(function(){
     $('#all-lessons').toggle();
   });
+
+  $('.message-submit').click(function(e){
+    e.preventDefault();
+    var formData = $(this).parent().serializeArray()
+    getMessages(formData).done(function(result){
+      $('#messages').detach().html(result).prependTo('#message-panel');
+    }).fail(function(result){
+      console.log(result);
+    });
+  });
 });
+
+function getMessages (data){
+  var promise = $.Deferred();
+  $.ajax({
+    url: '/messages',
+    method: 'POST',
+    data: data,
+    success: function(res){
+      promise.resolve(res);
+    },
+    error: function(request){
+      promise.reject(request);
+    }
+  });
+  return promise ;
+}
 
