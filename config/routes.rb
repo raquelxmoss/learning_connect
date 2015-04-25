@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :ratings
-  resources :learning_objectives
-  resources :courses
+ 
+  resources :courses do 
+    resources :learning_objectives, only: [:show, :index, :destroy, :create]
+    resources :ratings, only: [:show, :index, :destroy, :create]
+  end
+
   devise_for :users
   resources :connections
   resources :messages
