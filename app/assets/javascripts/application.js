@@ -38,9 +38,9 @@ $(document).ready(function(){
  $('.message-destroy').click(function(e){
   e.preventDefault();
   var $parentDiv = $(this).parent()
-  var id = ($parentDiv).data('id')
+  var url = $(this).attr('href')
   $.ajax({
-    url: '/messages/' + id,
+    url: url,
     method: 'DELETE',
     success: function(res){
       $parentDiv.remove();
