@@ -1,0 +1,6 @@
+<ul>
+  <% @user.skills.where(skill_type: 'teach').each do |skill| %>
+    <li><%= simple_format(skill.description)%></li>
+    <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id),method: :delete%></a>
+  <% end %>
+</ul>
