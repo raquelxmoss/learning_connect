@@ -1,5 +1,5 @@
-  <% @messages.each do |message| %>
-    <li class="message"><% if message.user %>
-      <%= message.user.name.capitalize %>:
-      <%end %><%= simple_format(message.content) %></li>
-  <% end %>
+  <li class="message">
+  <% if @message.user %>
+    <%= @message.user.name.capitalize %>:
+  <%end %>
+  <%= simple_format(@message.content) %></li>
