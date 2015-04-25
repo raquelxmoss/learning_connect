@@ -27,6 +27,12 @@ class ConnectionsController < ApplicationController
   end
 
   def destroy
+    @connection = Connection.find(params[:id])
+    if @connection.destroy
+      redirect_to user_path(current_user.id)
+    else
+      redirect_to :back
+    end
   end
 
   private

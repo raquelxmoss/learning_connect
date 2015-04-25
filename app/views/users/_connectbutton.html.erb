@@ -1,5 +1,6 @@
 <% if @connection and (@connection.receiver_id == current_user.id || @connection.initializer_id == current_user.id) %>
   <%= link_to 'View Connection', @connection %>
+  <%= link_to 'Disconnect', @connection, method: 'DELETE' %>
 
 
 <% else %>
