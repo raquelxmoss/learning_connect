@@ -73,6 +73,22 @@
           <% end %>
         </p>
       </div>
+      <div id='search_results'>
+        $(".clicked").click(function(){
+        $.get("/dashboard",{
+        clicked_id:this.id,
+        user:$("#user").val()
+        },
+        function(data)
+        {
+         $("#all_users").hide();
+         $.each(data, function(email){
+           $("#proj_users").append(email + "<br>");
+         }
+        });
+        });
+
+      </div>
 
     </div>
     </div>
