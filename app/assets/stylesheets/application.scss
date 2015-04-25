@@ -17,10 +17,7 @@
 @import "bootstrap";
 body{
   padding-top:70px;
-  background-size:70%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color:#fff;
+  background: url("school.png");
 
 }
 .navbar-brand{
@@ -31,7 +28,8 @@ body{
   float: left;
 }
  h1{
-  color:rgb(255 , 255, 153);
+  color:#fff;
+  text-shadow: #444 5px 5px 5px;
 
 }
 h1 #home{
