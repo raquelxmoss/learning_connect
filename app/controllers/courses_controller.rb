@@ -4,12 +4,28 @@ class CoursesController < ApplicationController
   before_filter :get_users, only: [:update,:edit]
 
   def show
-    # @course = 
+    # @course =
   end
 
   def create
+      @skill = Skill.new(params[:skill])
+      tags = params[:tags]
+      weights = params[:weights]
+
+      tags.each_with_index do |tag, index|
+        tag = Tag.create :name => tag
+        Skill.create :tag_id => tag.id, :weight => weights[index]
+      end
+    end
+
+  def create
     @course = Course.new(connection_id:params[:connection_id], learner_id: User.find(params[:Learner]).id, tutor_id: User.find(params[:Tutor]).id, title:params[:title], price:params[:price], length:params[:length])
+
     if @course.save
+      learning_objectives = params[:learningObjectives]
+      learning_objectives.each_with_index do |lo, index|
+        @course.learning_objectives << LearningObjective.create(objective: lo)
+      end
       redirect_to :back
     else
       #add an error message
