@@ -1,6 +1,6 @@
 <h2>Update Lesson</h2>
 
-<%= form_tag "/courses/#{@course.id}", method: "PATCH" do %>
+<%= form_tag [@connection, @course], method: "PATCH" do %>
   <%= hidden_field_tag(:connection_id, @connection.id) %>
   <p>Learner:<%= select_tag 'Learner', options_from_collection_for_select(@users, "id", "name") %></p>
   <p>Tutor: <%= select_tag 'Tutor', options_from_collection_for_select(@users, "id", "name") %></p>

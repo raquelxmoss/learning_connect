@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
 
+  before_filter :get_connection
+
   def show
   end
 
@@ -13,8 +15,7 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @course = Course.find(params[:id])
-    @connection = @course.connection
+    @course = @connection.courses.find(params[:id])
     @users = [@connection.initializer, @connection.receiver]
   end
 
@@ -28,6 +29,11 @@ class CoursesController < ApplicationController
   end
 
   private
+
+  def get_connection
+    @connection = Connection.find(params[:connection_id])
+  end
+
   def course_params
     params.require(:all).permit(:learner_id, :tutor_id, :title, :price, :length)
   end
