@@ -1,10 +1,19 @@
 <h1>Connection</h1>
-<% @connection.messages.each do |message| %>
-  <li><% if message.user%>
-    <%= message.user.name %>:
-    <%end %><%= simple_format(message.content) %></li>
-<% end %>
 
-<%= render partial: "newmessageform"%>
-<%= render "courses/newcourseform"%>
-<%= render "courses/viewcourses"%>
+<div id="message-panel" class="col-md-6">
+  <% @connection.messages.each do |message| %>
+    <li><% if message.user%>
+      <%= message.user.name %>:
+      <%end %><%= simple_format(message.content) %></li>
+  <% end %>
+
+  <%= render partial: "newmessageform"%>
+</div>
+
+<div id="course-panel" class="col-md-6">
+  <p class="btn btn-lg btn-primary" href="#" id="create-lesson">Create a lesson</p>
+  <div id="new-lesson-form">
+    <%= render partial: "courses/newcourseform"%>
+  </div>
+  <%= render "courses/viewcourses"%>
+</div>
