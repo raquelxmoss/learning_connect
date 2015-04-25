@@ -21,5 +21,8 @@ $(document).ready(function(){
     $('#new-lesson-form').toggle();
   });
 
+  $('#view-all-lessons').click(function(){
+    $('#all-lessons').toggle();
+  });
 });
 
