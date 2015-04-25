@@ -1,6 +1,6 @@
     <div class="home">
       <% if can_edit_profile?(@user) %>
-      <h1>Welcome, <%= @user.name %></h1>
+      <h1>Welcome, <%= @user.name.capitalize %></h1>
       <% end %>
     <div>
       // Profile image goes here
@@ -19,26 +19,11 @@
    <div class ="col-md-6">
     <div id="teach">
       <h2>I can teach:</h2>
-        <ul>
-          <% @user.skills.where(skill_type: 'teach').each do |skill| %>
-            <li><%= simple_format(skill.description)%></li>
-            <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id),method: :delete%></a>
-          <% end %>
-        </ul>
-        //Add things to teach
-
-        <p>Add things to teach
-          <%= form_for(:skill, url: create_skill_path(@user.id)) do |f| %>
-            <%= f.text_field :description %>
-            <%= f.hidden_field :skill_type, :value=>'teach' %>
-            <%= f.hidden_field :user_id, :value=>"#{current_user.id}"%>
-            <%= f.submit value='new skill' %>
-          <% end %>
-
-           Teaching skills go here
-        </p>
+        <%= render partial: "listteachingskills"%>
       <% if can_edit_profile?(@user) %>
-
+        <%= render partial: "teachingskillsform"%>
+      <% end %>
+      <% if can_edit_profile?(@user) %>
         <%= link_to 'Find a Learner', users_path, :class => "btn btn-lg btn-primary" %>
       <%  else %>
         <%= render partial: "connectbutton"%>
@@ -47,20 +32,10 @@
 
     <div id="learn">
       <h2>I'm keen to learn:</h2>
-
-        <ul>
-          <% @user.skills.where(skill_type: 'learn').each do |skill| %>
-            <li><%= simple_format(skill.description)%></li>
-            <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id),method: :delete%></a>
-          <% end %>
-        </ul>
-        <p>//Add things to learn</p>
-        <%= form_for(:skill, url: create_skill_path(@user.id)) do |f| %>
-          <%= f.text_field :description %>
-          <%= f.hidden_field :skill_type, :value=>'learn' %>
-          <%= f.hidden_field :user_id, :value=>"#{current_user.id}"%>
-          <%= f.submit value='new skill' %>
-        <% end %>
+      <%= render partial: "listlearningskills"%>
+      <% if can_edit_profile?(@user) %>
+        <%= render partial: "learningskillsform"%>
+      <% end %>
 
       <% if can_edit_profile?(@user) %>
         <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
