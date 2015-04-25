@@ -1,6 +1,11 @@
 class LearningObjectivesController < ApplicationController
   before_filter :get_course
 
+  def index
+    render "index", :layout => false 
+  end
+
+
 
 
 
