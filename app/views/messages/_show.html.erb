@@ -2,4 +2,6 @@
   <% if @message.user %>
     <%= @message.user.name.capitalize %>:
   <%end %>
-  <%= simple_format(@message.content) %></li>
+  <%= simple_format(@message.content) %>
+  <%= link_to 'Delete Message', @message_path, class:'message-destroy'%>
+</li>

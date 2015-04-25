@@ -34,6 +34,23 @@ $(document).ready(function(){
       alert(result);
     });
   });
+
+ $('.message-destroy').click(function(e){
+  e.preventDefault();
+  var $parentDiv = $(this).parent()
+  var id = ($parentDiv).data('id')
+  $.ajax({
+    url: '/messages/' + id,
+    method: 'DELETE',
+    success: function(res){
+      $parentDiv.remove();
+    },
+    error: function(){
+      alert("Message could not be deleted");
+    }
+  })
+ });
+
 });
 
 function getMessages (data){

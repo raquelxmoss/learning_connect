@@ -18,5 +18,13 @@ class MessagesController < ApplicationController
     render json: @message
   end
 
+  def destroy
+    @message = Message.find(params[:id])
+    if @message.destroy
+      render json: @message, status: :ok
+    else
+      render json: @message, status: :unprocessable_entity
+    end
+  end
 
 end
