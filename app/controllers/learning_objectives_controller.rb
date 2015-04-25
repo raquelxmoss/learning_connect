@@ -15,9 +15,9 @@ class LearningObjectivesController < ApplicationController
     @learning_objective = @course.learning_objectives.build(learning_objective_params)
 
     if @learning_objective.save
-      format.html { redirect_to course_path @course, notice: 'Post was successfully created.' }
+      redirect_to course_path @course, notice: 'Post was successfully created.'
     else
-      format.html { render :new }
+      render :new
     end
 
   end
@@ -42,7 +42,7 @@ class LearningObjectivesController < ApplicationController
   end
 
   def learning_objective_params
-    params.require(:learning_objective).permit(:objective)
+    params.require(:learning_objectives).permit(:objective)
   end
 
 end
