@@ -54,18 +54,13 @@
             <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id),method: :delete%></a>
           <% end %>
         </ul>
-<<<<<<< HEAD
-        //Add things to learn
+        <p>//Add things to learn</p>
         <%= form_for(:skill, url: create_skill_path(@user.id)) do |f| %>
           <%= f.text_field :description %>
           <%= f.hidden_field :skill_type, :value=>'learn' %>
           <%= f.hidden_field :user_id, :value=>"#{current_user.id}"%>
           <%= f.submit value='new skill' %>
         <% end %>
-
-=======
-        <p>Add things to learn</p>
->>>>>>> origin/master
 
       <% if can_edit_profile?(@user) %>
         <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
