@@ -20,7 +20,16 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
-    # @course.update(params)
+    if @course.update(course_params)
+      redirect_to :back
+    else
+      render 'edit'
+    end
+  end
+
+  private
+  def course_params
+    params.require(:all).permit(:learner_id, :tutor_id, :title, :price, :length)
   end
 
 end
