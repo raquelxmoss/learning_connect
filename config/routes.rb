@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   	resources :skills, only: [:index, :show]
   end
   delete 'users/:user_id/skills/:id' => 'skills#destroy', :as => 'delete_skill'
+  post 'users/:user_id/skills/' => 'skills#create', :as => 'create_skill'
 
   root 'static_pages#index'
 
