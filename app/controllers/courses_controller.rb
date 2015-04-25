@@ -1,6 +1,10 @@
 class CoursesController < ApplicationController
 
+  before_filter :get_connection
+  before_filter :get_users, only: [:update,:edit]
+
   def show
+    # @course = 
   end
 
   def create
@@ -13,14 +17,38 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @course = Course.find(params[:id])
-    @connection = @course.connection
-    @users = [@connection.initializer, @connection.receiver]
+    @course = @connection.courses.find(params[:id])
   end
 
   def update
-    @course = Course.find(params[:id])
-    # @course.update(params)
+    @course = @connection.courses.find(params[:id])
+    if @course.update(course_params.merge(get_learner))
+      redirect_to connection_path @connection
+    else
+      redirect_to :back
+    end
+  end
+
+  private
+
+  def get_connection
+    @connection = Connection.find(params[:connection_id])
+  end
+
+  def course_params
+    params.require(:course).permit(:price, :title, :status, :learner_id, :tutor_id, :length)
+  end
+
+  def get_users
+    @users = [@connection.initializer, @connection.receiver]
+  end
+
+  def remove_tutor_id
+    return id = @users.select{|user| user.id != params[:course][:tutor_id].to_i}.first.id
+  end
+
+  def get_learner
+    {"learner_id" => remove_tutor_id }
   end
 
 end

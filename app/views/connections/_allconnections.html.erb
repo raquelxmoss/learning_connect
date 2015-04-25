@@ -1,0 +1,6 @@
+<% @connections.each do |connection| %>
+  <li class="connection">
+    <p>Connection between <%= connection.initializer.name %> and <%= connection.receiver.name %></p>
+    <%= link_to "View Connection", connection %>
+  </li>
+<% end %>

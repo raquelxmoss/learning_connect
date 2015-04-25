@@ -1,0 +1,6 @@
+<%= form_for(:skill, url: create_skill_path(@user.id)) do |f| %>
+  <%= f.text_field :description %>
+  <%= f.hidden_field :skill_type, :value=>'learn' %>
+  <%= f.hidden_field :user_id, :value=>"#{current_user.id}"%>
+  <%= f.submit value='new skill' %>
+<% end %>

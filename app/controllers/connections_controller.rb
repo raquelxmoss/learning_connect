@@ -14,9 +14,10 @@ class ConnectionsController < ApplicationController
   end
 
   def show
-    @connection = Connection.find(params[:connection_id])
+    @connection = Connection.find(params[:id])
     @users = [@connection.initializer, @connection.receiver]
-    @courses = Course.where(connection_id: @connection.id)
+    @courses = @connection.courses
+    @messages = @connection.messages
   end
 
   def new
@@ -25,13 +26,13 @@ class ConnectionsController < ApplicationController
     @connection = Connection.new(receiver_id: @receiver.id, initializer_id: @initializer)
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
+    @connection = Connection.find(params[:id])
+    if @connection.destroy
+      redirect_to user_path(current_user.id)
+    else
+      redirect_to :back
+    end
   end
 
   private
