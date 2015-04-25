@@ -2,9 +2,9 @@
 
 <div id="message-panel" class="col-md-6" data-connection=<%= @connection.id %>>
   <div id="messages">
-    <%= render "messages/index"%>
+    <%= render partial: "messages/index"%>
   </div>
-  <%= render partial: "newmessageform"%>
+  <%= render partial: "messages/newmessageform"%>
 </div>
 
 <div id="course-panel" class="col-md-6">

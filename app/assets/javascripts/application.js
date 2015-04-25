@@ -31,15 +31,16 @@ $(document).ready(function(){
     getMessages(formData).done(function(result){
       $('#messages').append(result);
     }).fail(function(result){
-      console.log(result);
+      alert(result);
     });
   });
 });
 
 function getMessages (data){
   var promise = $.Deferred();
+  var id = data[2].value
   $.ajax({
-    url: '/messages',
+    url: '/connections/'+id+'/messages',
     method: 'POST',
     data: data,
     success: function(res){
