@@ -17,11 +17,10 @@
 @import "bootstrap";
 body{
   padding-top:70px;
-  background-image:url("homepage.jpg");
   background-size:70%;
   background-repeat: no-repeat;
   background-position: center;
-  background-color:rgb(102, 255, 255);
+  background-color:#fff;
 
 }
 .navbar-brand{
@@ -37,5 +36,18 @@ body{
 }
 h1 #home{
 margin-top:90px;
+}
+
+.message {
+  list-style: none;
+  background: #eee;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: Open sans;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  margin-bottom: 20px;
 }
 
