@@ -16,7 +16,7 @@ class ConnectionsController < ApplicationController
   def show
     @connection = Connection.find(params[:id])
     @users = [@connection.initializer, @connection.receiver]
-    @courses = Course.where(connection_id: @connection.id)
+    @courses = @connection.courses
     @messages = @connection.messages
   end
 
@@ -24,12 +24,6 @@ class ConnectionsController < ApplicationController
     @initializer = current_user.id
     @receiver = User.find(params[:id]) #this is the user whose profile page they are looking at
     @connection = Connection.new(receiver_id: @receiver.id, initializer_id: @initializer)
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def destroy

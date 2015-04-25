@@ -1,6 +1,6 @@
 <h2>Create a Lesson</h2>
 
-<%= form_tag courses_path, method: "post" do %>
+<%= form_tag connection_courses_path @connection, method: "post" do %>
   <%= hidden_field_tag(:connection_id, @connection.id) %>
   <p>Learner:<%= select_tag 'Learner', options_from_collection_for_select(@users, "id", "name") %></p>
   <p>Tutor: <%= select_tag 'Tutor', options_from_collection_for_select(@users, "id", "name") %></p>

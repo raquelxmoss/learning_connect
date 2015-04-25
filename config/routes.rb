@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
 
  
-  resources :courses do 
-    resources :learning_objectives, only: [:show, :index, :destroy, :create]
-    resources :ratings, only: [:show, :index, :destroy, :create]
-  end
 
   devise_for :users
-  resources :connections
-  resources :messages
+
+  resources :connections, only: [:create, :show, :new, :destroy] do 
+    resources :courses do 
+      resources :learning_objectives, only: [:show, :index, :destroy, :create]
+      resources :ratings, only: [:show, :index, :destroy, :create]
+    end
+    resources :messages
+  end
+
+
   get '/users/:id', to: 'users#show'
   get '/users', to: 'users#index'
 

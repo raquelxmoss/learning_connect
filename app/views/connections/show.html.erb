@@ -2,18 +2,18 @@
 
 <div id="message-panel" class="col-md-6" data-connection=<%= @connection.id %>>
   <div id="messages">
-    <%= render "messages/index"%>
+    <%= render partial: "messages/index"%>
   </div>
-  <%= render partial: "newmessageform"%>
+  <%= render partial: "messages/newmessageform"%>
 </div>
 
 <div id="course-panel" class="col-md-6">
   <p class="btn btn-lg btn-primary" href="#" id="create-lesson">Create a lesson</p>
   <p class="btn btn-lg btn-primary" href="#" id="view-all-lessons">All Lessons</p>
   <div id="new-lesson-form">
-    <%= render partial: "courses/newcourseform"%>
+    <%= render partial: "courses/form"%>
   </div>
   <div id="all-lessons">
-    <%= render "courses/viewcourses"%>
+    <%= render partial: "courses/index"%>
   </div>
 </div>
