@@ -29,7 +29,7 @@ $(document).ready(function(){
     e.preventDefault();
     var formData = $(this).parent().serializeArray()
     getMessages(formData).done(function(result){
-      $('#messages').detach().html(result).prependTo('#message-panel');
+      $('#messages').append(result);
     }).fail(function(result){
       console.log(result);
     });

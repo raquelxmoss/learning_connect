@@ -7,8 +7,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(content:params[:content], connection_id:params[:connection_id], user_id:params[:user_id])
     if @message.save
-      @messages = Connection.find(params[:connection_id]).messages
-      render 'index', layout: false
+      render partial: 'show', layout: false
     else
       render json: @message, status: :unprocessable_entity
     end
