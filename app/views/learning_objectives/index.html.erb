@@ -2,6 +2,6 @@
 
 <ul> 
   <% @learning_objectives.each do |lo| %>
-    <li><%= lo.objective %></li>
+    <li><%= lo.id %>: <%= lo.objective %></li>
   <% end %>
 </ul>
