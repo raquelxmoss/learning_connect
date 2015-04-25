@@ -26,12 +26,6 @@ class ConnectionsController < ApplicationController
     @connection = Connection.new(receiver_id: @receiver.id, initializer_id: @initializer)
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
   end
 
