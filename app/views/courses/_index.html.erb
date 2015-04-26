@@ -2,7 +2,7 @@
 <h1>All Lessons</h1>
 <% @courses.each do |course| %>
   <div class="course">
-    <h3><%= course.title %></h3>
+    <h3><%= link_to course.title, connection_course_path(@connection, course) %></h3>
     <p>Tutor: <%= course.tutor.name %></p>
     <p>Learner: <%= course.learner.name %></p>
     <p>Price: $<%= course.price %></p>
