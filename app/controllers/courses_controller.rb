@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
 
   before_filter :get_connection
+  before_filter :get_course, only: [:update, :edit, :destroy]
   before_filter :get_users, only: [:update,:edit]
 
   def show
@@ -8,8 +9,7 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new(connection_id:params[:connection_id], learner_id: User.find(params[:Learner]).id, tutor_id: User.find(params[:Tutor]).id, title:params[:title], price:params[:price], length:params[:length])
-
+    @course = Course.new(course_params)
     if @course.save
       learning_objectives = params[:learningObjectives]
       learning_objectives.each_with_index do |lo, index|
@@ -39,12 +39,16 @@ class CoursesController < ApplicationController
 
   private
 
+  def get_course
+    @course = Course.find(params[:id])
+  end
+
   def get_connection
     @connection = Connection.find(params[:connection_id])
   end
 
   def course_params
-    params.require(:course).permit(:price, :title, :status, :learner_id, :tutor_id, :length)
+    params.permit(:price, :title, :status, :learner_id, :tutor_id, :length, :connection_id)
   end
 
   def get_users
