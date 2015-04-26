@@ -70,8 +70,15 @@ $(document).ready(function(){
     alert(req, errorType, errorMessage);
    }
   });
+});
 
- });
+
+   $("#add-learning-objective").click(function(e){
+      e.preventDefault();
+      console.log('clicked')
+     $(".learning-objectives").append($("#new-learning-objectives").html());
+   });
+
 
 $('.add-skill').click(function(e){
    e.preventDefault();

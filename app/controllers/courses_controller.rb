@@ -1,28 +1,34 @@
 class CoursesController < ApplicationController
 
   before_filter :get_connection
+  before_filter :get_course, only: [:update, :edit, :destroy, :show]
   before_filter :get_users, only: [:update,:edit]
 
   def show
-    # @course = 
   end
 
   def create
-    @course = Course.new(connection_id:params[:connection_id], learner_id: User.find(params[:Learner]).id, tutor_id: User.find(params[:Tutor]).id, title:params[:title], price:params[:price], length:params[:length])
+    @course = Course.new(course_params)
     if @course.save
+      learning_objectives = params[:learningObjectives]
+      learning_objectives.each_with_index do |lo, index|
+        @course.learning_objectives << LearningObjective.create(objective: lo)
+      end
       redirect_to :back
     else
-      #add an error message
+      redirect_to :back
     end
   end
 
   def edit
-    @course = @connection.courses.find(params[:id])
+
   end
 
   def update
-    @course = @connection.courses.find(params[:id])
-    if @course.update(course_params.merge(get_learner))
+    if @course.update(course_params)
+      learning_objectives = []
+      params[:lo_id].each {|id| learning_objectives << LearningObjective.find(id)}
+      learning_objectives.each_with_index {|objective, i| objective.update(objective:params[:learningObjectives][i])}
       redirect_to connection_path @connection
     else
       redirect_to :back
@@ -31,12 +37,16 @@ class CoursesController < ApplicationController
 
   private
 
+  def get_course
+    @course = @connection.courses.find(params[:id])
+  end
+
   def get_connection
     @connection = Connection.find(params[:connection_id])
   end
 
   def course_params
-    params.require(:course).permit(:price, :title, :status, :learner_id, :tutor_id, :length)
+    params.require(:course).permit(:price, :title, :status, :learner_id, :tutor_id, :length, :connection_id)
   end
 
   def get_users

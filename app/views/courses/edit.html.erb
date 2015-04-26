@@ -7,11 +7,21 @@
   <%= f.label :price %>
   <%= f.number_field :price %><br />
   <%= f.label :status %>
-  <%= f.select :status, ['pending', 'agreed'] %><br />
+  <%= f.select :status, ['pending', 'agreed', 'complete'] %><br />
   <%= f.label :tutor_id %>
   <%= f.select :tutor_id, @users.map{|user| [user.name,user.id]} %><br />
   <%= f.label :length %>
   <%= f.number_field :length %><br />
+  <% @course.learning_objectives.each do |lo| %>
+    <p><%= label_tag 'Learning Objective' %>
+    <%= hidden_field_tag 'lo_id[]', lo.id %>
+    <%= text_field_tag 'learningObjectives[]', lo.objective %></p>
+  <% end %>
+  <% if @course.status == 'complete' %>
+    <% render partial: 'ratings/form' %>
+  <% end %>
   <%= f.submit %>
 <% end %>
-  
+
+
+
