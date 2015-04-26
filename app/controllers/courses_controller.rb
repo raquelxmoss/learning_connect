@@ -8,9 +8,11 @@ class CoursesController < ApplicationController
   end
 
   def create
+    # raise course_params.inspect
     @course = Course.new(course_params)
+    @course.connection_id = params[:connection_id]
     # this needs refactoring, it is a total hack - Raquel
-    if @course.save
+    if @course.save!
       if params[:learningObjectives]
         learning_objectives = params[:learningObjectives]
         learning_objectives.each_with_index do |lo, index|
@@ -52,7 +54,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:price, :title, :status, :learner_id, :tutor_id, :length, :connection_id)
+    params.require(:course).permit(:price, :title, :status, :learner_id, :tutor_id, :length)
   end
 
   def get_users
