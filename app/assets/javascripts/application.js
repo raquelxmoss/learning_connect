@@ -73,8 +73,12 @@ $(document).ready(function(){
 
  });
 
+$('.add-skill').click(function(e){
+   e.preventDefault();
+
 });
- 
+});
+
 
 function getMessages (data){
   var promise = $.Deferred();
