@@ -22,11 +22,10 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @course = @connection.courses.find(params[:id])
+
   end
 
   def update
-    @course = @connection.courses.find(params[:id])
     learning_objectives = []
     params[:lo_id].each {|id| learning_objectives << LearningObjective.find(id)}
     learning_objectives.each_with_index {|objective, i| objective.update(objective:params[:learningObjectives][i])}
@@ -40,7 +39,7 @@ class CoursesController < ApplicationController
   private
 
   def get_course
-    @course = Course.find(params[:id])
+    @course = @connection.courses.find(params[:id])
   end
 
   def get_connection
