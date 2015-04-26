@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @learning_skills = @user.skills.learning_skills
+    @teaching_skills = @user.skills.teaching_skills
   end
 
   def edit
