@@ -1,10 +1,10 @@
 <h1>Connection between <%= @users[0].name %> and <%= @users[1].name %></h1>
 
 <div id="message-panel" class="col-md-6" data-connection=<%= @connection.id %>>
+  <%= render partial: "messages/newmessageform"%>
   <div id="messages">
     <%= render partial: "messages/index"%>
   </div>
-  <%= render partial: "messages/newmessageform"%>
 </div>
 
 <div id="course-panel" class="col-md-6">
