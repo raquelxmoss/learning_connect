@@ -8,3 +8,4 @@
 <% @course.learning_objectives.each do |lo| %>
 <li><%= lo.objective %></li>
 <% end %>
+<%= link_to 'Update Lesson', edit_connection_course_path(@connection,@course) %>
