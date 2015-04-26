@@ -29,7 +29,8 @@ $(document).ready(function(){
     e.preventDefault();
     var formData = $(this).parent().serializeArray()
     getMessages(formData).done(function(result){
-      $('#messages').append(result);
+      $('#messages').prepend(result);
+      $('#content').val('');
     }).fail(function(result){
       alert(result);
     });
