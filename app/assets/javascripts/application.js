@@ -50,7 +50,38 @@ $(document).ready(function(){
     }
   })
  });
+
+ $('.remove-link').click(function (e) {
+  e.preventDefault();
+  var uri = ($(location).attr('href'));
+  var match = uri.match(/\/users\/\d+/)[0];
+
+  var li = $(this).parent();
+  var id = li.data("id");
+  var url = (match + '/skills/' + id);
+
+  $.ajax({
+   url: url,
+   method:'DELETE',
+   success:function(res){
+    li.remove();
+   },
+   error: function(req, errorType, errorMessage){
+    alert(req, errorType, errorMessage);
+   }
+  });
 });
+
+
+   $("#add-learning-objective").click(function(e){
+      e.preventDefault();
+      console.log('clicked')
+     $(".learning-objectives").append($("#new-learning-objectives").html());
+   });
+
+
+});
+
 
 function getMessages (data){
   var promise = $.Deferred();
@@ -68,12 +99,3 @@ function getMessages (data){
   });
   return promise ;
 };
-
-$("#search_form").bind("ajax:success", (e,data){
-    alert('got success back')
-    $("#search_results").append(data.responseText);
-});
-// $("#search").submit(function(e){
-//   alert ("search form submitted");
-
-// });

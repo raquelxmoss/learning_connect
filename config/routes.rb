@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index'
 
   resources :users do
-    resources :skills, only: [:index, :show]
+
+  resources :skills, only: [:index, :show, :destroy]
+
   end
   delete 'users/:user_id/skills/:id' => 'skills#destroy', :as => 'delete_skill'
   post 'users/:user_id/skills/' => 'skills#create', :as => 'create_skill'
