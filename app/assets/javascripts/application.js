@@ -36,7 +36,7 @@ $(document).ready(function(){
     });
   });
 
- $('.message-destroy').click(function(e){
+ $('#messages').on('click','.message-destroy',function(e){
   e.preventDefault();
   var $parentDiv = $(this).parent()
   var url = $(this).attr('href')
