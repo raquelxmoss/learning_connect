@@ -18,6 +18,7 @@ class ConnectionsController < ApplicationController
     @users = [@connection.initializer, @connection.receiver]
     @courses = @connection.courses
     @messages = @connection.messages
+    @course = Course.new
   end
 
   def new
