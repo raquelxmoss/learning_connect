@@ -1,11 +1,10 @@
 class CoursesController < ApplicationController
 
   before_filter :get_connection
-  before_filter :get_course, only: [:update, :edit, :destroy]
+  before_filter :get_course, only: [:update, :edit, :destroy, :show]
   before_filter :get_users, only: [:update,:edit]
 
   def show
-    # @course =
   end
 
   def create
@@ -17,7 +16,7 @@ class CoursesController < ApplicationController
       end
       redirect_to :back
     else
-      #add an error message
+      redirect_to :back
     end
   end
 
