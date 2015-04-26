@@ -1,0 +1,26 @@
+<ul>
+<% if skills %>
+  <% skills.each do |skill| %>
+    <li data-id=<%= skill.id %>>
+      <%= simple_format(skill.description)%>
+      <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id), class: 'remove-link'%>
+    </li>
+  <% end %>
+<% end %>
+</ul>
+
+<% if can_edit_profile?(@user) %>
+
+  <%= render partial: 'skills_form',locals:{skill_type: skill_type} %>
+
+  <% if skill_type == 'teach' %>
+    <%= link_to 'Find a Learner', users_path, :class => "btn btn-lg btn-primary" %>
+  <% else %>
+    <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
+  <% end %>
+
+<%  else %>
+
+  <%= render partial: "connectbutton"%>
+
+<% end %>
