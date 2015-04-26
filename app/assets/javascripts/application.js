@@ -70,6 +70,7 @@ $(document).ready(function(){
     alert(req, errorType, errorMessage);
    }
   });
+});
 
 
    $("#add-learning-objective").click(function(e){
