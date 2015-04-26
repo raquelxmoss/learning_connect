@@ -120,5 +120,4 @@ function getMessages (data){
     }
   });
   return promise ;
-}
-
+};

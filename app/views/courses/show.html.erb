@@ -1,0 +1,11 @@
+<h2><%= @course.title %></h2>
+<p>Learner: <%= @course.learner.name %></p>
+<p>Tutor: <%= @course.tutor.name %></p>
+<p>Price: <%= @course.price %></p>
+<p>Length: <%= @course.length %></p>
+<p>Status: <%= @course.status %></p>
+<h3>Learning Objectives</h3>
+<% @course.learning_objectives.each do |lo| %>
+  <li><%= lo.objective %></li>
+<% end %>
+<%= link_to 'Update Lesson', edit_connection_course_path(@connection,@course) %>
