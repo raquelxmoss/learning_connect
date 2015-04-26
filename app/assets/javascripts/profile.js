@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('.remove-link').click(function (e) {
+	$('.container').on('click','.remove-link',function (e) {
 		e.preventDefault();
 		var uri = ($(location).attr('href'));
 		var match = uri.match(/\/users\/\d+/)[0];
