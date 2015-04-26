@@ -71,10 +71,16 @@ $(document).ready(function(){
    }
   });
 
- });
+
+   $("#add-learning-objective").click(function(e){
+      e.preventDefault();
+      console.log('clicked')
+     $(".learning-objectives").append($("#new-learning-objectives").html());
+   });
+
 
 });
- 
+
 
 function getMessages (data){
   var promise = $.Deferred();
