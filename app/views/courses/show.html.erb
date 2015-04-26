@@ -6,6 +6,6 @@
 <p>Status: <%= @course.status %></p>
 <h3>Learning Objectives</h3>
 <% @course.learning_objectives.each do |lo| %>
-<li><%= lo.objective %></li>
+  <li><%= lo.objective %></li>
 <% end %>
 <%= link_to 'Update Lesson', edit_connection_course_path(@connection,@course) %>
