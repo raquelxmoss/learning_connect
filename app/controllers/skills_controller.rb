@@ -7,17 +7,21 @@ class SkillsController < ApplicationController
 		  @skills = (Skill.search(params[:search])).includes(:user)
 		else
 		  @skills = Skill.all.includes(:user)
-		end	
+		end
 		respond_to do |format|
 		  format.html
 		  format.js
 		end
 	end
 
+
 	def create
 		@skill = Skill.new(skill_params)
 		if @skill.save(skill_params)
-		  redirect_to user_path(params[:user_id])
+		  # redirect_to user_path(params[:user_id])
+      render partial: 'show', layout: false
+    else
+      render json: @skill, status: :unprocessable_entity
 		end
 	end
 

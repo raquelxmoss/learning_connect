@@ -80,6 +80,28 @@ $(document).ready(function(){
    });
 
 
+$('.add-skill').click(function(e){
+    e.preventDefault();
+  var form = $(this).closest("form");
+  var data = (form.serialize());
+  var url=(form.attr("action"));
+ console.log()
+  $.ajax({
+    url:url,
+    method:"POST",
+    data:data,
+    success:function(res){
+      $('#teach').find('ul').append(res);
+    },
+    error:function(){
+     alert("problem!");
+    }
+
+  });
+
+
+
+});
 });
 
 
