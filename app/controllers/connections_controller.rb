@@ -46,7 +46,4 @@ class ConnectionsController < ApplicationController
     @initializer = current_user.id
   end
 
-  def receiver
-  end
-
 end

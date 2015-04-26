@@ -1,5 +1,6 @@
 class LearningObjectivesController < ApplicationController
   before_filter :get_course
+  before_filter :get_learning_objective, only: [:show, :destroy]
 
   def index
     @learning_objectives = @course.learning_objectives
@@ -7,7 +8,6 @@ class LearningObjectivesController < ApplicationController
   end
 
   def show
-    @learning_objective = get_learning_objective
     render "show", layout: false
   end
 
@@ -23,7 +23,6 @@ class LearningObjectivesController < ApplicationController
   end
 
   def destroy
-    @learning_objective = get_learning_objective
     if @learning_objective.destroy
       render json: @learning_objective, status: :ok
     else
@@ -34,7 +33,7 @@ class LearningObjectivesController < ApplicationController
   private
 
   def get_learning_objective
-    @course.learning_objectives.find(params[:id])
+    @learning_objective = @course.learning_objectives.find(params[:id])
   end
 
   def get_course
