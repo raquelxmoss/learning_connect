@@ -1,6 +1,5 @@
 class SkillsController < ApplicationController
-
-	before_filter :get_user
+	before_filter :get_user, except: [:index]
 
 	def index
 		@skills = Skill.all

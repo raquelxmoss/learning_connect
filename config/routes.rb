@@ -21,9 +21,7 @@ Rails.application.routes.draw do
   end
   post '/users/:user_id/skills/' => 'skills#create', :as => 'create_skill'
   delete 'users/:user_id/skills/:id' => 'skills#destroy', :as => 'delete_skill'
-
   post 'skills/list' => 'skills#index', :as => 'skills_list'
-
   root 'static_pages#index'
 
 end

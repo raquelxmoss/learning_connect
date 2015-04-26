@@ -5,14 +5,14 @@ def create_courses(connections)
   connections.each do |connection|
     users = [connection.initializer, connection.receiver].shuffle
 
-    rand(2).times do 
+    rand(2).times do
 
       options ={
         title: Faker::Lorem.sentence,
         status: Faker::Lorem.paragraph,
         tutor:users[0],
         learner: users[1],
-        connection: connection
+        connection_id: connection.id
       }
 
       Course.create(options)
@@ -23,7 +23,7 @@ def create_courses(connections)
   puts "#{Course.count} courses created"
 
   return Course.all
-  
+
 end
 
 
