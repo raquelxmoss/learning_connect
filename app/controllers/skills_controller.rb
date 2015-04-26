@@ -1,6 +1,18 @@
 class SkillsController < ApplicationController
-	
-  before_filter :get_user
+	before_filter :get_user
+
+	def index
+		@skills = Skill.all
+		if params[:search]
+		  @skills = (Skill.search(params[:search])).includes(:user)
+		else
+		  @skills = Skill.all.includes(:user)
+		end	
+		respond_to do |format|
+		  format.html
+		  format.js
+		end
+	end
 
 	def create
 		@skill = Skill.new(skill_params)

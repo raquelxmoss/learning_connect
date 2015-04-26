@@ -23,6 +23,7 @@
       <% if can_edit_profile?(@user) %>
         <%= render partial: "teachingskillsform"%>
       <% end %>
+
       <% if can_edit_profile?(@user) %>
         <%= link_to 'Find a Learner', users_path, :class => "btn btn-lg btn-primary" %>
       <%  else %>
@@ -37,9 +38,23 @@
         <%= render partial: "learningskillsform"%>
       <% end %>
 
+
+        </p>
       <% if can_edit_profile?(@user) %>
         <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
       <% end %>
+
+      <div id='search'>
+        <p>
+          <%= form_tag(skills_list_path, remote: true,:method => 'post', id: "search_form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: 'search skills' %>
+            <%= submit_tag "search" %>
+          <% end %>
+        </p>
+      </div>
+      <div id='search_results'>
+        
+      </div>
 
     </div>
     </div>
