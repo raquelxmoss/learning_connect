@@ -1,7 +1,7 @@
 <h2>Update Lesson</h2>
 
 
-<%= form_for [@connection,@course, @learning_objective] do |f| %>
+<%= form_for [@connection,@course] do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %><br />
   <%= f.label :price %>
@@ -12,5 +12,13 @@
   <%= f.select :tutor_id, @users.map{|user| [user.name,user.id]} %><br />
   <%= f.label :length %>
   <%= f.number_field :length %><br />
+  <% @course.learning_objectives.each do |lo| %>
+    <p><%= label_tag 'Learning Objective' %>
+    <%= hidden_field_tag 'lo_id[]', lo.id %>
+    <%= text_field_tag 'learningObjectives[]', lo.objective %></p>
+  <% end %>
   <%= f.submit %>
 <% end %>
+
+
+
