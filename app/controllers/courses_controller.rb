@@ -30,9 +30,11 @@ class CoursesController < ApplicationController
   def update
     # this needs refactoring, it is a total hack - Raquel
     if @course.update(course_params)
-      learning_objectives = []
-      params[:lo_id].each {|id| learning_objectives << LearningObjective.find(id)}
-      learning_objectives.each_with_index {|objective, i| objective.update(objective:params[:learningObjectives][i])}
+      if params[:learningObjectives]
+        learning_objectives = []
+        params[:lo_id].each {|id| learning_objectives << LearningObjective.find(id)}
+        learning_objectives.each_with_index {|objective, i| objective.update(objective:params[:learningObjectives][i])}
+      end
       redirect_to connection_path @connection
     else
       redirect_to :back
@@ -50,7 +52,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.permit(:price, :title, :status, :learner_id, :tutor_id, :length, :connection_id)
+    params.require(:course).permit(:price, :title, :status, :learner_id, :tutor_id, :length, :connection_id)
   end
 
   def get_users
