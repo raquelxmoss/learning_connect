@@ -9,10 +9,13 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
+    # this needs refactoring, it is a total hack - Raquel
     if @course.save
-      learning_objectives = params[:learningObjectives]
-      learning_objectives.each_with_index do |lo, index|
-        @course.learning_objectives << LearningObjective.create(objective: lo)
+      if params[:learningObjectives]
+        learning_objectives = params[:learningObjectives]
+        learning_objectives.each_with_index do |lo, index|
+          @course.learning_objectives << LearningObjective.create(objective: lo)
+        end
       end
       redirect_to :back
     else
