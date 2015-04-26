@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 
 $(document).ready(function(){
@@ -22,7 +21,7 @@ $(document).ready(function(){
      console.log('clicked')
     $(".learning-objectives").append($("#new-learning-objectives").html());
   });
-  
+
 });
 
 
