@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :edit]
+  before_filter :get_user, only:[:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
     if current_user
       @connection = Connection.find_by(initializer_id:current_user.id, receiver_id: @user.id) || @connection = Connection.find_by(initializer_id:@user.id, receiver_id: current_user.id)
       @connections = @user.initializer_connections + @user.receiver_connections
@@ -14,11 +14,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to users_path
     else
@@ -43,6 +41,10 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:all)
+  end
+
+  def get_user
+    @user = User.find(params[:id])
   end
 
 end
