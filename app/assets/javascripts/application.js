@@ -91,10 +91,10 @@ $('.add-skill').click(function(e){
     method:"POST",
     data:data,
     success:function(res){
-      $('#teach').find('ul').append(res);
+      form.closest('div').find('ul').append(res);
     },
-    error:function(){
-     alert("problem!");
+    error:function(req,errorT,errorM){
+     alert(errorM);
     }
 
   });
