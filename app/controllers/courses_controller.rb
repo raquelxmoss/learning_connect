@@ -25,6 +25,7 @@ class CoursesController < ApplicationController
   end
 
   def update
+    # this needs refactoring, it is a total hack - Raquel
     if @course.update(course_params)
       learning_objectives = []
       params[:lo_id].each {|id| learning_objectives << LearningObjective.find(id)}
