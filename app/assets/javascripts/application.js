@@ -55,7 +55,6 @@ $(document).ready(function(){
   e.preventDefault();
   var uri = ($(location).attr('href'));
   var match = uri.match(/\/users\/\d+/)[0];
-
   var li = $(this).parent();
   var id = li.data("id");
   var url = (match + '/skills/' + id);
@@ -98,6 +97,8 @@ $('.add-skill').click(function(e){
     }
 
   });
+
+ //ajaxifying the learning skills
 
 
 
