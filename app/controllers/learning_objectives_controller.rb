@@ -3,7 +3,7 @@ class LearningObjectivesController < ApplicationController
 
   def index
     @learning_objectives = @course.learning_objectives
-    render "index", layout: false 
+    render "index", layout: false
   end
 
   def show
