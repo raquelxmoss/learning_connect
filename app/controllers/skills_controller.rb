@@ -3,22 +3,16 @@ class SkillsController < ApplicationController
 	def index
 		@skills = Skill.all
 		if params[:search]
-			@skills = Skill.search(params[:search])
+		  @skills = (Skill.search(params[:search])).includes(:user)
 		else
-			@skills = Skill.all
+		  @skills = Skill.all.includes(:user)
 		end	
-		render json: @skills
+		# render partial: 'skills', layout: false
+		respond_to do |format|
+		  format.html
+		  format.js
+		end
 	end
-
-	# def list
-	# 	puts "LIST"
-	# 	@skills = Skill.all
-	# 	if params[:search]
-	# 		@skills = Skill.search(params[:search])
-	# 	else
-	# 		@skills = Skill.all
-	# 	end	
-	# end
 
 	def create
 		@skill = Skill.new(skill_params)

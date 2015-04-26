@@ -50,7 +50,6 @@ $(document).ready(function(){
     }
   })
  });
-
 });
 
 function getMessages (data){
@@ -68,5 +67,13 @@ function getMessages (data){
     }
   });
   return promise ;
-}
+};
 
+$("#search_form").bind("ajax:success", (e,data){
+    alert('got success back')
+    $("#search_results").append(data.responseText);
+});
+// $("#search").submit(function(e){
+//   alert ("search form submitted");
+
+// });

@@ -1,7 +1,7 @@
 <% if @skills.present? %>
 	<ul>
 	<% @skills.each do |skill| %>
-		<li><%= "#{skill.description}, #{skill.skill_type}, #{skill.user_id}" %> </li>
+		<li><%= "#{skill.description}, #{skill.skill_type}, #{skill.user_id}-#{skill.user.name}" %> </li>
 	<% end %>
 </ul>
 <% else %>
