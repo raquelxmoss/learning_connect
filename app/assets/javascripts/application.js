@@ -51,6 +51,12 @@ $(document).ready(function(){
   })
  });
 
+ function loadmap(){
+  var script = document.createElement("script");
+  script.src ="http://googleapis.com/maps/apis/js?callback=initialize";
+  document.body.appendChild(script);
+ }
+
  $('.remove-link').click(function (e) {
   e.preventDefault();
   var uri = ($(location).attr('href'));
@@ -98,7 +104,11 @@ $('.add-skill').click(function(e){
 
   });
 
- //ajaxifying the learning skills
+ //trying to get google map show on the profile page
+$('form').on("submit" , function(e){
+ e.preventDefault();
+ var data = $(this).serialize();
+})
 
 
 
