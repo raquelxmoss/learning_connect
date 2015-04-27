@@ -16,13 +16,9 @@
   <%= render partial: 'skills_form',locals:{skill_type: skill_type} %>
 
   <% if skill_type == 'teach' %>
-    <%= link_to 'Find a Learner', users_path, :class => "btn btn-lg btn-primary" %>
+    <%= link_to 'Find a Learner', users_path, :class => "btn btn-lg btn-primary learner" %>
   <% else %>
     <%= link_to 'Find a Tutor', users_path, :class => "btn btn-lg btn-primary" %>
   <% end %>
-
-<%  else %>
-
-  <%= render partial: "connectbutton"%>
 
 <% end %>

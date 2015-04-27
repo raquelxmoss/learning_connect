@@ -36,7 +36,26 @@ $(document).ready(function(){
 	    error:function(req,errorT,errorM){
 	     alert(errorM);
 	    }
-
 	  });
 	});
+
+	$('.remove-link').click(function (e) {
+    e.preventDefault();
+    var uri = ($(location).attr('href'));
+    var match = uri.match(/\/users\/\d+/)[0];
+    var li = $(this).parent();
+    var id = li.data("id");
+    var url = (match + '/skills/' + id);
+
+    $.ajax({
+     url: url,
+     method:'DELETE',
+     success:function(res){
+      li.remove();
+     },
+     error: function(req, errorType, errorMessage){
+      alert(req, errorType, errorMessage);
+     }
+    });
+  });
 });
