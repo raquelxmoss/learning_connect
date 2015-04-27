@@ -8,7 +8,6 @@ class CoursesController < ApplicationController
   end
 
   def create
-    # raise course_params.inspect
     @course = Course.new(course_params)
     @course.connection_id = params[:connection_id]
     # this needs refactoring, it is a total hack - Raquel
@@ -36,13 +35,15 @@ class CoursesController < ApplicationController
   end
 
   def update
-    # this needs refactoring, it is a total hack - Raquel
     if @course.update(course_params)
-      # if params[:learningObjectives]
-      #   learning_objectives = []
-      #   params[:learningObjectives].each {|id| learning_objectives << LearningObjective.find(id)}
-      #   learning_objectives.each_with_index {|objective, i| objective.update(objective:params[:learningObjectives][i])}
-      # end
+      if params[:course][:objectives]
+        params[:course][:objectives].each {|id, objective| LearningObjective.find(id).update(objective: objective)}
+      end
+      if params[:learningObjectives]
+        params[:learningObjectives].each do |objective|
+          @course.learning_objectives.create(objective: objective)
+        end
+      end
       redirect_to connection_path @connection
     else
       redirect_to :back
@@ -60,7 +61,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:price, :title, :status, :learner_id, :tutor_id, :length)
+    params.require(:course).permit(:price, :title, :status, :learner_id, :tutor_id, :length, :objectives)
   end
 
   def get_users
