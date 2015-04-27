@@ -1,4 +1,4 @@
-<h2>Create a Lesson</h2>
+<!-- <h2>Create a Lesson</h2>
 
 <%= form_tag connection_courses_path @connection,method: "post" do %>
   <%= hidden_field_tag(:connection_id, @connection.id) %>
@@ -18,5 +18,33 @@
 <div id="new-learning-objectives">
   <%= render partial: "learning_objectives/form" %>
 </div>
+ -->
 
-
+<%= form_for [@connection,@course] do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br />
+  <%= f.label :price %>
+  <%= f.number_field :price %><br />
+  <%= f.label :status %>
+  <%= f.select :status, ['pending', 'agreed', 'complete'] %><br />
+  <%= f.label :tutor_id %>
+  <%= f.select :tutor_id, @users.map{|user| [user.name,user.id]} %><br />
+  <%= f.label :learner_id %>
+  <%= f.select :learner_id, @users.map{|user| [user.name,user.id]} %><br />
+  <%= f.label :length %>
+  <%= f.number_field :length %><br />
+  <p class="learning-objectives"></p>
+      <a href="javascript:;" id="add-learning-objective">Add a Learning Objective</a>
+  <div id="new-learning-objectives">
+    <%= render partial: "learning_objectives/form" %>
+  </div>
+  <% @course.learning_objectives.each do |lo| %>
+    <p><%= label_tag 'Learning Objective' %>
+    <%= hidden_field_tag 'lo_id[]', lo.id %>
+    <%= text_field_tag 'learningObjectives[]', lo.objective %></p>
+  <% end %>
+  <% if @course.status == 'complete' %>
+    <% render partial: 'ratings/form' %>
+  <% end %>
+  <%= f.submit %>
+<% end %>
