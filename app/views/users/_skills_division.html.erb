@@ -3,7 +3,9 @@
   <% skills.each do |skill| %>
     <li data-id=<%= skill.id %>>
       <%= simple_format(skill.description)%>
-      <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id), class: 'remove-link'%>
+      <% if current_user == @user %>
+        <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id), class: 'remove-link'%>
+      <% end %>
     </li>
   <% end %>
 <% end %>

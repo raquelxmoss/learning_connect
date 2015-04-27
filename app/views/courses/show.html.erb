@@ -8,4 +8,22 @@
 <% @course.learning_objectives.each do |lo| %>
   <li><%= lo.objective %></li>
 <% end %>
+
+<p>
+  <% if @course.ratings.find_by(rating_type:"tutor_rate_learner") %>
+    <%= @course.tutor.name %> rated <%= @course.learner.name %>: <%= @course.ratings.find_by(rating_type:"tutor_rate_learner").rating %>
+  <% elsif @course.tutor == current_user %>
+    <%= render partial: 'ratings/form' %>
+  <% end %>
+</p>
+
+<p>
+<% if @course.ratings.find_by(rating_type:"learner_rate_tutor") %>
+  <%= @course.learner.name %> rated <%= @course.tutor.name %>: <%= @course.ratings.find_by(rating_type:"learner_rate_tutor").rating %>
+  <% elsif @course.learner == current_user %>
+    <%= render partial: 'ratings/form' %>
+<% end %>
+</p>
+
 <%= link_to 'Update Lesson', edit_connection_course_path(@connection,@course) %>
+<%= link_to 'Delete Lesson', connection_course_path(@connection,@course), method: "Delete" %>

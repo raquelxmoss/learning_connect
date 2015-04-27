@@ -6,4 +6,6 @@ class Course < ActiveRecord::Base
   belongs_to :tutor, class_name: 'User'
   belongs_to :learner,class_name: 'User'
 
+  validates_presence_of :connection_id
+
 end
