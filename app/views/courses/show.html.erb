@@ -10,16 +10,16 @@
 <% end %>
 
 <p>
-  <% if @course.ratings.find_by(rating_type:"tutor_rate_learner") %>
-    <%= @course.tutor.name %> rated <%= @course.learner.name %>: <%= @course.ratings.find_by(rating_type:"tutor_rate_learner").rating %>
+  <% if find_tutor_rate_learner(@course) %>
+    <%= @course.tutor.name %> rated <%= @course.learner.name %>: <%= find_tutor_rate_learner(@course).rating %>
   <% elsif @course.tutor == current_user %>
     <%= render partial: 'ratings/form' %>
   <% end %>
 </p>
 
 <p>
-<% if @course.ratings.find_by(rating_type:"learner_rate_tutor") %>
-  <%= @course.learner.name %> rated <%= @course.tutor.name %>: <%= @course.ratings.find_by(rating_type:"learner_rate_tutor").rating %>
+<% if find_learner_rate_tutor(@course) %>
+  <%= @course.learner.name %> rated <%= @course.tutor.name %>: <%= find_learner_rate_tutor(@course).rating %>
   <% elsif @course.learner == current_user %>
     <%= render partial: 'ratings/form' %>
 <% end %>
