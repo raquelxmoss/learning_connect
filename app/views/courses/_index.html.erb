@@ -1,4 +1,3 @@
-
 <h1>All Lessons</h1>
 <% @courses.each do |course| %>
   <div class="course">
@@ -13,5 +12,6 @@
     <p><%= learning_objective.objective %></p>
     <% end %>
     <%= link_to 'Update Lesson', edit_connection_course_path(@connection,course) %>
+    <%= link_to 'Delete Lesson', connection_course_path(@connection,course), method: "Delete" %>
   </div>
 <% end %>
