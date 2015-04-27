@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   #unecessary, resources :users below will create
   get '/users/:id', to: 'users#show'
   get '/users', to: 'users#index'
+  post '/users/list', to: 'users#index', as: 'users_list'
 
   resources :users do
     resources :skills, only: [:index, :show, :destroy]

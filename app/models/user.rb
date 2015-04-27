@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
 
   has_many :skills
 
+  def self.search(search)
+    where("name ILIKE ?","%#{search}%")
+  end
+
 end

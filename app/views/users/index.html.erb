@@ -1,13 +1,14 @@
 <div id='search'>
   <p>
-    <%= form_tag(skills_list_path, remote: true,:method => 'post', id: "search_form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: 'search skills' %>
+    <%= form_tag(users_list_path, remote: true,:method => 'post', id: "search_form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: 'search for a user' %>
       <%= submit_tag "search" %>
     <% end %>
   </p>
 </div>
 <div id='search_results'>
-
-<% @users.each do |user| %>
-  <p><%= link_to user.name, user_path(user.id) %></p>
+<% if @users.present? %>
+	<%= render partial: 'index' %>
+<% else %>
+	<p>There are no users the term(s) <%= params[:search] %>.</p
 <% end %>

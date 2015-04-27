@@ -6,6 +6,15 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    if params[:search]
+      @users = ( User.search(params[:search]) )
+    else
+      @users = ( User.all )
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -36,6 +45,15 @@ class UsersController < ApplicationController
   def new
     @user = User.new(user_params)
     render 'new'
+  end
+
+  def list
+    # @users = User.all
+    if params[:search]
+      @users = (User.search(params[:search]))
+    else
+      @users = (User.all)
+    end
   end
 
   private
