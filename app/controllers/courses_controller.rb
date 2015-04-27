@@ -19,7 +19,7 @@ class CoursesController < ApplicationController
           @course.learning_objectives << LearningObjective.create(objective: lo)
         end
       end
-      redirect_to :back
+      redirect_to connection_path(@course.connection_id)
     else
       redirect_to :back
     end
@@ -32,7 +32,7 @@ class CoursesController < ApplicationController
   def destroy
     @course = Course.find(params[:id])
     @course.destroy
-    redirect_to :root
+    redirect_to connection_path(@course.connection_id)
   end
 
   def update
