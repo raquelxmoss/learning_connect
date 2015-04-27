@@ -36,9 +36,9 @@ $(document).ready(function(){
 	    error:function(req,errorT,errorM){
 	     alert(errorM);
 	    }
-
 	  });
 	});
+
 	$('.remove-link').click(function (e) {
     e.preventDefault();
     var uri = ($(location).attr('href'));
@@ -57,4 +57,5 @@ $(document).ready(function(){
       alert(req, errorType, errorMessage);
      }
     });
+  });
 });

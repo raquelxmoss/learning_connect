@@ -78,13 +78,10 @@ function toggleBounce() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-  });
-     $("#add-learning-objective").click(function(e){
-        e.preventDefault();
-        console.log('clicked')
-       $(".learning-objectives").append($("#new-learning-objectives").html());
-     });
-   //trying to get google map show on the profile page
+
+
+
+//trying to get google map show on the profile page
 
 
 
