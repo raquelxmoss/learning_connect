@@ -8,9 +8,7 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
- <style type="text/css">
-      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
-    </style>
+
 </head>
 <body>
   <nav class="navbar navbar-fixed-top navbar-default">
@@ -23,6 +21,7 @@
     <% else %>
       <li><%= link_to 'Log in', new_user_session_path %></li>
       <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+      <li><%= link_to 'View Map', map_path %></li>
     <% end %>
   </ul>
   </nav>
@@ -32,6 +31,5 @@
 
     <%= yield %>
   </div>
-  <!-- <div id = "map-canvas"></div> -->
 </body>
 </html>

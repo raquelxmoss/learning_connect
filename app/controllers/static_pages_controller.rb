@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
+
   def index
+
   end
 
   def feed
@@ -9,4 +11,8 @@ class StaticPagesController < ApplicationController
     @feed_items = (@new_users).sort_by &:created_at
     @feed_items.reverse!
   end
+
+  def map
+  end
+
 end
