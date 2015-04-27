@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx9_KavCj2sh6WR_jOjrd1x2Kvq-fM3FA">
+  </script>
   <title>LearningConnect</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
+ <style type="text/css">
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
 </head>
 <body>
   <nav class="navbar navbar-fixed-top navbar-default">
@@ -26,5 +32,6 @@
 
     <%= yield %>
   </div>
+  <div id = "map-canvas"></div>
 </body>
 </html>
