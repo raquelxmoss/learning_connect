@@ -38,8 +38,18 @@
   </div>
 
   <div id='search_results'></div>
- 
 </div>
+
+<!-- <div id='search-users'>
+  <p>
+    <%= form_for(users_list_path, remote: true, :method => 'post', id: 'user_search_form') do %>
+      <%= text_field_tag :search, params[:search], placeholder: 'user search' %>
+      <%= submit_tag %>
+    <% end %>
+  </p>
+</div>
+<div id='user-search-results' ></div> -->
+
  <% if can_edit_profile?(@user) %>
    <%= render partial: "sessionbuttons"%>
  <% end %>

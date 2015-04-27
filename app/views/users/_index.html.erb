@@ -1,0 +1,12 @@
+
+<% @users.each do |user| %>
+<div id='list-container'>
+  <div id='user-card' draggable='true' style='width:25%; float:left; border:solid 1px;border-radius:5px; margin: 5px; padding: 5px'>
+  	<p>avatar here...</p.
+    <p><%= link_to user.name, user_path(user.id) %></p>
+    <p><%= 'connect' %> </p>
+    <p><%= user.about %></p>
+    <p>rating <%= user.average_rating %></p>
+  </div>
+</div>
+<% end %>
