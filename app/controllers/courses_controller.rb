@@ -1,18 +1,23 @@
 class CoursesController < ApplicationController
 
-  before_filter :get_connection
-  before_filter :get_course, only: [:update, :edit, :destroy, :show]
+  before_filter :get_connection, only: [:create, :show, :edit, :update]
+  before_filter :get_course, only: [:update, :edit, :show]
   before_filter :get_users, only: [:update,:edit]
 
   def show
   end
 
   def create
+    # raise course_params.inspect
     @course = Course.new(course_params)
-    if @course.save
-      learning_objectives = params[:learningObjectives]
-      learning_objectives.each_with_index do |lo, index|
-        @course.learning_objectives << LearningObjective.create(objective: lo)
+    @course.connection_id = params[:connection_id]
+    # this needs refactoring, it is a total hack - Raquel
+    if @course.save!
+      if params[:learningObjectives]
+        learning_objectives = params[:learningObjectives]
+        learning_objectives.each_with_index do |lo, index|
+          @course.learning_objectives << LearningObjective.create(objective: lo)
+        end
       end
       redirect_to :back
     else
@@ -24,11 +29,20 @@ class CoursesController < ApplicationController
 
   end
 
+  def destroy
+    @course = Course.find(params[:id])
+    @course.destroy
+    redirect_to :root
+  end
+
   def update
+    # this needs refactoring, it is a total hack - Raquel
     if @course.update(course_params)
-      learning_objectives = []
-      params[:lo_id].each {|id| learning_objectives << LearningObjective.find(id)}
-      learning_objectives.each_with_index {|objective, i| objective.update(objective:params[:learningObjectives][i])}
+      # if params[:learningObjectives]
+      #   learning_objectives = []
+      #   params[:learningObjectives].each {|id| learning_objectives << LearningObjective.find(id)}
+      #   learning_objectives.each_with_index {|objective, i| objective.update(objective:params[:learningObjectives][i])}
+      # end
       redirect_to connection_path @connection
     else
       redirect_to :back
@@ -46,7 +60,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.permit(:price, :title, :status, :learner_id, :tutor_id, :length, :connection_id)
+    params.require(:course).permit(:price, :title, :status, :learner_id, :tutor_id, :length)
   end
 
   def get_users

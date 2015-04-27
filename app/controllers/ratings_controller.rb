@@ -1,25 +1,32 @@
 class RatingsController < ApplicationController
-  before_filter :get_course
+  before_filter :get_course, only: [:index, :show, :destroy]
 
   def index
     @ratings = @course.ratings
-    render "index", layout: false 
+    render "index", layout: false
   end
 
   def show
+    @rating = Rating.new
     @rating = get_rating
     render "show", layout: false
   end
 
   def create
-    @rating = @course.ratings.build(rating_params)
+    @rating = Rating.new(rating_params)
+    # @course.ratings.build(rating_params)
 
     if @rating.save
-      redirect_to course_path @course, notice: 'Post was successfully created.'
+      @course = @rating.course
+      render partial: 'show', layout: false
     else
       render :new
     end
 
+  end
+
+  def new
+    @rating = Rating.new
   end
 
   def destroy
@@ -42,6 +49,7 @@ class RatingsController < ApplicationController
   end
 
   def rating_params
-    params.require(:ratings).permit(:rating)
+    puts params
+    params.permit(:rating, :course_id, :rating_type)
   end
 end

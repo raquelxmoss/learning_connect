@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   delete '/connections/:connection_id/messages/:id' => 'messages#destroy', :as => 'delete_message'
   get '/users/:id', to: 'users#show'
   get '/users', to: 'users#index'
+  post '/users/list', to: 'users#index', as: 'users_list'
 
   resources :users do
     resources :skills, only: [:index, :show, :destroy]

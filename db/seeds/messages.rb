@@ -8,11 +8,10 @@ def create_messages(connections)
       options = {
         content: Faker::Lorem.paragraph,
         user_id: choose_user(connection),
-        connection: connections.sample
+        connection: connection
       }
 
       Message.create(options)
-
     end
   end
 
@@ -24,7 +23,7 @@ end
 
 
 def choose_user connection
-    return rand 2 == 1 ? connection.receiver.id : connection.initializer.id
+    return [connection.receiver.id, connection.initializer.id].sample
 end
 
 

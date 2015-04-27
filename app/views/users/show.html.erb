@@ -15,9 +15,19 @@
      <h2>I'm available at these times:</h2>
      <%= simple_format(@user.availability) %>
    </div>
+   <% if can_edit_profile?(@user) %>
+     <%= render partial: "sessionbuttons"%>
+     
+    <% @connections.each do |connection| %>
+      <li>Connection with <%= link_to current_user.name == connection.initializer.name ? connection.receiver.name : connection.initializer.name, connection %></li>
+    <% end %>
+   <% end %>
+
 </div>
 <div class ="col-md-6">
-
+  <% if !can_edit_profile?(@user) %>
+    <p><%= render partial: "connectbutton"%></p>
+  <% end %>
   <div id="teach">
    <h2>I can teach:</h2>
    <%= render partial: "skills_division", locals: {skills: @teaching_skills, skill_type: 'teach'} %>
@@ -38,20 +48,8 @@
   </div>
 
   <div id='search_results'></div>
- 
 </div>
- <% if can_edit_profile?(@user) %>
-   <%= render partial: "sessionbuttons"%>
- <% end %>
 
- <% if can_edit_profile?(@user) %>
-   <% @connections.each do |connection| %>
-     <li>
-       <p>Connection between <%= connection.initializer.name %> and <%= connection.receiver.name %></p>
-       <%= link_to "View Connection", connection %>
-     </li>
-   <% end %>
- <% end %>
 
 
 
