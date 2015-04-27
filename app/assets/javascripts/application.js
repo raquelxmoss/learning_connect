@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$(document).ready(function(){
 function initialize() {
   var mapOptions = {
     center: { lat: -41.299, lng: 174.777},
@@ -24,6 +25,7 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 var wellington= new google.maps.LatLng(-41.299, 174.777);
 var zoo = new google.maps.LatLng(-41.32, 174.78);
+var user = new google.maps.LatLng(-41.29,174.79)
 var marker;
 var map;
 
@@ -68,6 +70,14 @@ function initialize() {
   });
   google.maps.event.addListener(marker, 'click', toggleBounce);
 }
+marker = new google.maps.Marker({
+    map:map,
+    draggable:true,
+    animation: google.maps.Animation.DROP,
+    position: user
+  });
+  google.maps.event.addListener(marker, 'click', toggleBounce);
+}
 
 function toggleBounce() {
   if (marker.getAnimation() != null) {
@@ -83,7 +93,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
         e.preventDefault();
         console.log('clicked')
        $(".learning-objectives").append($("#new-learning-objectives").html());
-     });
+  });
    //trying to get google map show on the profile page
 
 
