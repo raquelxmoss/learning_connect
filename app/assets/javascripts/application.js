@@ -13,87 +13,74 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-$(document).ready(function(){
-function initialize() {
-  var mapOptions = {
-    center: { lat: -41.299, lng: 174.777},
-    zoom: 8
-  };
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
-    mapOptions);
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-var wellington= new google.maps.LatLng(-41.299, 174.777);
+var ulat;
+var ulng;
+var user;
 var zoo = new google.maps.LatLng(-41.32, 174.78);
-var user = new google.maps.LatLng(-41.29,174.79)
-var marker;
 var map;
+$(document).ready(function(){
+  function initialize() {
+    var mapOptions = {
+      center: { lat: -41.299, lng: 174.777},
+      zoom: 13
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error, options);
 
-var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-};
+    }
+    addmarker(zoo);
+  }
+  var wellington = new google.maps.LatLng(-41.299, 174.777);
 
-function success(pos) {
-  var crd = pos.coords;
+  google.maps.event.addDomListener(window, 'load', initialize);
+});
 
-  console.log('Your current position is:');
-  console.log('Latitude : ' + crd.latitude);
-  console.log('Longitude: ' + crd.longitude);
-  console.log('More or less ' + crd.accuracy + ' meters.');
-};
+ function toggleBounce() {
+    if (marker.getAnimation() != null) {
+      marker.setAnimation(null);
+    } else {
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+  }
 
-function error(err) {
-  console.warn('ERROR(' + err.code + '): ' + err.message);
-};
+function addmarker(LatLng){
+  var marker = new google.maps.Marker({
+    map:map,
+    draggable:true,
+    animation: google.maps.Animation.DROP,
+    position: LatLng
+  });
+  google.maps.event.addListener(marker, 'click', toggleBounce);
 
+}
 
-function initialize() {
-  var mapOptions = {
-    zoom: 13,
-    center: wellington
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
   };
 
-  map = new google.maps.Map(document.getElementById('map-canvas'),
-          mapOptions);
+  function success(pos) {
+    var crd = pos.coords;
+    user = new google.maps.LatLng(crd.latitude,crd.longitude)
+    console.log('Your current position is:');
+    console.log('Latitude : ' + crd.latitude);
+    console.log('Longitude: ' + crd.longitude);
+    console.log('More or less ' + crd.accuracy + ' meters.');
+    addmarker(user);
+  };
 
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success, error, options);
-  }
+  function error(err) {
+    console.warn('ERROR(' + err.code + '): ' + err.message);
+  };
 
-  marker = new google.maps.Marker({
-    map:map,
-    draggable:true,
-    animation: google.maps.Animation.DROP,
-    position: zoo
-  });
-  google.maps.event.addListener(marker, 'click', toggleBounce);
-}
-marker = new google.maps.Marker({
-    map:map,
-    draggable:true,
-    animation: google.maps.Animation.DROP,
-    position: user
-  });
-  google.maps.event.addListener(marker, 'click', toggleBounce);
-}
-
-function toggleBounce() {
-  if (marker.getAnimation() != null) {
-    marker.setAnimation(null);
-  } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
-  }
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-  });
-     $("#add-learning-objective").click(function(e){
-        e.preventDefault();
-        console.log('clicked')
-       $(".learning-objectives").append($("#new-learning-objectives").html());
-  });
+$("#add-learning-objective").click(function(e){
+  e.preventDefault();
+  console.log('clicked')
+ $(".learning-objectives").append($("#new-learning-objectives").html());
+});
    //trying to get google map show on the profile page
 
 
