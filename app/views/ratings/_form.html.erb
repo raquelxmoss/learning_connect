@@ -8,7 +8,7 @@
       <%= form_tag connection_course_ratings_path(@connection,@course), method: 'POST' %>
       <%= number_field_tag :rating %>
       <%= hidden_field_tag :rating_type, 'tutor_rate_learner' %>
-      <%= submit_tag 'Rate' %>
+      <%= submit_tag 'Rate' , class:"rating-button"%>
     </p>
   <% end %>
 
@@ -22,7 +22,7 @@
       <%= form_tag connection_course_ratings_path(@connection,@course), method: 'POST' %>
       <%= number_field_tag :rating %>
       <%= hidden_field_tag :rating_type, 'learner_rate_tutor' %>
-      <%= submit_tag 'Rate' %>
+      <%= submit_tag 'Rate', class:"rating-button" %>
     </p>
   <% end %>
 </div>

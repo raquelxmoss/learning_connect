@@ -9,7 +9,7 @@
   <li><%= lo.objective %></li>
 <% end %>
 
-<p>
+<p id="ratings">
   <% if find_tutor_rate_learner(@course) %>
     <%= @course.tutor.name %> rated <%= @course.learner.name %>: <%= find_tutor_rate_learner(@course).rating %>
   <% elsif @course.tutor == current_user %>
