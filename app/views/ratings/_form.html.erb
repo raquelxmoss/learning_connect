@@ -1,0 +1,28 @@
+<!-- if the user is the tutor, rate the learner -->
+<div id="lesson-rating-form">
+  <% if @course.tutor == current_user %>
+    <p>How was your lesson? it's time to rate your learner, <%= @course.learner.name %><p>
+    <p>Ask yourself the following questions, then give a rating out of 5</p>
+    <p>Was <%= @course.learner.name %> on time and prepared? Were they an engaged learner? Would you tutor them again?</p>
+    <p>
+      <%= form_tag connection_course_ratings_path(@connection,@course), method: 'POST' %>
+      <%= number_field_tag :rating %>
+      <%= hidden_field_tag :rating_type, 'tutor_rate_learner' %>
+      <%= submit_tag 'Rate' %>
+    </p>
+  <% end %>
+
+
+
+  <% if @course.learner == current_user %>
+    <p>How was your lesson? it's time to rate your tutor, <%= @course.tutor.name %><p>
+    <p>Ask yourself the following questions, then give a rating out of 5</p>
+    <p>Was <%= @course.tutor.name %> on time and prepared? Were they an engaged teacher? Would you learn from them again?</p>
+    <p>
+      <%= form_tag connection_course_ratings_path(@connection,@course), method: 'POST' %>
+      <%= number_field_tag :rating %>
+      <%= hidden_field_tag :rating_type, 'learner_rate_tutor' %>
+      <%= submit_tag 'Rate' %>
+    </p>
+  <% end %>
+</div>
