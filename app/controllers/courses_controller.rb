@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
 
-  before_filter :get_connection
-  before_filter :get_course, only: [:update, :edit, :destroy, :show]
+  before_filter :get_connection, only: [:create, :show, :edit, :update]
+  before_filter :get_course, only: [:update, :edit, :show]
   before_filter :get_users, only: [:update,:edit]
 
   def show
@@ -29,14 +29,20 @@ class CoursesController < ApplicationController
 
   end
 
+  def destroy
+    @course = Course.find(params[:id])
+    @course.destroy
+    redirect_to :root
+  end
+
   def update
     # this needs refactoring, it is a total hack - Raquel
     if @course.update(course_params)
-      if params[:learningObjectives]
-        learning_objectives = []
-        params[:lo_id].each {|id| learning_objectives << LearningObjective.find(id)}
-        learning_objectives.each_with_index {|objective, i| objective.update(objective:params[:learningObjectives][i])}
-      end
+      # if params[:learningObjectives]
+      #   learning_objectives = []
+      #   params[:learningObjectives].each {|id| learning_objectives << LearningObjective.find(id)}
+      #   learning_objectives.each_with_index {|objective, i| objective.update(objective:params[:learningObjectives][i])}
+      # end
       redirect_to connection_path @connection
     else
       redirect_to :back
