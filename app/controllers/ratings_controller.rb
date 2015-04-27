@@ -17,7 +17,8 @@ class RatingsController < ApplicationController
     # @course.ratings.build(rating_params)
 
     if @rating.save
-      redirect_to :back, notice: 'Post was successfully created.'
+      @course = @rating.course
+      render partial: 'show', layout: false
     else
       render :new
     end
@@ -48,6 +49,7 @@ class RatingsController < ApplicationController
   end
 
   def rating_params
+    puts params
     params.permit(:rating, :course_id, :rating_type)
   end
 end
