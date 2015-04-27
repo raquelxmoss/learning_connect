@@ -55,7 +55,6 @@ function addmarker(LatLng){
   google.maps.event.addListener(marker, 'click', toggleBounce);
 
 }
-
   var options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -81,7 +80,12 @@ $("#add-learning-objective").click(function(e){
   console.log('clicked')
  $(".learning-objectives").append($("#new-learning-objectives").html());
 });
-   //trying to get google map show on the profile page
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+
 
 
 

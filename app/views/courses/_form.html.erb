@@ -13,16 +13,16 @@
   <%= f.number_field :length %><br />
   <p class="learning-objectives"></p>
       <a href="javascript:;" id="add-learning-objective">Add a Learning Objective</a>
-  <div id="new-learning-objectives">
-    <%= render partial: "learning_objectives/form" %>
-  </div>
   <% @course.learning_objectives.each do |lo| %>
     <p><%= label_tag 'Learning Objective' %>
-    <%= hidden_field_tag 'lo_id[]', lo.id %>
-    <%= text_field_tag 'learningObjectives[]', lo.objective %></p>
+    <%= text_field_tag "#{f.object_name}[objectives][#{lo.id}]", lo.objective %></p>
   <% end %>
   <% if @course.status == 'complete' %>
     <% render partial: 'ratings/form' %>
   <% end %>
   <%= f.submit %>
 <% end %>
+
+<div id="new-learning-objectives">
+  <%= render partial: "learning_objectives/form" %>
+</div>
