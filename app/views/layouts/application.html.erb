@@ -22,7 +22,7 @@
       <li><%= link_to 'Log out', destroy_user_session_path ,method:"delete"%></li>
     <% else %>
       <li><%= link_to 'Log in', new_user_session_path %></li>
-      <li><%= link_to 'Sign Up', new_user_session_path %></li>
+      <li><%= link_to 'Sign Up', new_user_registration_path %></li>
     <% end %>
   </ul>
   </nav>
@@ -32,6 +32,6 @@
 
     <%= yield %>
   </div>
-  <div id = "map-canvas"></div>
+  <!-- <div id = "map-canvas"></div> -->
 </body>
 </html>
