@@ -15,6 +15,14 @@
      <h2>I'm available at these times:</h2>
      <%= simple_format(@user.availability) %>
    </div>
+   <% if can_edit_profile?(@user) %>
+     <%= render partial: "sessionbuttons"%>
+     
+    <% @connections.each do |connection| %>
+      <li>Connection with <%= link_to current_user.name == connection.initializer.name ? connection.receiver.name : connection.initializer.name, connection %></li>
+    <% end %>
+   <% end %>
+
 </div>
 <div class ="col-md-6">
 
@@ -40,19 +48,6 @@
   <div id='search_results'></div>
  
 </div>
- <% if can_edit_profile?(@user) %>
-   <%= render partial: "sessionbuttons"%>
- <% end %>
-
- <% if can_edit_profile?(@user) %>
-   <% @connections.each do |connection| %>
-      <% if current_user.name == connection.initializer.name %>
-        <li>Connection with <%= link_to connection.receiver.name, connection %></li>
-      <% else %>
-        <li>Connection with <%= link_to connection.initializer.name, connection %></li>
-      <% end %>
-   <% end %>
- <% end %>
 
 
 
