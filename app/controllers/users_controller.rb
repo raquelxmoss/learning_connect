@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  #probably don't want to authenticate on new or create or no one can create accounts
   before_action :authenticate_user!, only: [:new, :create, :update, :edit]
   before_filter :get_user, only:[:show, :edit, :update, :destroy]
   before_filter :get_user_connection, only:[:show]

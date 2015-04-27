@@ -3,6 +3,7 @@ class SkillsController < ApplicationController
 
 	def index
 		@skills = Skill.all
+    #changing Skill.search to return Skill.all when search is nil would symplify this
 		if params[:search]
 		  @skills = (Skill.search(params[:search])).includes(:user)
 		else

@@ -4,4 +4,6 @@ RSpec.describe Skill, type: :model do
 
   it {should belong_to :user}
 
+  #should have tests for search
+
 end

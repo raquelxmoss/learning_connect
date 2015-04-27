@@ -67,6 +67,7 @@ class CoursesController < ApplicationController
     @users = [@connection.initializer, @connection.receiver]
   end
 
+  #maybe get_learner_id would be a better name?
   def remove_tutor_id
     return id = @users.select{|user| user.id != params[:course][:tutor_id].to_i}.first.id
   end

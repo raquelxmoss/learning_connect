@@ -8,4 +8,7 @@ class Course < ActiveRecord::Base
 
   validates_presence_of :connection_id
 
+  #accepts_nested_attributes_for learning_objectives
+  #http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html#method-i-accepts_nested_attributes_for
+
 end
