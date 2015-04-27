@@ -1,5 +1,6 @@
 <% @feed_items.each do |feed_item| %>
   <%= feed_item.inspect %>
+  <%= feed_item.render_feed_item(feed_item) %>
 <% end %>
 
 <% @all_courses.each do |course| %>
