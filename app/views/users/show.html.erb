@@ -15,6 +15,7 @@
      <h2>I'm available at these times:</h2>
      <%= simple_format(@user.availability) %>
    </div>
+
    <% if can_edit_profile?(@user) %>
      <%= render partial: "sessionbuttons"%>
 
