@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  scope :search, ->(param) { where("name ILIKE ?", "%#{param}%") }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -21,11 +24,5 @@ class User < ActiveRecord::Base
   has_many :courses, through: :connections
 
   has_many :skills
-
-  def self.search(search)
-    where("name ILIKE ?","%#{search}%")
-  end
-
-
 
 end

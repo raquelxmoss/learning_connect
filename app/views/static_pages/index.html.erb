@@ -3,22 +3,9 @@
 <h1>Anyone can sign up, so what are you waiting for?</h1>
 
 <div>
-  <% if user_signed_in? %>
-    <div>
-      You are signed in as : <%=current_user.email%>
-    </div>
-
-    <li>
-      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-    </li>
-    <li>
-      <%= link_to('Profile', user_path(current_user)) %>
-      <!-- user_registration_path -->
-    </li>
-  <% else %>
-    <li>
-    <%= link_to('Login', new_user_session_path)  %>
-    </li>
+  <% if !user_signed_in? %>
+    <%= link_to('Sign up', new_user_registration_path, class:"btn btn-default btn-primary")  %>
+    <%= link_to('Login', new_user_session_path, class:"btn btn-default btn-primary")  %>
   <% end %>
 </div>
 

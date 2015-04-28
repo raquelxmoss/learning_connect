@@ -10,20 +10,20 @@
 <% end %>
 
 <p id="ratings">
-  <% if find_tutor_rate_learner(@course) %>
+  <% if find_tutor_rate_learner(@course) && @course.status == 'complete' %>
     <%= @course.tutor.name %> rated <%= @course.learner.name %>: <%= find_tutor_rate_learner(@course).rating %>
-  <% elsif @course.tutor == current_user %>
+  <% elsif @course.tutor == current_user && @course.status == 'complete' %>
     <%= render partial: 'ratings/form' %>
   <% end %>
 </p>
 
 <p>
-<% if find_learner_rate_tutor(@course) %>
+<% if find_learner_rate_tutor(@course) && @course.status == 'complete' %>
   <%= @course.learner.name %> rated <%= @course.tutor.name %>: <%= find_learner_rate_tutor(@course).rating %>
-  <% elsif @course.learner == current_user %>
+  <% elsif @course.learner == current_user  && @course.status == 'complete'%>
     <%= render partial: 'ratings/form' %>
 <% end %>
 </p>
 
-<%= link_to 'Update Lesson', edit_connection_course_path(@connection,@course) %>
-<%= link_to 'Delete Lesson', connection_course_path(@connection,@course), method: "Delete" %>
+<%= link_to 'Update Lesson', edit_connection_course_path(@connection,@course), class:"btn btn-primary" %>
+<%= link_to 'Delete Lesson', connection_course_path(@connection,@course), method: "Delete" , class:"btn btn-primary"%>
