@@ -1,12 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
-    if params[:search]
-      @users = ( User.search(params[:search]) )
-    else
-      @users = ( User.all )
-    end
+    @users = User.search(params[:search])
     respond_to do |format|
       format.html
       format.js
