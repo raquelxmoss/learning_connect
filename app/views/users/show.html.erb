@@ -1,11 +1,11 @@
- <div class="home">
-   <% if can_edit_profile?(@user) %>
-   <h1>Welcome, <%= @user.name.capitalize %></h1>
-   <% end %>
- <div>
-   // Profile image goes here
- </div>
+
  <div class ="col-md-6">
+  <% if can_edit_profile?(@user) %>
+  <h2>Welcome, <%= @user.name.capitalize %></h2>
+  <% end %>
+  <% my_avatar_url = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@user.email)}?s=150&d=monsterid" %>
+  <p><img src="<%= my_avatar_url %>" class="img img-responsive profile-img" /></p>
+
    <div  id="about">
      <h2>About <%= @user.name %></h2>
       <%= simple_format(@user.about) %>
@@ -17,35 +17,42 @@
    </div>
    <% if can_edit_profile?(@user) %>
      <%= render partial: "sessionbuttons"%>
-     
-    <% @connections.each do |connection| %>
-      <li>Connection with <%= link_to current_user.name == connection.initializer.name ? connection.receiver.name : connection.initializer.name, connection %></li>
-    <% end %>
-   <% end %>
 
+  <div id="user-connections">
+    <h2>Connections</h2>
+    <% @connections.each do |connection| %>
+      <li class="connection-list">Connection with <%= link_to current_user.name == connection.initializer.name ? connection.receiver.name : connection.initializer.name, connection %> | <%= link_to 'View Map', map_user_path(5) , class: 'map' %> |</li>
+    <% end %>
+  </div>
+  <% end %>
 </div>
+
 <div class ="col-md-6">
   <% if !can_edit_profile?(@user) %>
     <p><%= render partial: "connectbutton"%></p>
   <% end %>
   <div id="teach">
    <h2>I can teach:</h2>
-   <%= render partial: "skills_division", locals: {skills: @teaching_skills, skill_type: 'teach'} %>
+   <%= render partial: "skills_division", locals: {skills: @skills.teaching_skills, skill_type: 'teach'} %>
   </div>
+
 
   <div id="learn">
    <h2>I'm keen to learn:</h2>
-   <%= render partial: "skills_division", locals: {skills: @learning_skills, skill_type: 'learn'} %>
+   <%= render partial: "skills_division", locals: {skills: @skills.learning_skills, skill_type: 'learn'} %>
   </div>
 
+
   <div id='search'>
+    <h2>Search</h2>
    <p>
      <%= form_tag(skills_list_path, remote: true,:method => 'post', id: "search_form") do %>
-       <%= text_field_tag :search, params[:search], placeholder: 'search skills' %>
-       <%= submit_tag "search" %>
+       <%= text_field_tag :search, params[:search], placeholder: 'search skills', class:'form-control'%>
+       <%= submit_tag "search", class: 'btn btn-primary' %>
      <% end %>
    </p>
   </div>
+
 
   <div id='search_results'></div>
 </div>

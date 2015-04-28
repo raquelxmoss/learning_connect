@@ -1,7 +1,7 @@
 <% if @skills.present? %>
-	<ul>
+<ul>
 	<% @skills.each do |skill| %>
-		<li><%= "#{skill.description}, #{skill.skill_type}"%> <%= link_to "#{skill.user.name}", user_path(skill.user.id) %> </li>
+		<li><%= link_to "#{skill.user.name}", user_path(skill.user.id) %> wants to <%= skill.skill_type %> <%= skill.description %> </li>
 	<% end %>
 </ul>
 <% else %>
