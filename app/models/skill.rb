@@ -7,14 +7,11 @@ class Skill < ActiveRecord::Base
 
   after_save :skill_change_notification
   before_destroy :skill_change_notification
-  
-  def self.search(search)
-  	where("description ILIKE ?","%#{search}%")
-  end
+
 
   private
 
   def skill_change_notification
-  	SkillMailer.skill_add(self).deliver
+  	SkillMailer.skill_add(self).deliver_now
   end
 end
