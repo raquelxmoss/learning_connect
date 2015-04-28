@@ -6,9 +6,8 @@ class Skill < ActiveRecord::Base
   scope :teaching_skills, -> {where(skill_type: 'teach')}
 
   after_save :skill_change_notification
-  before_create :skill_change_notification
-
-
+  before_destroy :skill_change_notification
+  
   def self.search(search)
   	where("description ILIKE ?","%#{search}%")
   end
