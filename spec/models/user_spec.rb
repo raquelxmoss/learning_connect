@@ -24,16 +24,16 @@ RSpec.describe User, type: :model do
     context 'matching results' do 
       before{ @users =  User.search('al') }
 
-      it 'returns the users with matching skills' do 
+      it 'returns the users with matching name' do 
         expect(@users).to include(matching_user)
       end
 
-      it 'does not return users with unmatching skills' do 
+      it 'does not return users with unmatching name' do 
         expect(@users).not_to include(unmatching_user)
       end
     end
 
-    context 'unmatching results' do 
+    context 'unmatching result names' do 
       before{ @users =  User.search('xzz') }
 
       it 'returns an empty array' do 
