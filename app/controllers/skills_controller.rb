@@ -1,6 +1,6 @@
 class SkillsController < ApplicationController
 	before_action :authenticate_user!
-	before_filter :get_user
+	before_filter :get_user, except: :index
 
 	def index
 	  @skills = Skill.search(params[:search]).includes(:user)

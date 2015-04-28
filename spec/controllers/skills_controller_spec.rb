@@ -30,25 +30,4 @@ RSpec.describe SkillsController, type: :controller do
     end
   end
 
-  context 'When signed in' do 
-    describe 'POST#index' do 
-      before do 
-        sign_in user
-        subject { post :index, {search: 'spanish'} }
-      end
-
-      it 'assigns the correct skills @skills' do
-        expect(assigns(:skills)).to eq([spanish_skill])
-      end
-    end
-
-    describe 'POST#create' do 
-    end
-
-    describe 'DELETE#destroy' do 
-    end
-  end
-
-
-
 end
