@@ -19,6 +19,7 @@
      <%= render partial: "sessionbuttons"%>
 
   <div id="user-connections">
+    <h2>Connections</h2>
     <% @connections.each do |connection| %>
       <li class="connection-list">Connection with <%= link_to current_user.name == connection.initializer.name ? connection.receiver.name : connection.initializer.name, connection %></li>
     <% end %>
