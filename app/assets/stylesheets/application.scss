@@ -17,12 +17,29 @@
 @import "bootstrap";
 body{
   padding-top:70px;
-  background: url("school.png");
+  background: url("geometry2.png");
 
 }
-.navbar-brand{
 
+.navbar-default {
+  background: #88ABD0;
+  border: none;
+  border-color:transparent;
+  color: #fff;
 }
+
+.navbar-default .navbar-brand{
+  color:#fff;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color:#fff;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-brand:hover {
+  background: #fff;
+}
+
 #existingAccount{
   text-align: center;
   float: left;
@@ -63,5 +80,9 @@ border:solid 1px;
 border-radius:5px;
 margin: 5px;
 padding: 5px
+}
+
+.sign-up-form {
+  margin-bottom: 50px;
 }
 
