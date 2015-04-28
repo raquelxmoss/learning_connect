@@ -1,7 +1,7 @@
 <div id='search'>
   <p>
     <%= form_tag(users_list_path, remote: true,:method => 'post', id: "search_form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: 'search for a user', class:"form-control" %>
+      <%= text_field_tag :search, params[:search], placeholder: 'Search for a user by name', class:"form-control" %>
       <%= submit_tag "search", class:"btn btn-primary" %>
     <% end %>
   </p>
