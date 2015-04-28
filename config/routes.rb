@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  #ADD NEW ROUTES BELOW:
+
+
+
+
+
+
+
+
+
   #static pages routes
   root 'static_pages#index'
   get '/feed', to: 'static_pages#feed'

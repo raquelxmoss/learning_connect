@@ -45,11 +45,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address:              'smtp.clear.net.nz',
+  address:              ENV['address'],
   port:                 25,
-  domain:               'clear.net.nz',
-  user_name:            'john.kan',
-  password:             'l1nK5ys',
+  domain:               ENV['domain'],
+  user_name:            ENV['username'],
+  password:             ENV['password'],
   authentication:       'plain',
   enable_starttls_auto: true  }
 
