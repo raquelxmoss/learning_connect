@@ -24,5 +24,6 @@ Rails.application.routes.draw do
   delete 'users/:user_id/skills/:id' => 'skills#destroy', :as => 'delete_skill'
   post 'skills/list' => 'skills#index', :as => 'skills_list'
   root 'static_pages#index'
+  get '/feed', to: 'static_pages#feed'
   get '/map', to: 'static_pages#map'
 end
