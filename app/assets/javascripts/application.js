@@ -21,7 +21,15 @@ $("#add-learning-objective").click(function(e){
   console.log('clicked')
  $(".learning-objectives").append($("#new-learning-objectives").html());
  });
+
+ $(".map").click(function(e){
+   e.preventDefault();
+
+
+ });
+
 });
+
 
 
 

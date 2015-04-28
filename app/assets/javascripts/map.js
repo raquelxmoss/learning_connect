@@ -69,3 +69,5 @@ function addmarker(LatLng){
 google.maps.event.addDomListener(window, 'load', initialize);
 
 // $('div#map-canvas').append("<%= escape_javascript(render 'map') %>")
+//ajaxify viewmap link in profile page.
+//get json back use to position
