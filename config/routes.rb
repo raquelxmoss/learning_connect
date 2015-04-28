@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index'
   post '/users/list', to: 'users#index', as: 'users_list'
 
-  resources :users do
+  resources :users, only:[:index,:list, :show] do
     resources :skills, only: [:index, :show, :destroy]
   end
   post '/users/:user_id/skills/' => 'skills#create', :as => 'create_skill'
