@@ -1,12 +1,12 @@
 <% if @connection and (@connection.receiver_id == current_user.id || @connection.initializer_id == current_user.id) %>
-  <%= link_to 'View Connection', @connection %> |
-  <%= link_to 'Disconnect', @connection, method: 'DELETE' %>
+  <%= link_to 'View Connection', @connection, class:"btn btn-primary" %>
+  <%= link_to 'Disconnect', @connection, method: 'DELETE', class:"btn btn-primary" %>
 
 
 <% else %>
   <%= form_tag connections_path, method: "post" do %>
     <%= hidden_field_tag(:receiver_id, @user.id) %>
-    <%= submit_tag "Connect", :class => "btn btn-lg btn-primary" %>
+    <%= submit_tag "Connect", :class => "btn btn-primary" %>
   <% end %>
 <% end %>
 
