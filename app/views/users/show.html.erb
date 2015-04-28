@@ -33,12 +33,12 @@
   <% end %>
   <div id="teach">
    <h2>I can teach:</h2>
-   <%= render partial: "skills_division", locals: {skills: @teaching_skills, skill_type: 'teach'} %>
+   <%= render partial: "skills_division", locals: {skills: @skills.teaching_skills, skill_type: 'teach'} %>
   </div>
 
   <div id="learn">
    <h2>I'm keen to learn:</h2>
-   <%= render partial: "skills_division", locals: {skills: @learning_skills, skill_type: 'learn'} %>
+   <%= render partial: "skills_division", locals: {skills: @skills.learning_skills, skill_type: 'learn'} %>
   </div>
 
   <div id='search'>

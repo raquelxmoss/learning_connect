@@ -24,6 +24,9 @@ RSpec.describe UsersController, type: :controller do
         get :show, {:id => @user.to_param}
         expect(assigns(:user)).to eq(@user)
       end
+
+      it 'assigns the corresponding connections as @connections'
+      
     end
 
     after(:each) { User.delete_all }
