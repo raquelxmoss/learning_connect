@@ -2,10 +2,6 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 
-  # before(:each) do 
-  #   @user = create(:user)
-  #   sign_in @user 
-  # end
   describe 'GET' do
 
     before do 
@@ -25,6 +21,7 @@ RSpec.describe UsersController, type: :controller do
     let!(:unmatching_skill) {create(:skill_spanish)}
 
     context "#show" do 
+
       context "when not signed_in" do
         before(:each) { get :show, {:id => @user.to_param} } 
 
@@ -48,14 +45,8 @@ RSpec.describe UsersController, type: :controller do
           get :show, {:id => @user.to_param}
           expect(assigns(:connections)).to eq([connection])
         end
-
       end
     end
-
-
-
-
-
 
   end
 
