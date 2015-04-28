@@ -15,17 +15,14 @@
      <h2>I'm available at these times:</h2>
      <%= simple_format(@user.availability) %>
    </div>
+
    <% if can_edit_profile?(@user) %>
      <%= render partial: "sessionbuttons"%>
 
   <div id="user-connections">
     <h2>Connections</h2>
     <% @connections.each do |connection| %>
-<<<<<<< HEAD
-      <li class="connection-list">Connection with <%= link_to current_user.name == connection.initializer.name ? connection.receiver.name : connection.initializer.name, connection %> | <%= link_to 'View Map', map_path, class: 'map' %> |</li>
-=======
-      <li class="connection-list">Connection with <%= link_to current_user.name == connection.initializer.name ? connection.receiver.name : connection.initializer.name, connection %> | <%= link_to 'View Map', map_user_path(5) , class: 'map' %> |</li>
->>>>>>> origin/master
+      <li class="connection-list">Connection with <%= link_to current_user.name == connection.initializer.name ? connection.receiver.name : connection.initializer.name, connection %></li>
     <% end %>
   </div>
   <% end %>

@@ -43,6 +43,15 @@ Rails.application.configure do
   #DEVISE INSTALLATION
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'smtp.clear.net.nz',
+  port:                 25,
+  domain:               'clear.net.nz',
+  user_name:            'john.kan',
+  password:             'l1nK5ys',
+  authentication:       'plain',
+  enable_starttls_auto: true  }
 
 
 

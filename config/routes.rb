@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post '/users/:user_id/skills/' => 'skills#create', :as => 'create_skill'
   delete 'users/:user_id/skills/:id' => 'skills#destroy', :as => 'delete_skill'
   post 'skills/list' => 'skills#index', :as => 'skills_list'
+  get '/map' => 'static_pages#map'
 
   #connections routes refactor ?
   resources :connections, only: [:create, :show, :new, :destroy] do
