@@ -44,6 +44,17 @@ RSpec.describe Skill, type: :model do
     let(:teach){create(:skill_teach)}
     let(:learn){create(:skill_learn)}
 
+    # context 'matching results' do 
+    #   before{ @skills =  Skill.search('sp') }
+
+    #   it 'returns the skills with matching name' do 
+    #     expect(@skills).to include(spanish)
+    #   end
+
+    #   it 'does not return skills with unmatching name' do 
+    #     expect(@skills).not_to include(english)
+    #   end
+    # end
 
 
 

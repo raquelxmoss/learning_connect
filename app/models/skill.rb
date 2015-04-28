@@ -1,5 +1,5 @@
 class Skill < ActiveRecord::Base
-  scope :search, ->(param) {  }
+  scope :search, ->(param) { where("description ILIKE ?", "%#{param}%") }
 
   belongs_to :user
   scope :learning_skills, -> {where(skill_type: 'learn')}
