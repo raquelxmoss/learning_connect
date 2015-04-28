@@ -4,6 +4,9 @@ RSpec.describe Skill, type: :model do
 
   it {should belong_to :user}
 
+  it 'after save mailing notifications'
+  it 'before destroy email notification'
+  it 'skill_change_notification'
 
 
   describe 'SCOPE #search' do 

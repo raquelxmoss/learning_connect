@@ -14,4 +14,5 @@ class Skill < ActiveRecord::Base
   def skill_change_notification
   	SkillMailer.skill_add(self).deliver_now
   end
+  
 end
