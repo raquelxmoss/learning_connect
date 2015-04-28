@@ -3,14 +3,9 @@ class SkillsController < ApplicationController
 	before_filter :get_user, except: [:index]
 
 	def index
-	  @skills = Skill.all
-	  if params[:search]
-	    @skills = (Skill.search(params[:search])).includes(:user)
-	  else
-	    @skills = Skill.all.includes(:user)
-	  end
-	    respond_to do |format|
-		  format.html
+	  @skills = Skill.search(params[:search]).includes(:user)
+    respond_to do |format|
+		  format.html { redirect_to user_path @user }
 		  format.js
 		end
 	end
