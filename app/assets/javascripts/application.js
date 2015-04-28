@@ -18,24 +18,13 @@ var ulng;
 var user;
 var zoo = new google.maps.LatLng(-41.32, 174.78);
 var map;
+
 $(document).ready(function(){
-  function initialize() {
-    var mapOptions = {
-      center: { lat: -41.299, lng: 174.777},
-      zoom: 13
-    };
-    map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(success, error, options);
 
-    }
-    addmarker(zoo);
-  }
+
   var wellington = new google.maps.LatLng(-41.299, 174.777);
-
-  google.maps.event.addDomListener(window, 'load', initialize);
 });
+
 
  function toggleBounce() {
     if (marker.getAnimation() != null) {
@@ -80,9 +69,21 @@ $("#add-learning-objective").click(function(e){
   console.log('clicked')
  $(".learning-objectives").append($("#new-learning-objectives").html());
 });
+ function initialize() {
+    var mapOptions = {
+      center: { lat: -41.299, lng: 174.777},
+      zoom: 13
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error, options);
+
+    }
+    addmarker(zoo);
+  }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
 
 
 

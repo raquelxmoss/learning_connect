@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   resources :connections, only: [:create, :show, :new, :destroy] do
     resources :courses do
@@ -17,12 +17,13 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index'
   post '/users/list', to: 'users#index', as: 'users_list'
 
-  resources :users do
+  resources :users, only:[:index,:list, :show] do
     resources :skills, only: [:index, :show, :destroy]
   end
   post '/users/:user_id/skills/' => 'skills#create', :as => 'create_skill'
   delete 'users/:user_id/skills/:id' => 'skills#destroy', :as => 'delete_skill'
   post 'skills/list' => 'skills#index', :as => 'skills_list'
   root 'static_pages#index'
-
+  get '/feed', to: 'static_pages#feed'
+  get '/map', to: 'static_pages#map'
 end
