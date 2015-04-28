@@ -1,12 +1,10 @@
 <% if can_edit_profile?(@user) %>
 <div id ="session-buttons">
-
-  <%= link_to 'Edit Profile', edit_user_registration_path, :class => "btn btn-lg btn-primary" %>
+  <%= link_to 'Edit Profile', edit_user_registration_path, :class => "btn btn-primary" %>
 </div>
 
 <% else %>
  <div id ="session-buttons">
-
-  <%= link_to 'Login', new_user_session_path, :class => "btn btn-lg btn-primary" %>
+  <%= link_to 'Login', new_user_session_path, :class => "btn btn-primary" %>
 </div>
 <% end %>
