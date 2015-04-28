@@ -14,13 +14,12 @@ Rails.application.routes.draw do
   end
 
   delete '/connections/:connection_id/messages/:id' => 'messages#destroy', :as => 'delete_message'
-  get '/users/:id', to: 'users#show'
   post '/users/list', to: 'users#index', as: 'users_list'
 
   resources :users, only:[:index,:list, :show] do
     resources :skills, only: [:index,:destroy]
   end
-  
+
   post '/users/:user_id/skills/' => 'skills#create', :as => 'create_skill'
   delete 'users/:user_id/skills/:id' => 'skills#destroy', :as => 'delete_skill'
   post 'skills/list' => 'skills#index', :as => 'skills_list'
