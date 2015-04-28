@@ -5,7 +5,7 @@ module UsersHelper
   end
 
   def render_feed_item(item)
-    #render user feed partial
+    puts "it got the render_feed_item method"
     render partial: 'user/feed_item'
 
     #elsif feed item type = Connection
