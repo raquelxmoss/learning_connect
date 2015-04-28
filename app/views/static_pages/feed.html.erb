@@ -1,0 +1,24 @@
+<% @feed_items.each do |feed_item| %>
+  <%= feed_item.inspect %>
+  <%= feed_item.render_feed_item(feed_item) %>
+<% end %>
+
+<% @all_courses.each do |course| %>
+  <p><%= link_to course.tutor.name, user_path(course.tutor) %> and <%= link_to course.learner.name, user_path(course.learner) %> created the lesson '<%= course.title %>'</p>
+<% end %>
+
+<% @all_connections.each do |connection| %>
+  <p><%= link_to connection.initializer.name, user_path(connection.initializer) %> and <%= link_to connection.receiver.name, user_path(connection.receiver) %> just connected.</p>
+<% end %>
+
+<% @new_users.each do |user| %>
+  <h3><%= link_to user.name, user_path(user) %> just signed up to Learning Connect.</h3><br />
+   <h4><%= user.name %> can teach:</h4>
+    <% user.skills.where(skill_type:"learn").each do |skill| %>
+      <li><%= skill.description %></li>
+    <% end %>
+    <h4><%= user.name %> wants to learn:</h4>
+    <% user.skills.where(skill_type:"teach").each do |skill| %>
+      <li><%= skill.description %></li>
+    <% end %>
+<% end %>
