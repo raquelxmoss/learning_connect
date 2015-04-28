@@ -5,8 +5,8 @@ class Skill < ActiveRecord::Base
   scope :learning_skills, -> {where(skill_type: 'learn')}
   scope :teaching_skills, -> {where(skill_type: 'teach')}
 
-  after_save :skill_change_notification
-  before_destroy :skill_change_notification
+  # after_save :skill_change_notification
+  # before_destroy :skill_change_notification
 
 
   private

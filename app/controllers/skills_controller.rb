@@ -5,7 +5,6 @@ class SkillsController < ApplicationController
 	def index
 	  @skills = Skill.search(params[:search]).includes(:user)
     respond_to do |format|
-		  format.html { redirect_to user_path @user }
 		  format.js
 		end
 	end

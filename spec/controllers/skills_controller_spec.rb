@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe SkillsController, type: :controller do
 
   let!(:user) {create(:user)}
-  let!(:matching_skill) {user.skills.create}
-  let!(:unmatching_skills) {create(:skill_teach)}
+  let!(:spanish_skill) {create(:skill_spanish)}
+  let!(:english_skill) {create(:skill_english)}
 
   context 'When not signed in' do 
 
@@ -23,7 +23,7 @@ RSpec.describe SkillsController, type: :controller do
     end
 
     describe 'DELETE#destroy' do 
-      subject { delete :destroy, {user_id: user.id, id: matching_skill.id} }
+      subject { delete :destroy, {user_id: user.id, id: spanish_skill.id} }
       it 'redirects to login page' do 
         expect(subject).to redirect_to(new_user_session_path)
       end
@@ -31,17 +31,15 @@ RSpec.describe SkillsController, type: :controller do
   end
 
   context 'When signed in' do 
-    describe 'GET#index' do 
+    describe 'POST#index' do 
       before do 
         sign_in user
-        get :index, {user_id: user.id  } 
+        subject { post :index, {search: 'spanish'} }
       end
 
-      it 'assigns the correct skills to @skills' do 
-        expect(assigns(:skills)).to eq([matching_skill])
+      it 'assigns the correct skills @skills' do
+        expect(assigns(:skills)).to eq([spanish_skill])
       end
-      it 'respond_to html format '
-      it 'respond_to js format '
     end
 
     describe 'POST#create' do 
