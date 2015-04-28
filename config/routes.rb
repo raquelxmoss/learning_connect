@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   resources :connections, only: [:create, :show, :new, :destroy] do
     resources :courses do
