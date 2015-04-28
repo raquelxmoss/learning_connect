@@ -9,8 +9,6 @@ var map;
 
  $(document).ready(function(){
   var wellington = new google.maps.LatLng(-41.299, 174.777);
-  alert ("Got here...");
-
 });
 
  function toggleBounce() {

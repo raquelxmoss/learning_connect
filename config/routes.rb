@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   #static pages routes
   root 'static_pages#index'
   get '/feed', to: 'static_pages#feed'
-  get '/map', to: 'static_pages#map'
+  get '/map/:id', to: 'static_pages#map', as: 'map_user'
 
   #user routes maybe need to refactor
   devise_for :users, controllers: { registrations: "users/registrations" }
