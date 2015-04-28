@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 20150428024110) do
   create_table "courses", force: :cascade do |t|
     t.integer  "learner_id"
     t.integer  "tutor_id"
+    t.integer  "connection_id"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.string   "title"
     t.string   "status",        default: "pending"
-    t.integer  "connection_id"
     t.integer  "price"
     t.integer  "length"
   end
