@@ -40,4 +40,13 @@ RSpec.describe Skill, type: :model do
 
   end
 
+  describe 'SCOPE #teaching_skills' do 
+    let(:teach){create(:skill_teach)}
+    let(:learn){create(:skill_learn)}
+
+
+
+
+  end
+
 end
