@@ -6,4 +6,8 @@ module RspecFeatureHelpers
     fill_in 'user_password', with: user.password
     click_button 'Log in'
   end
+
+  def sign_out
+    click_link 'Log out'
+  end
 end
