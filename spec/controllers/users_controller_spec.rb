@@ -19,17 +19,43 @@ RSpec.describe UsersController, type: :controller do
       end
     end
 
-    context "#show" do
-      it "assigns the requested user as @user" do
-        get :show, {:id => @user.to_param}
-        expect(assigns(:user)).to eq(@user)
+    let!(:connection) { @user.receiver_connections.create }
+    let!(:skill){ @user.skills.create }
+    let!(:unmatching_connection) {create(:connection)}
+    let!(:unmatching_skill) {create(:skill_spanish)}
+
+    context "#show" do 
+      context "when not signed_in" do
+        before(:each) { get :show, {:id => @user.to_param} } 
+
+        it "assigns the requested user as @user" do
+          expect(assigns(:user)).to eq(@user)
+        end
+
+        it 'returns nil as @connections'do 
+          expect(assigns(:connections)).to eq(nil)
+        end
+
+        it 'assigns the corresponding skills as @skills' do 
+          expect(assigns(:skills)).to eq([skill])
+        end
       end
 
-      it 'assigns the corresponding connections as @connections'
-      
+      context 'When signed_in' do 
+
+        it 'assigns the corresponding connections as @connections'do 
+          sign_in @user 
+          get :show, {:id => @user.to_param}
+          expect(assigns(:connections)).to eq([connection])
+        end
+
+      end
     end
 
-    after(:each) { User.delete_all }
+
+
+
+
 
   end
 
