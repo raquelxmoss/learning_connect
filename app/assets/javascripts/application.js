@@ -24,21 +24,20 @@ $("#add-learning-objective").click(function(e){
 
  $('.map').click(function (e) {
     e.preventDefault();
+
+    // var li = $(this).parent();
+    //var id = li.data("id");
     var url = ('/map/' + 5);
     $.ajax({
       url: url,
       method:'GET',
       success:function(res){
-      //addmarker(res.lat,res.long);
-      console.log(res);
+      addMarker(res.lat,res.long);
       },
       error: function(req, errorType, errorMessage){
         alert(req, errorType, errorMessage);
       }
     });
-
-
-
 
 
  });
