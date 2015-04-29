@@ -15,6 +15,12 @@ class UsersController < ApplicationController
     @skills = @user.skills
   end
 
+  def mail
+    get_user
+    SkillMailer.skill_add(@user.skills.first)
+    redirect_to user_path @user
+  end
+
   private
 
   def get_user

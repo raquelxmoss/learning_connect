@@ -10,7 +10,7 @@ class SkillMailer < ApplicationMailer
   def skill_add(skill)
     @greeting = "Hi from Rails!!!! local, added skill"
     @user_id = skill.user_id
-    mail to: "john.kan@virtuosity.co.nz"
+    mail to: "barret.alx@gmail.com"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
