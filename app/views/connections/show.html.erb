@@ -20,6 +20,7 @@
   <div id="course-panel">
     <a class="btn btn-primary" href="#" id="create-lesson">Create a lesson</a>
     <a class="btn btn-primary" href="#" id="view-all-lessons">All Lessons</a>
+    <%= link_to 'View Map',"#", class:"btn btn-primary map", data: {id: current_user.name == @connection.initializer.name ? @connection.receiver.id : @connection.initializer.id} %>
 
     <div id="new-lesson-form">
       <%= render partial: "courses/form"%>

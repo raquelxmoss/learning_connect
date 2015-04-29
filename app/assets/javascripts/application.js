@@ -23,27 +23,6 @@ $("#add-learning-objective").click(function(e){
  $(".learning-objectives").append($("#new-learning-objectives").html());
  });
 
- $('.map').click(function (e) {
-    e.preventDefault();
-    // var li = $(this).parent();
-    var id = $(this).data("id");
-
-    var url = ('/map/'+ id);
-    console.log(url);
-    $.ajax({
-      url: url,
-      method:'GET',
-      success:function(res){
-
-      addMarker(res.lat,res.long);
-      console.log(res.lat,res.long);
-      },
-      error: function(req, errorType, errorMessage){
-        alert(req, errorType, errorMessage);
-      }
-    });
- });
-
 var users = $('.all-users').children();
   for(var i=0; i < users.length; i++){
     if (i%3 == 2) {

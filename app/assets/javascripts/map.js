@@ -4,11 +4,14 @@
 var ulat;
 var ulng;
 var user;
-var zoo = new google.maps.LatLng(-41.32, 174.78);
 var map;
 
  $(document).ready(function(){
      var wellington = new google.maps.LatLng(-41.299, 174.777);
+     $('.map').click(function(e){
+        e.preventDefault();
+        showUserMarker();
+     })
   });
 
  function toggleBounce() {
@@ -37,17 +40,32 @@ function addmarker(LatLng){
 
   function success(pos) {
     var crd = pos.coords;
-    user = new google.maps.LatLng(crd.latitude,crd.longitude)
-    console.log('Your current position is:');
-    console.log('Latitude : ' + crd.latitude);
-    console.log('Longitude: ' + crd.longitude);
-    console.log('More or less ' + crd.accuracy + ' meters.');
-    addmarker(user);
+    currentLocation = new google.maps.LatLng(crd.latitude,crd.longitude)
+    addmarker(currentLocation);
   };
 
   function error(err) {
     console.warn('ERROR(' + err.code + '): ' + err.message);
   };
+
+function showUserMarker (data){
+    // var li = $(this).parent();
+    var id = $(this).data("id");
+    var url = ('/map/'+ id);
+    console.log(url);
+    $.ajax({
+      url: url,
+      method:'GET',
+      success:function(res){
+
+      addmarker(res.lat,res.long);
+      console.log(res.lat,res.long);
+      },
+      error: function(req, errorType, errorMessage){
+        alert(req, errorType, errorMessage);
+      }
+    });
+ };
 
 
  function initialize() {
@@ -62,7 +80,7 @@ function addmarker(LatLng){
       navigator.geolocation.getCurrentPosition(success, error, options);
 
     }
-    addmarker(zoo);
+    //showUserMarker();
   }
 
 google.maps.event.addDomListener(window, 'load', initialize);
