@@ -3,5 +3,7 @@
     <%= @message.user.name %>:
   <%end %>
   <%= simple_format(@message.content) %>
+  <% if current_user.id == @message.user_id %>
   <%= link_to 'Delete Message', delete_message_path(@message.connection_id, @message.id), class:'message-destroy btn btn-xs btn-danger'%>
+  <% end %>
 </li>
