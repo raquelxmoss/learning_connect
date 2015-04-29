@@ -30,7 +30,10 @@
   <div id="user-connections">
     <h2>Connections</h2>
     <% @connections.each do |connection| %>
-      <li class="connection-list">Connection with <%= link_to current_user.name == connection.initializer.name ? connection.receiver.name : connection.initializer.name, connection %></li>
+      <li class="connection-list">Connection with <%= link_to current_user.name == connection.initializer.name ? connection.receiver.name : connection.initializer.name, connection %>
+        | <%= link_to 'View Map', map_path %> |
+       <!--  <%= connection.receiver.id %> -->
+        </li>
     <% end %>
   </div>
 </div>
