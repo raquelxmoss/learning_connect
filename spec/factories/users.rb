@@ -5,6 +5,7 @@ FactoryGirl.define do
     name {Faker::Name.name}
     email {Faker::Internet.email}
     password {Faker::Internet.password}
+    about {Faker::Lorem.paragraphs}
   end
   factory :alex,class: User do
     name 'alex'
