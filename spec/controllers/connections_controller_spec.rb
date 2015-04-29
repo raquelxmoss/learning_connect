@@ -52,6 +52,12 @@ RSpec.describe ConnectionsController, type: :controller do
 
     end
 
+    it "creates a new Connection" do
+      expect {
+        post :create, {receiver_id: receiver.id}
+      }.to change(Connection, :count).by(1)
+    end
+
     it 'assigns a newly created connection as @connection' do
       post :create, {receiver_id: receiver.id }
       expect(assigns(:connection)).to be_a(Connection)
