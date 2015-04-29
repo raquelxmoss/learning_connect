@@ -8,7 +8,8 @@ RSpec.describe CoursesController, type: :controller do
   let(:unmatching_connection) {create(:connection)}
   let(:matching_course) {connection.courses.create}
   let(:unmatching_course) {unmatching_connection.courses.create}
-
+  let(:params) { {connection_id: connection.to_param, course: {title: 'title', status: 'status' } } }
+  let(:params_learning_objectives) { {connection_id: connection.to_param, course: {title: 'title', status: 'status' } , learningObjectives: ['test0','test1','test2','test3']}}
   describe 'GET' do 
 
     describe '#show' do 
@@ -75,8 +76,61 @@ RSpec.describe CoursesController, type: :controller do
 
   end
 
+  describe 'POST' do 
+    before do 
+      sign_in receiver 
+    end
 
-  
+    describe '#create' do 
+
+      it "creates a new Connection" do
+        expect {
+          post :create, params
+        }.to change(Course, :count).by(1)
+      end
+
+      it 'assigns a newly created course as @course' do 
+        post :create, params
+        expect(assigns(:course)).to be_a(Course)
+        expect(assigns(:course)).to be_persisted
+      end
+
+      it 'the course has the corresponding connection_id' do
+        post :create, params
+        expect(Course.last.connection).to eq(connection)
+      end
+
+      it 'redirects to the connection page' do 
+        post :create, params
+        expect(response).to redirect_to(connection_path connection) 
+      end
+
+      context 'with learning objectives' do 
+
+        it 'creates the corresponding number of learning_objectives' do
+          expect{
+            post :create, params_learning_objectives
+          }.to change(LearningObjective,:count).by(4)
+        end
+
+        it 'creates lesarning_objectives that belongs to the corresponding course' do 
+          post :create, params_learning_objectives
+          expect(Course.last.learning_objectives).to eq(LearningObjective.last(4))
+        end
+
+
+      end
+
+
+
+
+    end
+
+    describe '#update' do 
+
+    end
+
+  end
 
   describe 'DELETE #destroy' do 
       

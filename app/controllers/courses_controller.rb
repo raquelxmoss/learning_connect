@@ -9,6 +9,16 @@ class CoursesController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def destroy
+    @course.destroy
+    redirect_to connection_path(@course.connection_id)
+  end
+
+
+
   def create
     @course = Course.new(course_params)
     @course.connection_id = params[:connection_id]
@@ -26,14 +36,7 @@ class CoursesController < ApplicationController
     end
   end
 
-  def edit
 
-  end
-
-  def destroy
-    @course.destroy
-    redirect_to connection_path(@course.connection_id)
-  end
 
   def update
     if @course.update(course_params)
