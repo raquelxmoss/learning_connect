@@ -1,29 +1,37 @@
-<h2><%= @course.title %></h2>
-<p>Learner: <%= @course.learner.name %></p>
-<p>Tutor: <%= @course.tutor.name %></p>
-<p>Price: <%= @course.price %></p>
-<p>Length: <%= @course.length %></p>
-<p>Status: <%= @course.status %></p>
-<h3>Learning Objectives</h3>
-<% @course.learning_objectives.each do |lo| %>
-  <li><%= lo.objective %></li>
-<% end %>
-
-<p id="ratings">
-  <% if find_tutor_rate_learner(@course) && @course.status == 'complete' %>
-    <%= @course.tutor.name %> rated <%= @course.learner.name %>: <%= find_tutor_rate_learner(@course).rating %>
-  <% elsif @course.tutor == current_user && @course.status == 'complete' %>
-    <%= render partial: 'ratings/form' %>
+<div class="col-md-6 col-md-offset-3 show-lesson">
+  <p class="avatars">
+    <% avatar_1 = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@course.tutor.email)}?s=150&d=monsterid" %>
+    <% avatar_2 = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@course.learner.email)}?s=150&d=monsterid" %>
+      <img src="<%= avatar_1 %>" class="img img-responsive img-circle profile-img connection-avatar" />
+      <img src="<%= avatar_2 %>" class="img img-responsive img-circle profile-img connection-avatar" />
+  </p>
+  <h2><%= @course.title %></h2>
+  <p><strong>Learner:</strong> <%= @course.learner.name %></p>
+  <p><strong>Tutor:</strong> <%= @course.tutor.name %></p>
+  <p><strong>Price:</strong> <%= @course.price %></p>
+  <p><strong>Length:</strong> <%= @course.length %></p>
+  <p><strong>Status:</strong> <%= @course.status %></p>
+  <h3>Learning Objectives</h3>
+  <% @course.learning_objectives.each do |lo| %>
+    <li><%= lo.objective %></li>
   <% end %>
-</p>
 
-<p>
-<% if find_learner_rate_tutor(@course) && @course.status == 'complete' %>
-  <%= @course.learner.name %> rated <%= @course.tutor.name %>: <%= find_learner_rate_tutor(@course).rating %>
-  <% elsif @course.learner == current_user  && @course.status == 'complete'%>
-    <%= render partial: 'ratings/form' %>
-<% end %>
-</p>
+  <p id="ratings">
+    <% if find_tutor_rate_learner(@course) && @course.status == 'complete' %>
+      <%= @course.tutor.name %> rated <%= @course.learner.name %>: <%= find_tutor_rate_learner(@course).rating %>
+    <% elsif @course.tutor == current_user && @course.status == 'complete' %>
+      <%= render partial: 'ratings/form' %>
+    <% end %>
+  </p>
 
-<%= link_to 'Update Lesson', edit_connection_course_path(@connection,@course), class:"btn btn-primary" %>
-<%= link_to 'Delete Lesson', connection_course_path(@connection,@course), method: "Delete" , class:"btn btn-primary"%>
+  <p>
+  <% if find_learner_rate_tutor(@course) && @course.status == 'complete' %>
+    <%= @course.learner.name %> rated <%= @course.tutor.name %>: <%= find_learner_rate_tutor(@course).rating %>
+    <% elsif @course.learner == current_user  && @course.status == 'complete'%>
+      <%= render partial: 'ratings/form' %>
+  <% end %>
+  </p>
+
+  <%= link_to 'Update Lesson', edit_connection_course_path(@connection,@course), class:"btn btn-default" %>
+  <%= link_to 'Delete Lesson', connection_course_path(@connection,@course), method: "Delete" , class:"btn btn-default"%>
+</div>
