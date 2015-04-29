@@ -42,4 +42,23 @@ RSpec.describe MessagesController, type: :controller do
 
     end
   end
+
+  describe 'DELETE #destroy' do 
+    subject {delete :destroy, {connection_id: connection.to_param, id: @message.to_param}}    
+
+    before(:each) do 
+      sign_in user
+      @message = connection.messages.create(user_id: user.to_param, content: "message content")
+    end
+
+    it 'decreases by 1 the number of messages' do 
+      expect{subject}.to change(Message, :count).by(-1)
+    end
+    it 'decreases by 1 the number of user messages' do 
+      expect{subject}.to change(user.messages, :count).by(-1)
+    end
+    it 'ddecreases by 1 the number of connection messages' do 
+      expect{subject}.to change(connection.messages, :count).by(-1)
+    end
+  end
 end
