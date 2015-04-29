@@ -14,12 +14,10 @@ var map;
       var id = $(this).data("id");
 
       var url = ('/map/'+ id);
-      console.log(url);
       $.ajax({
         url: url,
         method:'GET',
         success:function(res){
-          console.log(res);
           addmarker(new google.maps.LatLng(res['lat'],res['long']));
         },
         error: function(req, errorType, errorMessage){
@@ -79,7 +77,3 @@ function addmarker(LatLng){
   }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
-// $('div#map-canvas').append("<%= escape_javascript(render 'map') %>")
-//ajaxify viewmap link in profile page.
-//get json back use to position
