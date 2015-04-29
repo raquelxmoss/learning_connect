@@ -9,68 +9,71 @@ RSpec.describe CoursesController, type: :controller do
   let(:matching_course) {connection.courses.create}
   let(:unmatching_course) {unmatching_connection.courses.create}
 
-  describe 'GET #show' do 
-    subject {get :show, {connection_id: unmatching_connection.to_param, id: unmatching_course.to_param}}
+  describe 'GET' do 
 
-    context 'When not signed_in' do 
-      it 'redirects to the login page' do 
-        expect(subject).to redirect_to(new_user_session_path)
-      end
-    end 
+    describe '#show' do 
+      subject {get :show, {connection_id: unmatching_connection.to_param, id: unmatching_course.to_param}}
 
-    context 'when signed in' do 
-      before {sign_in receiver}
-      context 'but not corresponding course' do
-        it 'redirects to user profile page' do 
-          expect(subject).to redirect_to(user_path receiver)
+      context 'When not signed_in' do 
+        it 'redirects to the login page' do 
+          expect(subject).to redirect_to(new_user_session_path)
         end
-      end
+      end 
 
-      context 'with corresponding course' do 
-        before {get :show, {connection_id: connection.to_param, id: matching_course.to_param}}
-
-        it 'assigns the correct connection' do 
-          expect(assigns(:connection)).to eq(connection)
+      context 'when signed in' do 
+        before {sign_in receiver}
+        context 'but not corresponding course' do
+          it 'redirects to user profile page' do 
+            expect(subject).to redirect_to(user_path receiver)
+          end
         end
 
-        it 'assigns the correct course' do 
-          expect(assigns(:course)).to eq(matching_course)
-        end
-      end
-    end
-  end
+        context 'with corresponding course' do 
+          before {get :show, {connection_id: connection.to_param, id: matching_course.to_param}}
 
-  describe 'GET #edit' do 
-    subject {get :edit, {connection_id: unmatching_connection.to_param, id: unmatching_course.to_param}}
+          it 'assigns the correct connection' do 
+            expect(assigns(:connection)).to eq(connection)
+          end
 
-    context 'When not signed_in' do 
-      it 'redirects to the login page' do 
-        expect(subject).to redirect_to(new_user_session_path)
-      end
-    end 
-
-    context 'when signed in' do 
-      before {sign_in receiver}
-      context 'but not corresponding course' do
-        it 'redirects to user profile page' do 
-          expect(subject).to redirect_to(user_path receiver)
-        end
-      end
-
-      context 'with corresponding course' do 
-        before {get :edit, {connection_id: connection.to_param, id: matching_course.to_param}}
-
-        it 'assigns the correct connection' do 
-          expect(assigns(:connection)).to eq(connection)
-        end
-
-        it 'assigns the correct course' do 
-          expect(assigns(:course)).to eq(matching_course)
+          it 'assigns the correct course' do 
+            expect(assigns(:course)).to eq(matching_course)
+          end
         end
       end
     end
-  end
 
+    describe '#edit' do 
+      subject {get :edit, {connection_id: unmatching_connection.to_param, id: unmatching_course.to_param}}
+
+      context 'When not signed_in' do 
+        it 'redirects to the login page' do 
+          expect(subject).to redirect_to(new_user_session_path)
+        end
+      end 
+
+      context 'when signed in' do 
+        before {sign_in receiver}
+        context 'but not corresponding course' do
+          it 'redirects to user profile page' do 
+            expect(subject).to redirect_to(user_path receiver)
+          end
+        end
+
+        context 'with corresponding course' do 
+          before {get :edit, {connection_id: connection.to_param, id: matching_course.to_param}}
+
+          it 'assigns the correct connection' do 
+            expect(assigns(:connection)).to eq(connection)
+          end
+
+          it 'assigns the correct course' do 
+            expect(assigns(:course)).to eq(matching_course)
+          end
+        end
+      end
+    end
+
+  end
 
 
 end
