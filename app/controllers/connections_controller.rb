@@ -2,31 +2,32 @@ class ConnectionsController < ApplicationController
 
   before_action :authenticate_user!
   before_filter :get_connection, only: [:show, :destroy]
-  before_filter :get_initializer, only: [:new, :create]
 
   def create
-    @receiver = User.find(params[:receiver_id]) #this is the user whose profile page they are looking at
-    @connection = Connection.new(receiver_id: @receiver.id, initializer_id: @initializer)
+    get_initializer
+    @receiver = User.find(params[:receiver_id]) 
+    @connection = Connection.new(receiver: @receiver, initializer: @initializer)
     if @connection.save
-      redirect_to :back
+      redirect_to connection_path @connection
     else
       redirect_to :back
     end
   end
 
   def show
-    @users = [@connection.initializer, @connection.receiver]
-    @courses = @connection.courses
-    @messages = @connection.messages
-    @course = Course.new
+    if @connection.belongs_to? current_user
+      @users = [@connection.initializer, @connection.receiver]
+      @courses = @connection.courses
+      @messages = @connection.messages
+      @course = Course.new
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   def destroy
-    if @connection.destroy
-      redirect_to user_path(current_user.id)
-    else
-      redirect_to :back
-    end
+    @connection.destroy
+    redirect_to user_path(current_user)
   end
 
   private
@@ -39,7 +40,7 @@ class ConnectionsController < ApplicationController
   end
 
   def get_initializer
-    @initializer = current_user.id
+    @initializer = current_user
   end
 
 end
