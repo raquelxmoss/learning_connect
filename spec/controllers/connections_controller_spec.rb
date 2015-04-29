@@ -5,7 +5,7 @@ RSpec.describe ConnectionsController, type: :controller do
   let(:initializer) {create(:user)}
   let(:matching_connection) {create(:connection, receiver: receiver, initializer: initializer)}
   let(:course) {matching_connection.courses.create}
-  let(:message) {matching_connection.messages.create}
+  let(:message) {matching_connection.messages.create(content: 'test')}
   let(:unmatching_connection) {create(:connection)}
 
 
