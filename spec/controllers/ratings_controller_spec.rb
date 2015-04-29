@@ -39,7 +39,6 @@ RSpec.describe RatingsController, type: :controller do
       end
 
     end
-
   end
 
 end

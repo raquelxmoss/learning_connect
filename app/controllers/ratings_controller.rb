@@ -2,7 +2,6 @@ class RatingsController < ApplicationController
   before_action :authenticate_user!
   before_filter :get_connection
   before_filter :get_course
-  before_filter :get_rating, only: :destroy
   before_filter :allow_user
 
 
@@ -14,19 +13,7 @@ class RatingsController < ApplicationController
 
   end
 
-  def destroy
-    if @rating.destroy
-      render json: @rating, status: :ok
-    else
-      render json: @rating, status: :unprocessable_entity
-    end
-  end
-
   private
-
-  def get_rating
-    @course.ratings.find(params[:id])
-  end
 
   def get_course
     @course = @connection.courses.find(params[:course_id])
