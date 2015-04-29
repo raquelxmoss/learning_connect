@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!, only: :mail
+
   def index
     @users = User.search(params[:search])
     respond_to do |format|
@@ -17,7 +19,7 @@ class UsersController < ApplicationController
 
   def mail
     get_user
-    SkillMailer.skill_add(@user.skills.first)
+    SkillMailer.skill_add(@user.skills.first).deliver_now
     redirect_to user_path @user
   end
 
