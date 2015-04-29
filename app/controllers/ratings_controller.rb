@@ -1,15 +1,15 @@
 class RatingsController < ApplicationController
+  before_action :authenticate_user!
   before_filter :get_connection
   before_filter :get_course
   before_filter :get_rating, only: :destroy
+  before_filter :allow_user
+
 
   def create
-    @rating = Rating.new(rating_params)
+    @rating = @course.ratings.new(rating_params)
     if @rating.save
-      @course = @rating.course
       render partial: 'show', layout: false
-    else
-      render :new
     end
 
   end
@@ -37,6 +37,11 @@ class RatingsController < ApplicationController
   end
 
   def rating_params
-    params.permit(:rating, :course_id, :rating_type)
+    params.permit(:rating, :rating_type)
   end
+
+  def allow_user
+    redirect_to user_path current_user unless @connection.belongs_to? current_user
+  end
+
 end
