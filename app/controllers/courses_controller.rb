@@ -3,7 +3,6 @@ class CoursesController < ApplicationController
   before_action :authenticate_user!
   before_filter :get_connection
   before_filter :get_course, except: :create
-  before_filter :get_users, only: [:update,:edit]
   before_filter :allow_user
 
   def show
@@ -70,18 +69,6 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:price, :title, :status, :learner_id, :tutor_id, :length, :objectives)
-  end
-
-  def get_users
-    @users = [@connection.initializer, @connection.receiver]
-  end
-
-  def remove_tutor_id
-    return id = @users.select{|user| user.id != params[:course][:tutor_id].to_i}.first.id
-  end
-
-  def get_learner
-    {"learner_id" => remove_tutor_id }
   end
 
 end
