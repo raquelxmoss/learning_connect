@@ -1,8 +1,8 @@
 class CoursesController < ApplicationController
 
   before_action :authenticate_user!
-  before_filter :get_connection, only: [:create, :show, :edit, :update]
-  before_filter :get_course, only: [:update, :edit, :show]
+  before_filter :get_connection
+  before_filter :get_course, except: :create
   before_filter :get_users, only: [:update,:edit]
   before_filter :allow_user
 
@@ -31,7 +31,6 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    @course = Course.find(params[:id])
     @course.destroy
     redirect_to connection_path(@course.connection_id)
   end
@@ -57,7 +56,7 @@ class CoursesController < ApplicationController
   def allow_user
     redirect_to user_path current_user unless @connection.belongs_to? current_user
   end
-  
+
   def get_course
     @course = @connection.courses.find(params[:id])
   end

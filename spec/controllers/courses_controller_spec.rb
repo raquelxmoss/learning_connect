@@ -76,4 +76,24 @@ RSpec.describe CoursesController, type: :controller do
   end
 
 
+  
+
+  describe 'DELETE #destroy' do 
+      
+    subject {delete :destroy, {connection_id: connection.to_param, id: matching_course.to_param}}    
+
+    before {sign_in receiver}
+
+    it 'destroys the requested connection' do 
+      course = connection.courses.create!
+      expect{
+        delete :destroy, {connection_id: connection.to_param, id: course.to_param}
+        }.to change(Course, :count).by(-1)
+    end
+
+    it 'redirects_to user profie page' do 
+      expect(subject).to redirect_to(connection)
+    end
+
+  end
 end
