@@ -1,6 +1,7 @@
 class ConnectionsController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :
   before_filter :get_connection, only: [:show, :destroy]
 
   def create
