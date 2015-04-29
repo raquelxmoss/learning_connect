@@ -80,12 +80,22 @@ body{
   width: 100%;
 }
 #user-card{
-  width:25%;
-  float:left;
-  border:solid 1px;
-  border-radius:5px;
-  margin: 5px;
-  padding: 5px
+
+}
+
+.user-inner {
+  background: #03A688;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.user-card-title {
+  color: #fff;
+}
+
+.user-card-title:hover {
+  color: #000;
+  text-decoration: none;
 }
 
 .sign-up-form {
@@ -127,4 +137,10 @@ body{
 
 .rating {
   margin-bottom: 0px;
+}
+
+
+
+.col-lg-12 .all-users:nth-child(3n+1){
+    clear: left;
 }
