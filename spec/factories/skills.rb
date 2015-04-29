@@ -12,7 +12,7 @@ FactoryGirl.define do
     description 'spanish'
   end
 
-  factory :skill_dance,class: Skill do
-    description 'dance'
+  factory :skill_english,class: Skill do
+    description 'english'
   end
 end
