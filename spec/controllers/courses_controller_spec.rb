@@ -143,7 +143,6 @@ RSpec.describe CoursesController, type: :controller do
 
         it 'removes the empty learning objectives' do 
           @objectives.each {|objective| @new_objectives[objective.id]= '' }
-          post :update, params.merge(id: @course.to_param , course: {objectives: @new_objectives})
           expect{          
             post :update, params.merge(id: @course.to_param , course: {objectives: @new_objectives})
           }.to change(@course.learning_objectives,:count).to(0)
