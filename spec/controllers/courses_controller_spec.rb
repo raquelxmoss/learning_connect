@@ -7,6 +7,7 @@ RSpec.describe CoursesController, type: :controller do
   let(:connection) {create(:connection, receiver: receiver, initializer: initializer)}
   let(:unmatching_connection) {create(:connection)}
   let(:matching_course) {connection.courses.create}
+  let(:old_objectives) {matching_course.learning_objectives.create(objective: 'old objective')}
   let(:unmatching_course) {unmatching_connection.courses.create}
   let(:params) { {connection_id: connection.to_param, course: {title: 'title', status: 'status' } } }
   let(:params_learning_objectives) { {connection_id: connection.to_param, course: {title: 'title', status: 'status' } , learningObjectives: ['test0','test1','test2','test3']}}
@@ -120,14 +121,79 @@ RSpec.describe CoursesController, type: :controller do
 
 
       end
-
-
-
-
     end
 
     describe '#update' do 
 
+      context 'with no new learning objectives' do 
+
+        before do 
+          post :create, params_learning_objectives
+          @course = Course.last
+          @objectives = Course.last.learning_objectives
+          @new_objectives = {}
+        end
+
+        it 'updates the learning objectives' do 
+          @objectives.each {|objective| @new_objectives[objective.id]= 'changed' }
+          post :update, params.merge(id: @course.to_param , course: {objectives: @new_objectives})
+          expect(@course.learning_objectives.map{|objective| objective.objective}.uniq).to eq(['changed'])
+        end
+
+
+        it 'removes the empty learning objectives' do 
+          @objectives.each {|objective| @new_objectives[objective.id]= '' }
+          post :update, params.merge(id: @course.to_param , course: {objectives: @new_objectives})
+          expect{          
+            post :update, params.merge(id: @course.to_param , course: {objectives: @new_objectives})
+          }.to change(@course.learning_objectives,:count).to(0)
+        end
+
+
+      end
+
+      context 'with new learning objectives' do 
+        before do 
+          post :create, params_learning_objectives.merge(learningObjectives:[])
+          @course = Course.last
+        end
+
+        context 'With no empty fields' do 
+
+          it 'add the new learning objectives to the course' do 
+            expect{
+              post :update, params.merge(id: @course.to_param , learningObjectives: ['lo1','lo2','lo3'])
+            }.to change(@course.learning_objectives,:count).by(3)
+          end
+
+          it 'creates the correct learning objectives' do 
+            post :update, params.merge(id: @course.to_param , learningObjectives: ['lo1','lo2','lo3'])
+            expect(@course.learning_objectives.map{|objective| objective.objective}).to eq(['lo1','lo2','lo3'])
+          end
+
+        end
+
+        context 'With empty fields' do 
+
+          it 'does not add the empty new learning objectives' do 
+            expect{
+              post :update, params.merge(id: @course.to_param , learningObjectives: ['lo1','','lo3'])
+            }.to change(@course.learning_objectives,:count).by(2)
+          end
+
+          it 'creates the correct learning objectives' do 
+            post :update, params.merge(id: @course.to_param , learningObjectives: ['lo1','','lo3'])
+            expect(@course.learning_objectives.map{|objective| objective.objective}).to eq(['lo1','lo3'])
+          end
+
+        end
+
+      end
+
+      it 'redirects to the connection page' do 
+        post :create, params
+        expect(response).to redirect_to(connection_path connection) 
+      end
     end
 
   end
