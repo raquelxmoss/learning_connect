@@ -1,12 +1,12 @@
-<ul>
+<ul class="skills-list">
 <% if skills %>
   <% skills.each do |skill| %>
-    <li data-id=<%= skill.id %>>
-      <%= simple_format(skill.description)%>
+    <p data-id=<%= skill.id %>>
+      <%= skill.description%>
       <% if current_user == @user %>
-        <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id), class: 'remove-link'%>
+        <%= link_to "remove", delete_skill_path(user_id: skill.user_id,id: skill.id), class: 'remove-link btn btn-xs btn-danger pull-right'%>
       <% end %>
-    </li>
+    </p>
   <% end %>
 <% end %>
 </ul>

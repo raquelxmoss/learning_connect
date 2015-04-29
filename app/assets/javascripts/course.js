@@ -2,8 +2,8 @@ $(document).ready(function(){
 
   $(".rating-button").click(function(e){
      e.preventDefault();
-    var url =$(this).parent().attr("action");
-    var data = $(this).parent().serializeArray();
+    var url =$(this).parent().parent().attr("action");
+    var data = $(this).parent().parent().serializeArray();
     $.ajax({
      url:url,
      method:"POST",

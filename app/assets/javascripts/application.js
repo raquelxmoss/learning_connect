@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require_tree .
 
 $(document).ready(function(){
@@ -22,22 +23,22 @@ $("#add-learning-objective").click(function(e){
  $(".learning-objectives").append($("#new-learning-objectives").html());
  });
 
- $('.map').click(function (e) {
-    e.preventDefault();
+ // $('.map').click(function (e) {
+ //    e.preventDefault();
 
-    // var li = $(this).parent();
-    //var id = li.data("id");
-    var url = ('/map/' + 5);
-    $.ajax({
-      url: url,
-      method:'GET',
-      success:function(res){
-      addMarker(res.lat,res.long);
-      },
-      error: function(req, errorType, errorMessage){
-        alert(req, errorType, errorMessage);
-      }
-    });
+ //    // var li = $(this).parent();
+ //    //var id = li.data("id");
+ //    var url = ('/map/' + 5);
+ //    $.ajax({
+ //      url: url,
+ //      method:'GET',
+ //      success:function(res){
+ //      addMarker(res.lat,res.long);
+ //      },
+ //      error: function(req, errorType, errorMessage){
+ //        alert(req, errorType, errorMessage);
+ //      }
+ //    });
 
 
  });

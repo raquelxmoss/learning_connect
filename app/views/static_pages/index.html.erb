@@ -1,11 +1,9 @@
-
-<h1 id="home">Learning Connect connects people who want to learn with people who want to teach</h1>
-<h1>Anyone can sign up, so what are you waiting for?</h1>
-
-<div>
-  <% if !user_signed_in? %>
-    <%= link_to('Sign up', new_user_registration_path, class:"btn btn-default btn-primary")  %>
-    <%= link_to('Login', new_user_session_path, class:"btn btn-default btn-primary")  %>
-  <% end %>
+<div class="col-sm-12" id="homepage">
+  <div class="col-md-10 col-md-offset-1">
+  <h1>Learning Connect connects people who want to learn with people who want to teach</h1>
+  <h1>Anyone can sign up, so what are you waiting for?</h1>
+    <% if !user_signed_in? %>
+      <%= link_to('Sign up', new_user_registration_path, class:"btn btn-lg  btn-default homepage-signup")  %>
+    <% end %>
+  </div>
 </div>
-

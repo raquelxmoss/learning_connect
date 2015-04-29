@@ -28,7 +28,9 @@ class UsersController < ApplicationController
   end
 
   def get_user_connection
+    if current_user
     @connection = Connection.find_by(receiver_id: current_user.id, initializer_id: params[:id]) || Connection.find_by(receiver_id: params[:id], initializer_id: current_user.id)
+    end
   end
 
 end
