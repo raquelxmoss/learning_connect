@@ -1,11 +1,9 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-  before_filter :get_connection
-  # before_filter :allow_user
   before_filter :get_message, only: :destroy
 
   def create
-    @message = @connection.messages.new(message_params)
+    @message = Message.new(message_params)
     if @message.save
       render partial: 'show', layout: false
     else
@@ -23,20 +21,12 @@ class MessagesController < ApplicationController
 
   private
 
-  def allow_user
-    redirect_to user_path current_user unless @connection.belongs_to? current_user
-  end
-
   def get_message
-    @message = @connection.messages.find(params[:id])
-  end
-
-  def get_connection
-    @connection = Connection.find(params[:connection_id])
+    @message = Message.find(params[:id])
   end
 
   def message_params
-    params.permit(:user_id, :content)
+    params.permit(:connection_id, :user_id, :content)
   end
 
 end

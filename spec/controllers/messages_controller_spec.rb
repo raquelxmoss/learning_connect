@@ -35,11 +35,6 @@ RSpec.describe MessagesController, type: :controller do
         expect(assigns(:message)).to eq(Message.last)
       end
 
-      it 'assigns connection to the correct @connection' do 
-        post :create, params
-        expect(assigns(:connection)).to eq(connection)
-      end
-
     end
   end
 
