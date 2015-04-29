@@ -1,8 +1,10 @@
 class CoursesController < ApplicationController
 
+  before_action :authenticate_user!
   before_filter :get_connection, only: [:create, :show, :edit, :update]
   before_filter :get_course, only: [:update, :edit, :show]
   before_filter :get_users, only: [:update,:edit]
+  before_filter :allow_user
 
   def show
   end
@@ -52,6 +54,10 @@ class CoursesController < ApplicationController
 
   private
 
+  def allow_user
+    redirect_to user_path current_user unless @connection.belongs_to? current_user
+  end
+  
   def get_course
     @course = @connection.courses.find(params[:id])
   end
