@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_filter :get_connection
-  before_filter :allow_user
+  # before_filter :allow_user
   before_filter :get_message, only: :destroy
 
   def create
@@ -36,7 +36,7 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.permit(:connection_id, :user_id, :content)
+    params.permit(:user_id, :content)
   end
 
 end

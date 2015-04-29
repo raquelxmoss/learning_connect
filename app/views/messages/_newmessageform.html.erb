@@ -1,5 +1,4 @@
 <%= form_tag connection_messages_path @connection, method: "post" do %>
-  <%= hidden_field_tag(:connection_id, @connection.id) %>
   <%= hidden_field_tag(:user_id, current_user.id) %>
   <%= text_area_tag(:content, nil, class: 'form-control', placeholder:"Send a message") %>
   <%= submit_tag "Send", :class => "btn btn-default message-submit" %>
