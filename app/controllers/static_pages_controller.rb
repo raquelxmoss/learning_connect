@@ -13,10 +13,10 @@ class StaticPagesController < ApplicationController
   end
 
   def map
-   puts params[:id]
-   @user = User.find(params[:id])
+
+
    respond_to do |format|
-   # format.html
+   format.html
    format.json {render json: @user, status: :ok}
 
 

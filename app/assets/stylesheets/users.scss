@@ -1,6 +1,54 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#edit-profile{
+#edit-profile {
   text-align:center;
+  }
+
+.welcome {
+  text-align: center;
+}
+
+.connection-list {
+  list-style: none;
+  padding: 20px;
+  background: #7799C9;
+  color: #fff;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.connection-list a {
+  color: #000;
+  font-weight: bold;
+}
+
+.connection-list a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.profile-img {
+  border: 5px solid #fff;
+}
+
+.profile-box {
+  background: #03a688;
+  border-radius: 10px;
+  padding: 20px;
+  color: #fff;
+}
+
+.skills-panel {
+  border-radius:10px;
+  background: #B4E0F5;
+  padding: 20px;
+}
+
+.skills-list {
+  padding-left: 0px;
+}
+
+.skills-panel hr {
+  border-top: #fff;
 }
