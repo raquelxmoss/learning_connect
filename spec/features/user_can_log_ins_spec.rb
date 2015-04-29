@@ -4,7 +4,7 @@ feature "User Can Log In" do
   background do
     @user = FactoryGirl.create(:user, password: 'password')
     visit '/'
-    click_link 'Login'
+    click_link 'Log in'
     fill_in 'user_email', with: @user.email
   end
 

@@ -43,7 +43,7 @@ $("#add-learning-objective").click(function(e){
 
  });
 
-});
+
 
 
 
