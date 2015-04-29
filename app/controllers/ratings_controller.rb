@@ -1,21 +1,10 @@
 class RatingsController < ApplicationController
-  before_filter :get_course, only: [:index, :show, :destroy]
-
-  def index
-    @ratings = @course.ratings
-    render "index", layout: false
-  end
-
-  def show
-    @rating = Rating.new
-    @rating = get_rating
-    render "show", layout: false
-  end
+  before_filter :get_connection
+  before_filter :get_course
+  before_filter :get_rating, only: :destroy
 
   def create
     @rating = Rating.new(rating_params)
-    # @course.ratings.build(rating_params)
-
     if @rating.save
       @course = @rating.course
       render partial: 'show', layout: false
@@ -25,12 +14,7 @@ class RatingsController < ApplicationController
 
   end
 
-  def new
-    @rating = Rating.new
-  end
-
   def destroy
-    @rating = get_rating
     if @rating.destroy
       render json: @rating, status: :ok
     else
@@ -45,11 +29,14 @@ class RatingsController < ApplicationController
   end
 
   def get_course
-    @course = Course.find(params[:course_id])
+    @course = @connection.courses.find(params[:course_id])
+  end
+
+  def get_connection
+    @connection = Connection.find(params[:connection_id])
   end
 
   def rating_params
-    puts params
     params.permit(:rating, :course_id, :rating_type)
   end
 end
