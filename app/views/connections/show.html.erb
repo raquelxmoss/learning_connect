@@ -1,19 +1,32 @@
-<h1>Connection between <%= @users[0].name %> and <%= @users[1].name %></h1>
-
-<div id="message-panel" class="col-md-6" data-connection=<%= @connection.id %>>
-  <%= render partial: "messages/newmessageform"%>
-  <div id="messages">
-    <%= render partial: "messages/index"%>
+<h2 class="connection-title">Connection between <%= @users[0].name %> and <%= @users[1].name %></h2>
+<p class="avatars">
+  <% avatar_1 = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@users[0].email)}?s=150&d=monsterid" %>
+  <% avatar_2 = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@users[1].email)}?s=150&d=monsterid" %>
+    <img src="<%= avatar_1 %>" class="img img-responsive img-circle profile-img connection-avatar" />
+    <img src="<%= avatar_2 %>" class="img img-responsive img-circle profile-img connection-avatar" />
+</p>
+<div class="col-md-7">
+  <div id="message-panel" data-connection=<%= @connection.id %>>
+    <%= render partial: "messages/newmessageform"%>
+    <div id="messages">
+      <%= render partial: "messages/index"%>
+    </div>
   </div>
 </div>
 
-<div id="course-panel" class="col-md-6">
-  <a class="btn btn-lg btn-primary" href="#" id="create-lesson">Create a lesson</a>
-  <a class="btn btn-lg btn-primary" href="#" id="view-all-lessons">All Lessons</a>
-  <div id="new-lesson-form">
-    <%= render partial: "courses/form"%>
-  </div>
-  <div id="all-lessons">
-    <%= render partial: "courses/index"%>
-  </div>
+<div class="col-md-5">
+
+
+  <div id="course-panel">
+    <p class="btn btn-primary" href="#" id="create-lesson">Create a lesson</p>
+    <p class="btn btn-primary" href="#" id="view-all-lessons">All Lessons</p>
+
+    <div id="new-lesson-form">
+      <%= render partial: "courses/form"%>
+    </div>
+
+    <div id="all-lessons">
+      <%= render partial: "courses/index"%>
+    </div>
+
 </div>

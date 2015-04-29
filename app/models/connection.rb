@@ -10,4 +10,5 @@ class Connection < ActiveRecord::Base
   validates_uniqueness_of :initializer_id, scope: :receiver_id
   validates_uniqueness_of :receiver_id, scope: :initializer_id
 
+
 end

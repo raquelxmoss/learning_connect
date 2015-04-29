@@ -7,4 +7,14 @@ FactoryGirl.define do
     password {Faker::Internet.password}
     about {Faker::Lorem.paragraphs}
   end
+  factory :alex,class: User do
+    name 'alex'
+    email 'barretalexandre@hotmail.com'
+    password 'password'
+  end
+  factory :john, class: User do
+    name 'john'
+    email 'john.kan@virtuosity.co.nz'
+    password 'password'
+  end
 end

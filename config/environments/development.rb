@@ -42,7 +42,16 @@ Rails.application.configure do
 
   #DEVISE INSTALLATION
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              ENV['address'],
+  port:                 25,
+  domain:               ENV['domain'],
+  user_name:            ENV['username'],
+  password:             ENV['password'],
+  authentication:       'plain',
+  enable_starttls_auto: true  }
 
 
 

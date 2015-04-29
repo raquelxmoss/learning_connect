@@ -21,7 +21,6 @@ $(document).ready(function(){
 
 	$('.add-skill').click(function(e){
 	  e.preventDefault();
-	  // var input = $(this);
 	  var form = $(this).closest("form");
 	  var data = (form.serialize());
 	  var url=(form.attr("action"));
