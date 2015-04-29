@@ -66,8 +66,8 @@ function addmarker(LatLng){
  function initialize() {
   if(!$('#map-canvas').length){ return }
     var mapOptions = {
-      center: { lat: -41.299, lng: 174.777},
-      zoom: 13
+      center: {lat: -41.299, lng: 174.777},
+      zoom: 8
     };
     map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
