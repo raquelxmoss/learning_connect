@@ -1,10 +1,10 @@
-<h2>Send a Message</h2>
+<h4>Send a Message</h4>
 
 <%= form_tag messages_path do %>
   <%= hidden_field_tag(:connection_id, @connection.id) %>
   <%= hidden_field_tag(:user_id, current_user.id) %>
   <%= label_tag :content %>:
-  <%= text_area_tag(:content, nil, class: 'form-control') %>
+  <%= text_area_tag(:content, nil, class: 'form-control', placeholder:"Send a message") %>
   <%= submit_tag "Send", :class => "btn btn-lg btn-primary message-submit" %>
 <% end %>
 

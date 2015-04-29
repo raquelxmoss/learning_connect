@@ -1,26 +1,32 @@
 <%= form_for [@connection,@course] do |f| %>
   <%= f.label :title %>
-  <%= f.text_field :title %><br />
-  <%= f.label :price %>
-  <%= f.number_field :price %><br />
+  <%= f.text_field :title, class:"form-control" %>
+  <div class="form-group">
+    <%= f.label :price%>
+      <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <%= f.number_field :price, class:"form-control" %>
+      <div class="input-group-addon">.00</div>
+    </div>
+  </div>
   <%= f.label :status %>
-  <%= f.select :status, ['pending', 'agreed', 'complete'] %><br />
+  <%= f.select :status, ['pending', 'agreed', 'complete'],  {}, class:"form-control" %>
   <%= f.label :tutor_id %>
-  <%= f.select :tutor_id, @users.map{|user| [user.name,user.id]} %><br />
+  <%= f.select :tutor_id, @users.map{|user| [user.name,user.id]},  {}, class:"form-control"%>
   <%= f.label :learner_id %>
-  <%= f.select :learner_id, @users.map{|user| [user.name,user.id]} %><br />
-  <%= f.label :length %>
-  <%= f.number_field :length %><br />
+  <%= f.select :learner_id, @users.map{|user| [user.name,user.id]}, {}, class:"form-control" %>
+  <%= f.label :length, 'Length (hours)' %>
+  <%= f.number_field :length, class:"form-control" %>
   <p class="learning-objectives"></p>
-      <a href="javascript:;" id="add-learning-objective">Add a Learning Objective</a>
+      <p><a href="javascript:;" id="add-learning-objective" class="btn btn-default btn-xs btn-success">Add a Learning Objective</a></p>
   <% @course.learning_objectives.each do |lo| %>
     <p><%= label_tag 'Learning Objective' %>
-    <%= text_field_tag "#{f.object_name}[objectives][#{lo.id}]", lo.objective %></p>
+    <%= text_field_tag "#{f.object_name}[objectives][#{lo.id}]", lo.objective, class:"form-control" %></p>
   <% end %>
   <% if @course.status == 'complete' %>
     <% render partial: 'ratings/form' %>
   <% end %>
-  <%= f.submit %>
+  <%= f.submit 'Create Lesson', class:"btn btn-primary" %>
 <% end %>
 
 <div id="new-learning-objectives">

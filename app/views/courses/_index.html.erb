@@ -1,17 +1,13 @@
-<h1>All Lessons</h1>
+<h2>All Lessons</h2>
 <% @courses.each do |course| %>
   <div class="course">
-    <h3><%= link_to course.title, connection_course_path(@connection, course) %></h3>
-    <p>Tutor: <%= course.try(:tutor).try(:name) %></p>
-    <p>Learner: <%= course.try(:learner).try(:name) %></p>
-    <p>Price: $<%= course.price %></p>
-    <p>Length: <%= course.length %> hours</p>
-    <p>Status: <%= course.status.capitalize %></p>
-    <p>Learning Objectives:</p>
-    <% course.learning_objectives.each do |learning_objective| %>
-    <p><%= learning_objective.objective %></p>
-    <% end %>
-    <%= link_to 'Update Lesson', edit_connection_course_path(@connection,course) %>
-    <%= link_to 'Delete Lesson', connection_course_path(@connection,course), method: "Delete" %>
+    <h4><strong><%= link_to course.title, connection_course_path(@connection, course) %></strong></h4>
+    <p><strong>Tutor:</strong> <%= course.try(:tutor).try(:name) %></p>
+    <p><strong>Learner:</strong> <%= course.try(:learner).try(:name) %></p>
+    <p><strong>Price:</strong> $<%= course.price %></p>
+    <p><strong>Length:</strong> <%= course.length %> hours</p>
+    <p><strong>Status:</strong> <%= course.status.capitalize %></p>
+    <%= link_to 'Update Lesson', edit_connection_course_path(@connection,course), class:"btn btn-default" %>
+    <%= link_to 'Delete Lesson', connection_course_path(@connection,course), method: "Delete", class:"btn btn-default" %>
   </div>
 <% end %>
