@@ -7,7 +7,7 @@ class ConnectionsController < ApplicationController
   def create
     @connection = Connection.new(set_options)
     if @connection.save
-      NotificationMailer.new_connection(@receiver, @connection).deliver_now
+      # NotificationMailer.new_connection(@receiver, @connection).deliver_now
       redirect_to connection_path @connection
     else
       redirect_to :back
@@ -38,7 +38,7 @@ class ConnectionsController < ApplicationController
 
   def set_options
     @initializer = current_user
-    @receiver = User.find(params[:receiver_id]) 
+    @receiver = User.find(params[:receiver_id])
     {initializer: @initializer, receiver: @receiver}
   end
 
