@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   #ADD NEW ROUTES BELOW:
 
 
-  get 'users/:id/mail', to: 'users#mail'
 
 
   #static pages routes
