@@ -18,7 +18,12 @@
 body{
   padding-top:70px;
   background: url("geometry2.png");
+  font-size: 1.5em;
+}
 
+.alert {
+  padding: 0px;
+  margin-bottom: 0px;
 }
 
 .navbar-default {
@@ -118,4 +123,8 @@ body{
 
 .avatars {
   text-align: center;
+}
+
+.rating {
+  margin-bottom: 0px;
 }
