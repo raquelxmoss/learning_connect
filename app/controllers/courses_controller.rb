@@ -23,13 +23,8 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
     @course.connection_id = params[:connection_id]
     # this needs refactoring, it is a total hack - Raquel
-    if @course.save!
-      if params[:learningObjectives]
-        learning_objectives = params[:learningObjectives]
-        learning_objectives.each_with_index do |lo, index|
-          @course.learning_objectives << LearningObjective.create(objective: lo)
-        end
-      end
+    if @course.save
+      create_learning_objectives if params[:learningObjectives]
       redirect_to connection_path(@course.connection_id)
     else
       redirect_to :back
@@ -43,11 +38,7 @@ class CoursesController < ApplicationController
       if params[:course][:objectives]
         params[:course][:objectives].each {|id, objective| LearningObjective.find(id).update(objective: objective)}
       end
-      if params[:learningObjectives]
-        params[:learningObjectives].each do |objective|
-          @course.learning_objectives.create(objective: objective)
-        end
-      end
+      create_learning_objectives params[:learningObjectives] 
       redirect_to connection_path @connection
     else
       redirect_to :back
@@ -55,6 +46,13 @@ class CoursesController < ApplicationController
   end
 
   private
+
+  def create_learning_objectives(params)
+    learning_objectives = params
+    learning_objectives.each do |lo|
+      @course.learning_objectives.create(objective: lo) unless lo.strip ==''
+    end
+  end
 
   def allow_user
     redirect_to user_path current_user unless @connection.belongs_to? current_user
