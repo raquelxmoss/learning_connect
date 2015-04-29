@@ -21,11 +21,6 @@ class ConnectionsController < ApplicationController
     @course = Course.new
   end
 
-  def new
-    @receiver = User.find(params[:id]) #this is the user whose profile page they are looking at
-    @connection = Connection.new(receiver_id: @receiver.id, initializer_id: @initializer)
-  end
-
   def destroy
     if @connection.destroy
       redirect_to user_path(current_user.id)
