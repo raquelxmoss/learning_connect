@@ -1,6 +1,6 @@
 Rails.application.configure do
 
-  # config.action_mailer.default_url_options = { :host => 'www.example.com' }
+  config.action_mailer.default_url_options = { :host => 'learningconnect.herokuapp.com' }
 
   # Rails.application.routes.default_url_options[:host] = 'yoursite.herokuapp.com'
 

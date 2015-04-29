@@ -1,55 +1,34 @@
 class RatingsController < ApplicationController
-  before_filter :get_course, only: [:index, :show, :destroy]
+  before_action :authenticate_user!
+  before_filter :get_connection
+  before_filter :get_course
+  before_filter :allow_user
 
-  def index
-    @ratings = @course.ratings
-    render "index", layout: false
-  end
-
-  def show
-    @rating = Rating.new
-    @rating = get_rating
-    render "show", layout: false
-  end
 
   def create
-    @rating = Rating.new(rating_params)
-    # @course.ratings.build(rating_params)
-
+    @rating = @course.ratings.new(rating_params)
     if @rating.save
-      @course = @rating.course
       render partial: 'show', layout: false
-    else
-      render :new
     end
 
-  end
-
-  def new
-    @rating = Rating.new
-  end
-
-  def destroy
-    @rating = get_rating
-    if @rating.destroy
-      render json: @rating, status: :ok
-    else
-      render json: @rating, status: :unprocessable_entity
-    end
   end
 
   private
 
-  def get_rating
-    @course.ratings.find(params[:id])
+  def get_course
+    @course = @connection.courses.find(params[:course_id])
   end
 
-  def get_course
-    @course = Course.find(params[:course_id])
+  def get_connection
+    @connection = Connection.find(params[:connection_id])
   end
 
   def rating_params
-    puts params
-    params.permit(:rating, :course_id, :rating_type)
+    params.permit(:rating, :rating_type)
   end
+
+  def allow_user
+    redirect_to user_path current_user unless @connection.belongs_to? current_user
+  end
+
 end

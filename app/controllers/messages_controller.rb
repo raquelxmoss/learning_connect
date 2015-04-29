@@ -1,9 +1,6 @@
 class MessagesController < ApplicationController
-  before_filter :find_message, only: [:show, :destroy]
-
-  def index
-    @messages = Message.all
-  end
+  before_action :authenticate_user!
+  before_filter :get_message, only: :destroy
 
   def create
     @message = Message.new(message_params)
@@ -12,10 +9,6 @@ class MessagesController < ApplicationController
     else
       render json: @message, status: :unprocessable_entity
     end
-  end
-
-  def show
-    render json: @message
   end
 
   def destroy
@@ -28,7 +21,7 @@ class MessagesController < ApplicationController
 
   private
 
-  def find_message
+  def get_message
     @message = Message.find(params[:id])
   end
 

@@ -14,7 +14,7 @@ $(document).ready(function(){
        $('#messages').prepend(result);
        $('#content').val('');
      }).fail(function(result){
-       alert(result);
+       // alert("message cannot be empty");
      });
    });
 

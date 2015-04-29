@@ -4,11 +4,6 @@ RSpec.describe Skill, type: :model do
 
   it {should belong_to :user}
 
-  it 'after save mailing notifications'
-  it 'before destroy email notification'
-  it 'skill_change_notification'
-
-
   describe 'SCOPE #search' do 
     let(:spanish){create(:skill_spanish)}
     let(:english){create(:skill_english)}
@@ -44,20 +39,20 @@ RSpec.describe Skill, type: :model do
   end
 
   describe 'SCOPE #teaching_skills' do 
-    let(:teach){create(:skill_teach)}
-    let(:learn){create(:skill_learn)}
+    let(:spanish){create(:skill_spanish)}
+    let(:english){create(:skill_english)}
 
-    # context 'matching results' do 
-    #   before{ @skills =  Skill.search('sp') }
+    context 'matching results' do 
+      before{ @skills =  Skill.search('sp') }
 
-    #   it 'returns the skills with matching name' do 
-    #     expect(@skills).to include(spanish)
-    #   end
+      it 'returns the skills with matching name' do 
+        expect(@skills).to include(spanish)
+      end
 
-    #   it 'does not return skills with unmatching name' do 
-    #     expect(@skills).not_to include(english)
-    #   end
-    # end
+      it 'does not return skills with unmatching name' do 
+        expect(@skills).not_to include(english)
+      end
+    end
 
 
 
