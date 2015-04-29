@@ -48,7 +48,7 @@ RSpec.describe ConnectionsController, type: :controller do
 
   describe 'POST #create' do 
     before do 
-      sign_in receiver 
+      sign_in initializer 
 
     end
 
