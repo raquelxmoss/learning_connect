@@ -11,7 +11,7 @@ feature "Send Message", js: true do
     end
 
   scenario "Fill in message form" do
-    fill_in('Content', :with => 'This is a new message right here')
+    fill_in('content', :with => 'This is a new message right here')
     click_on('Send')
     expect(page).to have_content('This is a new message right here')
   end

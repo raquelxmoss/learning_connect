@@ -17,13 +17,15 @@ feature "Create course", js: true do
   scenario "click Create a lesson" do
     expect(current_path).to eq(connection_path(@connection))
     expect(page).to have_content("Create a lesson")
-    click_on("Create a lesson")
-    page.has_css?('#new-lesson-form', :visible => true)
+    click_on("create-lesson")
+    page.has_css?('#new-lesson-form', visible: true)
   end
 
   scenario "Create lesson form creates a lesson" do
-    click_on("Create a lesson")
-    fill_in('Title', :with => 'New Lesson')
+    expect(current_path).to eq(connection_path(@connection))
+    click_on("create-lesson")
+    page.find_field('course_title')
+    fill_in("course[title]", :with => 'New Lesson')
     fill_in('Price', :with => '20')
     select(@tutor.name, :from => 'Tutor')
     fill_in('Length', :with => '1')
