@@ -15,9 +15,15 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+a:focus {
+  text-decoration: none;
+}
+
 body{
   padding-top:70px;
-  background: url("geometry2.png");
+  padding-bottom: 50px;
+  background: url("http://www.spicerack.co.nz/wp-content/uploads/2015/04/geometry2.png");
   font-size: 1.5em;
 }
 
@@ -33,26 +39,23 @@ body{
   color: #fff;
 }
 
-.navbar-default .navbar-brand{
+.navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a{
   color:#fff;
 }
 
-.navbar-default .navbar-nav > li > a {
-  color:#fff;
-}
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-brand:hover {
   background: #fff;
 }
 
-#existingAccount{
+#existingAccount {
   text-align: center;
   float: left;
 }
- h1{
+
+h1 {
   color:#fff;
   text-shadow: #444 5px 5px 5px;
-
 }
 
 .message {
@@ -60,7 +63,6 @@ body{
   background: #eee;
   border-radius: 10px;
   padding: 10px;
-  font-family: Open sans;
   margin-bottom: 20px;
 }
 
@@ -78,7 +80,13 @@ body{
   margin: 0;
   padding: 0;
   width: 100%;
+  border-radius: 10px;
 }
+
+.connection-map {
+  margin-top: 20px;
+}
+
 #user-card{
   margin-bottom: 20px;
 }
@@ -110,7 +118,7 @@ body{
   margin-bottom: 10px;
 }
 
-#new-lesson-form{
+#new-lesson-form {
   margin-top: 20px;
 }
 
@@ -141,10 +149,4 @@ body{
 
 .rating {
   margin-bottom: 0px;
-}
-
-
-
-.col-lg-12 .all-users:nth-child(3n+1){
-    clear: left;
 }

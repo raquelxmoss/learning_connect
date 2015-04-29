@@ -1,4 +1,4 @@
-<h2 class="connection-title">Connection between <%= @users[0].name %> and <%= @users[1].name %></h2>
+<h2 class="connection-title">Connection between <%= link_to @users[0].name, user_path(@users[0]) %> and <%= link_to @users[1].name, user_path(@users[1]) %></h2>
 <p class="avatars">
   <% avatar_1 = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@users[0].email)}?s=150&d=monsterid" %>
   <% avatar_2 = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@users[1].email)}?s=150&d=monsterid" %>
@@ -20,6 +20,7 @@
   <div id="course-panel">
     <a class="btn btn-primary" href="#" id="create-lesson">Create a lesson</a>
     <a class="btn btn-primary" href="#" id="view-all-lessons">All Lessons</a>
+    <%= link_to 'View on Map',"#", class:"btn btn-primary map", data: {id: current_user.name == @connection.initializer.name ? @connection.receiver.id : @connection.initializer.id} %>
 
     <div id="new-lesson-form">
       <%= render partial: "courses/form"%>
@@ -29,4 +30,11 @@
       <%= render partial: "courses/index"%>
     </div>
 
+
+
+
+</div>
+  <div class="connection-map">
+    <%= render partial: 'static_pages/map' %>
+  </div>
 </div>

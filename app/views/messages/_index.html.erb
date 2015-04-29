@@ -1,7 +1,7 @@
 <% @messages.each do |message| %>
  <li class='message' data-id=<%= message.id%>>
  <% if message.user %>
-   <%= message.user.name.capitalize %>:
+   <%= message.user.name %>:
  <%end %>
  <%= simple_format(message.content) %>
 <%= link_to 'Delete Message', delete_message_path(message.connection_id, message.id), class:'message-destroy message-destroy btn btn-xs btn-danger' %>
