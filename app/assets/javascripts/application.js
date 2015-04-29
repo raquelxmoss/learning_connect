@@ -17,11 +17,6 @@
 
 $(document).ready(function(){
 
-$("#add-learning-objective").click(function(e){
-  e.preventDefault();
-  console.log('clicked')
- $(".learning-objectives").append($("#new-learning-objectives").html());
- });
 
 var users = $('.all-users').children();
   for(var i=0; i < users.length; i++){

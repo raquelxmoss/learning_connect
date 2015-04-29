@@ -7,5 +7,6 @@ class Course < ActiveRecord::Base
   belongs_to :learner,class_name: 'User'
 
   validates_presence_of :connection_id
+  default_scope {order('updated_at desc')}
 
 end
