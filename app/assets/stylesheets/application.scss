@@ -61,6 +61,7 @@ body{
 
 .form-control {
   margin-bottom: 20px;
+  background-color: #fff;
 }
 
 #new-learning-objectives {
@@ -74,15 +75,47 @@ body{
   width: 100%;
 }
 #user-card{
-width:25%;
-float:left;
-border:solid 1px;
-border-radius:5px;
-margin: 5px;
-padding: 5px
+  width:25%;
+  float:left;
+  border:solid 1px;
+  border-radius:5px;
+  margin: 5px;
+  padding: 5px
 }
 
 .sign-up-form {
   margin-bottom: 50px;
 }
 
+.message-submit {
+  margin-bottom: 10px;
+}
+
+#new-lesson-form{
+  margin-top: 20px;
+}
+
+#course-panel, #message-panel {
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#course-panel {
+  background: #B4E0F5;
+}
+
+#message-panel {
+  background: #03A587;
+}
+
+.connection-title {
+  text-align: center;
+}
+
+.connection-avatar {
+  display: inline;
+}
+
+.avatars {
+  text-align: center;
+}
