@@ -1,6 +1,6 @@
 Rails.application.configure do
 
-  config.action_mailer.default_url_options = { :host => 'learning-co.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'www.example.com' }
 
   # Rails.application.routes.default_url_options[:host] = 'yoursite.herokuapp.com'
 
@@ -12,7 +12,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
   address:              ENV['address'],
   port:                 25,
-  domain:               ENV['domain'],
+  domain:               'heroku.com',
   user_name:            ENV['username'],
   password:             ENV['password'],
   authentication:       'plain',
