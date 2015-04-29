@@ -19,8 +19,8 @@ var map;
         url: url,
         method:'GET',
         success:function(res){
-          console.log(res)
-          addmarker(res.lat,res.lng);
+          console.log(res);
+          addmarker(new google.maps.LatLng(res['lat'],res['long']));
         },
         error: function(req, errorType, errorMessage){
           alert(req, errorType, errorMessage);
