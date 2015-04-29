@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    @users = [@connection.initializer, @connection.receiver]
   end
 
   def destroy
