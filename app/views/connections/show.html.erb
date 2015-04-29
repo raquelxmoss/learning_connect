@@ -1,4 +1,4 @@
-<h2 class="connection-title">Connection between <%= @users[0].name %> and <%= @users[1].name %></h2>
+<h2 class="connection-title">Connection between <%= link_to @users[0].name, user_path(@users[0]) %> and <%= link_to @users[1].name, user_path(@users[1]) %></h2>
 <p class="avatars">
   <% avatar_1 = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@users[0].email)}?s=150&d=monsterid" %>
   <% avatar_2 = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@users[1].email)}?s=150&d=monsterid" %>
