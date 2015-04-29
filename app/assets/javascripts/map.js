@@ -8,10 +8,25 @@ var map;
 
  $(document).ready(function(){
      var wellington = new google.maps.LatLng(-41.299, 174.777);
-     $('.map').click(function(e){
-        e.preventDefault();
-        showUserMarker();
-     })
+  $('.map').click(function (e) {
+      e.preventDefault();
+      // var li = $(this).parent();
+      var id = $(this).data("id");
+
+      var url = ('/map/'+ id);
+      console.log(url);
+      $.ajax({
+        url: url,
+        method:'GET',
+        success:function(res){
+          console.log(res)
+          addmarker(res.lat,res.lng);
+        },
+        error: function(req, errorType, errorMessage){
+          alert(req, errorType, errorMessage);
+        }
+      });
+   });
   });
 
  function toggleBounce() {
@@ -47,26 +62,6 @@ function addmarker(LatLng){
   function error(err) {
     console.warn('ERROR(' + err.code + '): ' + err.message);
   };
-
-function showUserMarker (data){
-    // var li = $(this).parent();
-    var id = $(this).data("id");
-    var url = ('/map/'+ id);
-    console.log(url);
-    $.ajax({
-      url: url,
-      method:'GET',
-      success:function(res){
-
-      addmarker(res.lat,res.long);
-      console.log(res.lat,res.long);
-      },
-      error: function(req, errorType, errorMessage){
-        alert(req, errorType, errorMessage);
-      }
-    });
- };
-
 
  function initialize() {
   if(!$('#map-canvas').length){ return }

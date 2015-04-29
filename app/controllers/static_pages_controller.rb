@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
 
   def map
    respond_to do |format|
-   format.html
+   # format.html
    format.json {render json: @user, status: :ok}
    end
   end
