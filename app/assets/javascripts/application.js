@@ -23,6 +23,16 @@ $("#add-learning-objective").click(function(e){
  $(".learning-objectives").append($("#new-learning-objectives").html());
  });
 
+var users = $('.all-users').children();
+  for(var i=0; i < users.length; i++){
+    if (i%3 == 2) {
+      var children = $(users[i]).children()
+      for(var j=0; j < children.length; j++){
+        $(children[j]).after("<div class='row'>");
+      }
+    }
+}
+
  // $('.map').click(function (e) {
  //    e.preventDefault();
 
