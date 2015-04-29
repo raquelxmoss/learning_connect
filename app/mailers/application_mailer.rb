@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "john.kan@virtuosity.co.nz"
+  default from: "eda.learning.connect@gmail.com"
   layout 'mailer'
 end
