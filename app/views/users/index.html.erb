@@ -1,3 +1,4 @@
+<div class="col-md-10 col-md-offset-1">
 <div id='search'>
   <p>
     <%= form_tag(users_list_path, remote: true,:method => 'post', id: "search_form") do %>
@@ -12,3 +13,4 @@
 <% else %>
 	<p>There are no users the term(s) <%= params[:search] %>.</p>
 <% end %>
+</div>
