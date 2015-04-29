@@ -7,7 +7,7 @@ class ConnectionsController < ApplicationController
   def create
     @connection = Connection.new(set_options)
     if @connection.save
-      NotificationMailer.new_connection(@receiver, @connection).deliver_now
+      # NotificationMailer.new_connection(@receiver, @connection).deliver_now
       redirect_to connection_path @connection
     else
       redirect_to :back
