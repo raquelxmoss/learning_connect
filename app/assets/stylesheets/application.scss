@@ -15,9 +15,13 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+a:focus {
+  text-decoration: none;
+}
+
 body{
   padding-top:70px;
-  background: url("geometry2.png");
+  background: url("http://www.spicerack.co.nz/wp-content/uploads/2015/04/geometry2.png");
   font-size: 1.5em;
 }
 
@@ -79,6 +83,11 @@ body{
   padding: 0;
   width: 100%;
 }
+
+.connection-map{
+  margin-top: 20px;
+}
+
 #user-card{
   margin-bottom: 20px;
 }

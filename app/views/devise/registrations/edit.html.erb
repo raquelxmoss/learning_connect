@@ -43,13 +43,6 @@
   </div>
 <% end %>
 
-<div id = 'add-available-date'>
-    <%= form_tag("/user/add_available_date", remote: true, method: 'post') do %>
-      <%= datetime_local_field(:available_date, 'available_date') %>
-      <%= submit_tag('add date') %>
-    <% end %>
-   </div>
-
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-warning' %></p>

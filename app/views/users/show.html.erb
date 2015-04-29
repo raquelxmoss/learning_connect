@@ -28,7 +28,6 @@
     <% @connections.each do |connection| %>
       <li class="connection-list">Connection with <%= link_to current_user.name == connection.initializer.name ? connection.receiver.name : connection.initializer.name, connection %>
         <%= link_to 'View Map', map_path, class:"btn btn-default btn-sm pull-right" %>
-       <!--  <%= connection.receiver.id %> -->
         </li>
     <% end %>
   </div>
@@ -65,6 +64,8 @@
    </p>
    <div id='search_results'></div>
   </div>
+
+
 
 
 </div>
