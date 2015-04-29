@@ -18,7 +18,7 @@ class ConnectionsController < ApplicationController
     @users = [@connection.initializer, @connection.receiver]
     @courses = @connection.courses
     @messages = @connection.messages
-    @messages.each {|message| puts message.user.id}
+    # @messages.each {|message| puts message.user.id}
     @course = Course.new
   end
 
