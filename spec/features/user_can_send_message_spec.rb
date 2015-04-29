@@ -13,7 +13,6 @@ feature "Send Message", js: true do
   # scenario "Fill in message form" do
   #   fill_in('content', :with => 'This is a new message right here')
   #   click_on('Send')
-  #   save_and_open_page
   #   expect(page).to have_content('This is a new message right here')
   # end
 
