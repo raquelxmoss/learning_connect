@@ -8,8 +8,8 @@ var zoo = new google.maps.LatLng(-41.32, 174.78);
 var map;
 
  $(document).ready(function(){
-  var wellington = new google.maps.LatLng(-41.299, 174.777);
-});
+     var wellington = new google.maps.LatLng(-41.299, 174.777);
+  });
 
  function toggleBounce() {
     if (marker.getAnimation() != null) {
@@ -51,6 +51,7 @@ function addmarker(LatLng){
 
 
  function initialize() {
+  if(!$('#map-canvas').length){ return }
     var mapOptions = {
       center: { lat: -41.299, lng: 174.777},
       zoom: 13
