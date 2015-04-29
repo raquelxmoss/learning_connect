@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ConnectionsController, type: :controller do
-
+RSpec.describe ConnectionsController, type: :controller do 
   let(:receiver) {create(:user)}
   let(:initializer) {create(:user)}
   let(:matching_connection) {create(:connection, receiver: receiver, initializer: initializer)}
@@ -47,19 +46,41 @@ RSpec.describe ConnectionsController, type: :controller do
     end
   end
 
-  describe 'DELETE #destroy' do 
-    before(:each) do 
-      sign_in user
-      let(:matching_connection) {create(:connection, receiver: receiver, initializer: initializer)}
-      subject { delete :destroy, {id: matching_connection.to_param} }
+  describe 'POST #create' do 
+    before do 
+      sign_in receiver 
+
     end
 
+    it 'assigns a newly created connection as @connection' do
+      post :create, {receiver_id: receiver.id }
+      expect(assigns(:connection)).to be_a(Connection)
+      expect(assigns(:connection)).to be_persisted
+    end
+
+    it 'redirects to the created connection' do 
+      post :create, {receiver_id: receiver.id }
+      expect(response).to redirect_to(Connection.last) 
+    end
+  end
+
+
+
+  describe 'DELETE #destroy' do 
+    
+    subject {delete :destroy, {id: matching_connection.to_param}}    
+
+    before {sign_in receiver}
+
     it 'destroys the requested connection' do 
-      expect(subject).to change(Connection, :count).by(-1)
+      connection = Connection.create!(receiver: receiver, initializer: initializer)
+      expect{
+        delete :destroy, {id: connection.to_param}
+        }.to change(Connection, :count).by(-1)
     end
 
     it 'redirects_to user profie page' do 
-      expect(subject).to redirect_to(user_path user)
+      expect(subject).to redirect_to(user_path receiver)
     end
 
   end

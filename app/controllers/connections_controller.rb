@@ -1,13 +1,11 @@
 class ConnectionsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :
   before_filter :get_connection, only: [:show, :destroy]
+  before_filter :allow_user, except: :create
 
   def create
-    get_initializer
-    @receiver = User.find(params[:receiver_id]) 
-    @connection = Connection.new(receiver: @receiver, initializer: @initializer)
+    @connection = Connection.new(set_options)
     if @connection.save
       redirect_to connection_path @connection
     else
@@ -16,14 +14,10 @@ class ConnectionsController < ApplicationController
   end
 
   def show
-    if @connection.belongs_to? current_user
       @users = [@connection.initializer, @connection.receiver]
       @courses = @connection.courses
       @messages = @connection.messages
       @course = Course.new
-    else
-      redirect_to user_path(current_user)
-    end
   end
 
   def destroy
@@ -32,16 +26,19 @@ class ConnectionsController < ApplicationController
   end
 
   private
-  def connection_params
-    params.require(:connection).permit(:all)
-  end
 
   def get_connection
     @connection = Connection.find(params[:id])
   end
 
-  def get_initializer
+  def allow_user
+    redirect_to user_path current_user unless @connection.belongs_to? current_user
+  end
+
+  def set_options
     @initializer = current_user
+    @receiver = User.find(params[:receiver_id]) 
+    {initializer: @initializer, receiver: @receiver}
   end
 
 end
